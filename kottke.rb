@@ -1,6 +1,53 @@
 #! /usr/bin/env ruby
 require 'rss'
 require 'open-uri'
+require 'sequel'
+require 'logger'
+
+#DB setup
+DIR = File.expand_path(File.dirname(__FILE__)) #path to containing folder
+DB_PATH ="#{DIR}/kottke.db"
+DB = Sequel.sqlite(DB_PATH)
+
+class Log
+  def self.log
+    unless @logger
+      @logger = Logger.new('topmemeo.log', 'monthly')
+      @logger.level = Logger::INFO
+      @logger.datetime_format = '%Y-%m-%d %H:%M:%S'
+    end
+    @logger
+  end
+end
+
+
+#Define table if new db 
+#TODO save finished tweet to DB
+unless File.exist?(DB_PATH)
+  DB.create_table :posts do 
+    primary_key :id
+    String :headline
+    String :youtube_id, :null => false
+    String :post_url, :null => false
+    DateTime :post_date, :null => false
+    DateTime :created_at, :null => false
+  end
+  Log.log.debug "DB file not found. New DB file created"
+else
+  Log.log.debug "DB file detected"
+end
+
+class Post < Sequel::Model
+  plugin :validation_helpers
+  plugin :timestamps
+  def validate
+    super
+    validates_presence [:youtube_id, :post_url, :post_date]
+    validates_format /\Ahttps?:\/\/.*\./, :post_url, :message=>'is not a valid URL'
+    validates_unique :youtube_id
+  end
+end
+
 
 url = 'http://feeds.kottke.org/main'
 
