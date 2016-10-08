@@ -51,7 +51,11 @@ end
 
 url = 'http://feeds.kottke.org/main'
 
-feed = RSS::Parser.parse(open(url))
+def get_feed(url)
+  source = open(url)
+  feed = RSS::Parser.parse(source)
+end
+
 
 def get_latest_post()
   #Grab the timestamp of the most recent DB entry
@@ -60,21 +64,29 @@ end
 #NOTE: At the moment we're just grabbing the link. Should probably think about storing them in DB and what info you want for that
 # vid_id, date, headline? 
 
-def get_links(feed)
+def get_links(feed, latest_post_date)
+  Log.log.debug "Starting get_links"
+  feed_links = []
   feed.entries.each do |post| 
     post_date = post.updated.content
     #Test this if clause. just a stub
-    if post_date == latest_post
-      puts "no new videos"
-      break
+    if post_date <= latest_post_date
+      Log.log.debug "End of new videos"
+      #break
     end
 
     if post.content.content[/="http(s|):\/\/www.youtube.com.*?\"/].nil?
-      puts "not a video post"
+      Log.log.debug "not a video post"
       next
     end
-    links = post.content.content.scan(/youtube.*?\"/)
+    post_links = post.content.content.scan(/youtube.*?\"/)
+    #get ids for post_links
+    #build obj for each post_link, assemble into array of objs
+
+    #feed_links = feed_links + post_links
+    binding.pry if defined? Pry
   end
+  return feed_links
 end
 
 
@@ -114,8 +126,9 @@ def reorder(playlist, vid_id)
   # check for success
 end
 
-
-links = get_links(feed)
-ids = get_ids(links)
+if __FILE__ == $0
+  links = get_links(feed)
+  ids = get_ids(links)
+end
 
 

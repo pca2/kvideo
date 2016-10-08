@@ -1,2 +1,4 @@
 *.swp
 my_credentials.rb
+*.db
+*.log
