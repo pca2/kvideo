@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>kottke.org</title>
+    <link rel="alternate" type="text/html" href="http://kottke.org/" />
+    <link rel="self" type="application/atom+xml" href="http://feeds.kottke.org/main" />
+    <id>tag:kottke.org,2009-08-11:05118</id>
+    <updated>2016-10-07T18:22:47Z</updated>
+    <subtitle>Jason Kottke&apos;s weblog, home of fine hypertext products</subtitle>
+
+    <generator uri="http://www.sixapart.com/movabletype/">Movable Type 4.2</generator>
+
+<entry>
+    <title>Voice doubles</title>
+    <link rel="alternate" type="text/html" href="http://kottke.org/16/10/voice-doubles" />
+    <id>tag:kottke.org,2016://5.28823</id>
+
+    <published>2016-10-06T20:15:05Z</published>
+    <updated>2016-10-06T20:15:05Z</updated>
+
+    <author>
+        <name>Jason Kottke</name>
+        <uri>http://www.kottke.org</uri>
+    </author>
+    <content type="html" xml:lang="en" xml:base="http://kottke.org/">
+        <![CDATA[<p>Hello! For today&#8217;s installment of I Totally Didn&#8217;t Know This, we&#8217;re going to talk about voice doubles. When you&#8217;re making a movie or a TV show and you&#8217;re in the editing phase, cutting a trailer, or doing promotional videos, sometimes you need some extra dialogue that you didn&#8217;t get during the main filming. So you get the actor to come in to do the new dialogue. But sometimes, if the actor is famous and super busy, they might not be available. So there are voice actors whose job it is to impersonate the real actor&#8217;s voice. Saaaaay whaaaaat?</p>
+
+<p>It&#8217;s an example of ADR, Automated Dialogue Replacement. Amy Landecker, who plays Sarah Pfefferman on <a href="https://www.amazon.com/exec/obidos/ASIN/B00I3MOT0Y/ref=nosim/0sil8">Transparent</a>, has done this job for movies starring Julia Roberts. She sounds amazingly like Julia:</p>
+
+<p><iframe width="640" height="360" src="https://www.youtube.com/embed/37VhTWokgNU?rel=0" frameborder="0" allowfullscreen></iframe></p>
+
+<p>She even did most of Julia&#8217;s dialogue in this Duplicity trailer:</p>
+
+<p><iframe width="640" height="360" src="https://www.youtube.com/embed/DLiCbVyO0F4?rel=0" frameborder="0" allowfullscreen></iframe></p>
+
+<p><a href="http://www.behindthevoiceactors.com/Jim-Hanks/">Jim Hanks</a> has done voiceover work for his brother Tom in the past:</p>
+
+<p><iframe width="640" height="360" src="https://www.youtube.com/embed/yrPbt03-8lI?rel=0" frameborder="0" allowfullscreen></iframe></p>
+
+<p>He does the voice for Woody in all the Toy Story video games&#8230;it&#8217;s not an exact match, but <a href="https://www.youtube.com/watch?v=Fs1DYdy0Qk8">it&#8217;s pretty good</a>. (via <a href="http://www.vulture.com/2016/10/transparent-amy-landecker-is-julia-roberts-voice-double.html">vulture</a>)</p>
+
+<p><strong>Update:</strong> Nolan North voice doubles for Christopher Walken.</p>
+
+<p><iframe width="640" height="360" src="https://www.youtube.com/embed/ZeCYZgwQYEU?rel=0" frameborder="0" allowfullscreen></iframe></p>
+
+<p>(via <a href="https://twitter.com/Han_So">@Han_So</a>)</p>]]>
+
+<![CDATA[ <strong>Tags:</strong> <a href="http://kottke.org/tag/Amy%20Landecker">Amy Landecker</a>&nbsp;&nbsp; <a href="http://kottke.org/tag/audio">audio</a>&nbsp;&nbsp; <a href="http://kottke.org/tag/Christopher%20Walken">Christopher Walken</a>&nbsp;&nbsp; <a href="http://kottke.org/tag/Jim%20Hanks">Jim Hanks</a>&nbsp;&nbsp; <a href="http://kottke.org/tag/Julia%20Roberts">Julia Roberts</a>&nbsp;&nbsp; <a href="http://kottke.org/tag/movies">movies</a>&nbsp;&nbsp; <a href="http://kottke.org/tag/Nolan%20North">Nolan North</a>&nbsp;&nbsp; <a href="http://kottke.org/tag/Tom%20Hanks">Tom Hanks</a>]]>
+    </content>
+</entry>
+
+</feed>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <title>kottke.org</title>
+    <link rel="alternate" type="text/html" href="http://kottke.org/" />
+    <link rel="self" type="application/atom+xml" href="http://feeds.kottke.org/main" />
+    <id>tag:kottke.org,2009-08-11:05118</id>
+    <updated>2016-10-07T18:22:47Z</updated>
+    <subtitle>Jason Kottke&apos;s weblog, home of fine hypertext products</subtitle>
+
+    <generator uri="http://www.sixapart.com/movabletype/">Movable Type 4.2</generator>
+
+<entry>
+    <title>Lovely brand design for a Nashville conference</title>
+    <link rel="alternate" type="text/html" href="http://kottke.org/16/10/lovely-brand-design-for-a-nashville-conference" />
+    <id>tag:kottke.org,2016://5.28829</id>
+
+    <published>2016-10-07T18:22:47Z</published>
+    <updated>2016-10-07T18:22:47Z</updated>
+
+    <author>
+        <name>Jason Kottke</name>
+        <uri>http://www.kottke.org</uri>
+    </author>
+    <content type="html" xml:lang="en" xml:base="http://kottke.org/">
+        <![CDATA[<p><img src="http://also.kottke.org/misc/images/brand-new-conf-01.jpg" width="1200" height="800" border="0" alt="Brand New Conf" /></p>
+
+<p><img src="http://also.kottke.org/misc/images/brand-new-conf-02.jpg" width="1200" height="800" border="0" alt="Brand New Conf" /></p>
+
+<p>I love <a href="http://www.underconsideration.com/brandnew/archives/new_logo_and_identity_for_2016_brand_new_conference_by_underconsideration.php">this design work</a> from <a href="http://underconsideration.com/">UnderConsideration</a> for their <a href="http://www.underconsideration.com/brandnewconference/">recent conference</a> in Nashville. It&#8217;s got a Western rhinestone + woodtype vibe but it also feels digital &#8212; the first thing that popped into my head when I saw that gorgeous F was a circuit board. Wonderful. (via <a href="https://twitter.com/Colossal">@Colossal</a>)</p>]]>
+
+<![CDATA[ <strong>Tags:</strong> <a href="http://kottke.org/tag/design">design</a>]]>
+    </content>
+</entry>
+
+</feed>

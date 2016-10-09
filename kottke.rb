@@ -57,29 +57,69 @@ def get_feed(url)
 end
 
 
-def get_latest_post()
+def get_latest_vid()
   #Grab the timestamp of the most recent DB entry
 end
 
 #NOTE: At the moment we're just grabbing the link. Should probably think about storing them in DB and what info you want for that
 # vid_id, date, headline? 
 
+def check_for_update(feed, latest_vid_date)
+  last_update = feed.updated.content
+  Log.log.debug "last_update: #{last_update}"
+  Log.log.debug "latest_vid_date: #{latest_vid_date}"
+  if last_update > latest_vid_date
+    Log.log.debug "No updates found"
+    return true
+  else
+    Log.log.debug "Updates Detected"
+    return false
+  end
+
+
+end
+
+=begin 
+This should be part of a separate method that just checks latest post date
+    post_date = post.updated.content
+
+    if post_date <= latest_post_date
+      Log.log.debug "End of new videos"
+      return post_links
+    end
+=end
+
+def get_links(post)
+   binding.pry if defined? Pry
+  post_links = []
+  if post.content.content[/="http(s|):\/\/www.youtube.com.*?\"/].nil?
+    Log.log.debug "not a video post"
+  end
+  post_links = post.content.content.scan(/youtube.*?\"/)
+end
+
+def get_ids(array)
+  ids = array.map{ |l| l.scan(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/)}
+  return ids.flatten
+end
+
+def build_post_objs(post)
+  # this is the master method of processing a post
+  post_objs = []
+  post_links = get_links(post)
+  if post_links.empty?
+    return post_objs
+  end
+  post_ids = get_ids(post_links)
+  #build obj for each post_id
+end
+
+#old get_links. can probably be deleted?
+=begin
 def get_links(feed, latest_post_date)
   Log.log.debug "Starting get_links"
   feed_links = []
   feed.entries.each do |post| 
-    post_date = post.updated.content
-    #Test this if clause. just a stub
-    if post_date <= latest_post_date
-      Log.log.debug "End of new videos"
-      #break
-    end
-
-    if post.content.content[/="http(s|):\/\/www.youtube.com.*?\"/].nil?
-      Log.log.debug "not a video post"
-      next
-    end
-    post_links = post.content.content.scan(/youtube.*?\"/)
     #get ids for post_links
     #build obj for each post_link, assemble into array of objs
 
@@ -88,12 +128,8 @@ def get_links(feed, latest_post_date)
   end
   return feed_links
 end
+=end
 
-
-def get_ids(array)
-  ids = array.map{ |l| l.scan(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/)}
-  return ids.flatten
-end
 
 def get_db_ids()
   #grab an array of all the known IDs in the DB. Later we'll check against this before we insert a new one. to prevent duplicates
