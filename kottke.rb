@@ -24,7 +24,7 @@ end
 #Define table if new db 
 #TODO save finished tweet to DB
 unless File.exist?(DB_PATH)
-  DB.create_table :posts do 
+  DB.create_table :entries do 
     primary_key :id
     String :headline
     String :youtube_id, :null => false
@@ -37,7 +37,7 @@ else
   Log.log.debug "DB file detected"
 end
 
-class Post < Sequel::Model
+class Entry < Sequel::Model
   plugin :validation_helpers
   plugin :timestamps
   def validate
@@ -50,7 +50,7 @@ end
 
 
 url = 'http://feeds.kottke.org/main'
-
+#1. We get a feed
 def get_feed(url)
   source = open(url)
   feed = RSS::Parser.parse(source)
@@ -89,6 +89,22 @@ This should be part of a separate method that just checks latest post date
     end
 =end
 
+# 2.We loop through each feed item
+# MISSING
+
+#3.  skip if post does not contain links
+#4. Create post obj, save to DB
+#5. get id of newly created obj
+#6. get links from post
+#7. get ID from each link
+#8. build VIDEO object for each ID, including a post_id
+#9. save each video to DB, if it succeeds, append to playlist
+#10. reorder playlist
+#11. move on 
+#12. At the end, do some kind of unique check against playlist vids
+
+
+
 def get_links(post)
    binding.pry if defined? Pry
   post_links = []
@@ -111,8 +127,19 @@ def build_post_objs(post)
     return post_objs
   end
   post_ids = get_ids(post_links)
+
+  #get_post_details
   #build obj for each post_id
+  #build_obj(post_ids,post)
 end
+
+def build_entry(ids,post)
+  entry = Post.new
+
+  
+
+end
+
 
 #old get_links. can probably be deleted?
 =begin
