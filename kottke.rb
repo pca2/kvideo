@@ -24,12 +24,17 @@ end
 #Define table if new db 
 #TODO save finished tweet to DB
 unless File.exist?(DB_PATH)
-  DB.create_table :entries do 
+  DB.create_table :posts do 
     primary_key :id
     String :headline
-    String :youtube_id, :null => false
     String :post_url, :null => false
     DateTime :post_date, :null => false
+    DateTime :created_at, :null => false
+  end
+  DB.create_table :videos do
+    primary_key :id
+    foreign_key :post_id, :posts
+    String :youtube_id, :null => false
     DateTime :created_at, :null => false
   end
   Log.log.debug "DB file not found. New DB file created"
@@ -37,15 +42,26 @@ else
   Log.log.debug "DB file detected"
 end
 
-class Entry < Sequel::Model
+class Post < Sequel::Model
   plugin :validation_helpers
   plugin :timestamps
   def validate
     super
-    validates_presence [:youtube_id, :post_url, :post_date]
+    validates_presence [:post_url, :post_date]
     validates_format /\Ahttps?:\/\/.*\./, :post_url, :message=>'is not a valid URL'
+  end
+  one_to_many :videos
+end
+
+class Video < Sequel::Model
+  plugin :validation_helpers
+  plugin :timestamps
+  def validate
+    super
+    validates_presence :youtube_id
     validates_unique :youtube_id
   end
+  many_to_one :posts
 end
 
 
@@ -134,7 +150,7 @@ def build_post_objs(post)
 end
 
 def build_entry(ids,post)
-  entry = Post.new
+  post = Post.new
 
   
 
