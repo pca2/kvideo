@@ -91,8 +91,6 @@ def check_for_update(feed, latest_vid_date)
     Log.log.debug "Updates Detected"
     return false
   end
-
-
 end
 
 =begin 
@@ -122,7 +120,7 @@ This should be part of a separate method that just checks latest post date
 
 
 def get_links(post)
-   binding.pry if defined? Pry
+  binding.pry if defined? Pry
   post_links = []
   if post.content.content[/="http(s|):\/\/www.youtube.com.*?\"/].nil?
     Log.log.debug "not a video post"
@@ -154,6 +152,30 @@ def build_entry(ids,post)
 
   
 
+end
+
+def process_feed(feed)
+  
+  feed.entries do |entry|
+  #check_date
+  return "Something????" if entry.updated.content < latest_vid_date
+  entry_links = get_links(post)
+  #3.  skip if post does not contain links
+  next if entry_links.empty?
+  
+  #4. Create post obj, save to DB
+  post = Post.new
+  post.headline = entry.title.content 
+  post.post_url = entry.link.href
+  post.post_date = entry.updated.content
+  post.save
+  #5. get id of newly created obj
+
+
+  end
+  #6. get links from post
+  #7. get ID from each link
+  #8. build VIDEO object for each ID, including a post_id
 end
 
 
@@ -206,8 +228,24 @@ def reorder(playlist, vid_id)
 end
 
 if __FILE__ == $0
-  links = get_links(feed)
-  ids = get_ids(links)
+  #1. get feed
+  feed = get_feed(url)
+  #Get latest get_latest_vid
+  get_latest_vid()
+  #Check for update
+  unless check_for_update(feed, latest_vid_date)
+    puts "No updates found"
+    exit
+  end
+  # 2.We loop through each feed item
+  process_feed(feed)
+  
+
+  #9. save each video to DB, if it succeeds, append to playlist
+  #10. reorder playlist
+  #11. move on 
+  #12. At the end, do some kind of unique check against playlist vids
+
 end
 
 
