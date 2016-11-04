@@ -77,8 +77,6 @@ def get_latest_vid()
   #Grab the timestamp of the most recent DB entry
 end
 
-#NOTE: At the moment we're just grabbing the link. Should probably think about storing them in DB and what info you want for that
-# vid_id, date, headline? 
 
 def check_for_update(feed, latest_vid_date)
   last_update = feed.updated.content
@@ -92,32 +90,6 @@ def check_for_update(feed, latest_vid_date)
     return false
   end
 end
-
-=begin 
-This should be part of a separate method that just checks latest post date
-    post_date = post.updated.content
-
-    if post_date <= latest_post_date
-      Log.log.debug "End of new videos"
-      return post_links
-    end
-=end
-
-# 2.We loop through each feed item
-# MISSING
-
-#3.  skip if post does not contain links
-#4. Create post obj, save to DB
-#5. get id of newly created obj
-#6. get links from post
-#7. get ID from each link
-#8. build VIDEO object for each ID, including a post_id
-#9. save each video to DB, if it succeeds, append to playlist
-#10. reorder playlist
-#11. move on 
-#12. At the end, do some kind of unique check against playlist vids
-
-
 
 def get_links(post)
   binding.pry if defined? Pry
@@ -155,46 +127,40 @@ def build_entry(ids,post)
 end
 
 def process_feed(feed)
-  
+    
   feed.entries do |entry|
+
   #check_date
-  return "Something????" if entry.updated.content < latest_vid_date
+  if entry.updated.content <= latest_vid_date
+    Log.log.info "Already parsed post discovered, ending"
+    exit
+  end
+  
+  #. get links from post
   entry_links = get_links(post)
   #3.  skip if post does not contain links
   next if entry_links.empty?
   
   #4. Create post obj, save to DB
+  #TODO: Should be method
   post = Post.new
   post.headline = entry.title.content 
   post.post_url = entry.link.href
   post.post_date = entry.updated.content
-  post.save
-  #5. get id of newly created obj
-
-
+  if post.save
+    Log.log.debug "Post saved to DB"
+  # post.id is now attached to post
+  else
+    Log.log.error "Error saving post"
   end
-  #6. get links from post
+
+
+
   #7. get ID from each link
+  entry_ids = get_ids(entry_links)
   #8. build VIDEO object for each ID, including a post_id
+  #TODO. make method for looping through IDs and creating an Video obj for each one, then saving each one
 end
-
-
-#old get_links. can probably be deleted?
-=begin
-def get_links(feed, latest_post_date)
-  Log.log.debug "Starting get_links"
-  feed_links = []
-  feed.entries.each do |post| 
-    #get ids for post_links
-    #build obj for each post_link, assemble into array of objs
-
-    #feed_links = feed_links + post_links
-    binding.pry if defined? Pry
-  end
-  return feed_links
-end
-=end
-
 
 def get_db_ids()
   #grab an array of all the known IDs in the DB. Later we'll check against this before we insert a new one. to prevent duplicates
