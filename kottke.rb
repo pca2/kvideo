@@ -148,6 +148,7 @@ def process_feed(feed)
   post.post_url = entry.link.href
   post.post_date = entry.updated.content
   if post.save
+    #This if statement should probably be a method,right?
     Log.log.debug "Post saved to DB"
   # post.id is now attached to post
   else
@@ -157,8 +158,19 @@ def process_feed(feed)
 
 
   #7. get ID from each link
-  entry_ids = get_ids(entry_links)
+ entry_ids = get_ids(entry_links)
   #8. build VIDEO object for each ID, including a post_id
+  entry_ids.each do |vid_id|
+    video = Video.new
+    video.post_id = post.id
+    video.youtube_id = vid_id
+    #This if statement should probably be a method,right?
+    if video.save
+      Log.log.debug "Video saved"
+    else
+      Log.log.error "Error saving video"
+    end
+  end
   #TODO. make method for looping through IDs and creating an Video obj for each one, then saving each one
 end
 
