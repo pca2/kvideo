@@ -54,10 +54,18 @@ class KottkeTest < Minitest::Test
     assert_equal [], get_ids([])
   end
 
-  def test_check_for_update
+  def test_update_found
     feed = get_sample_feed('sample.xml')
     latest_vid_date = Time.utc('2016','10','07', '18', '22', '47')
-    assert_equal false, check_for_update(feed,latest_vid_date)
+    assert_equal false, update_found(feed,latest_vid_date)
+  end
+
+  def test_db_file_exists
+    assert_equal true, File.file?(DB_PATH), "DB file should exist"
+  end
+
+  def test_db_tables_defined
+    assert_equal [:posts, :videos], DB.tables
   end
 
 end
