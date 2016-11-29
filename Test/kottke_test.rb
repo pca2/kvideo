@@ -56,8 +56,8 @@ class KottkeTest < Minitest::Test
 
   def test_update_found
     feed = get_sample_feed('sample.xml')
-    latest_vid_date = Time.utc('2016','10','07', '18', '22', '47')
-    assert_equal false, update_found(feed,latest_vid_date)
+    latest_post_date = Time.utc('2016','10','07', '18', '22', '47')
+    assert_equal false, update_found(feed,latest_post_date)
   end
 
   def test_db_file_exists
@@ -67,5 +67,30 @@ class KottkeTest < Minitest::Test
   def test_db_tables_defined
     assert_equal [:posts, :videos], DB.tables
   end
+
+  def test_process_feed
+    feed = get_sample_feed('sample.xml')
+    latest_post_date = Time.utc('2015')
+    truncate_tables(['videos','posts'])
+    process_feed(feed, latest_post_date)
+    assert_equal 9, DB[:videos].count, "Processing of sample feed should result in 9 video rows"
+  end
+
+  def test_build_post
+
+  end
+
+  def test_save_to_db
+
+  end
+
+  def test_build_video
+
+  end
+
+  def test_get_latest_post
+
+  end
+
 
 end

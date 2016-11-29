@@ -79,11 +79,19 @@ end
 
 
 def get_latest_post()
-  Post.last(:post_date).post_date
+  if Post.empty?
+    nil
+  else
+    Post.last(:post_date).post_date
+  end
 end
 
 #Check the feed to see if the latest update is greater than the latest vid we have
 def update_found(feed, latest_post_date)
+  if latest_post_date.nil?
+    Log.log.debug "Latest Post date is nil, table is empty. Performing initial update"
+    return true
+  end
   last_update = feed.updated.content
   Log.log.debug "last_update: #{last_update}"
   Log.log.debug "latest_post_date: #{latest_post_date}"
@@ -98,7 +106,6 @@ end
 
 #Given the text content of a post, collect all of the YT links into an array
 def get_links(post)
-  #binding.pry if defined? Pry
   post_links = []
   if post.content.content[/="http(s|):\/\/www.youtube.com.*?\"/].nil?
     Log.log.debug "not a video post"
@@ -148,8 +155,8 @@ end
 
 def process_feed(feed,latest_post_date)
     feed.entries.each do |entry|
-    #check_date
-    if entry.updated.content <= latest_post_date
+    #check_date, if there's a latest_post_date to check against
+    if latest_post_date && entry.updated.content <= latest_post_date
       Log.log.info "Already parsed post discovered, ending"
       exit
     end
@@ -217,13 +224,11 @@ if __FILE__ == $0
   latest_post_date = get_latest_post()
   #2. Check for update
   unless update_found(feed, latest_post_date)
-    puts "No updates found, exiting script"
+    Log.log.info "No updates found, exiting script"
     exit
   end
   # 2.We loop through each feed item
   process_feed(feed,latest_post_date)
-  
-
   #9. save each video to DB, if it succeeds, append to playlist
   #10. reorder playlist
   #11. move on 

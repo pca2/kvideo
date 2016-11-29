@@ -13,5 +13,9 @@ def get_sample_entry(xml)
 end
 
 
-
+def truncate_tables(array)
+  array.each do |table|
+    DB[table.to_sym].truncate
+  end
+end
 
