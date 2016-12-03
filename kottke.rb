@@ -8,6 +8,7 @@ require 'logger'
 DIR = File.expand_path(File.dirname(__FILE__)) #path to containing folder
 DB_PATH ="#{DIR}/kottke.db"
 DB = Sequel.sqlite(DB_PATH)
+Sequel.default_timezone= :utc
 
 class Log
   def self.log
@@ -82,34 +83,30 @@ def get_latest_post()
   if Post.empty?
     nil
   else
-    Post.last(:post_date).post_date
+    Post.select_order_map(:post_date).last
   end
 end
 
 #Check the feed to see if the latest update is greater than the latest vid we have
-def update_found(feed, latest_post_date)
-  if latest_post_date.nil?
+def update_found(feed, latest_db_post)
+  if latest_db_post.nil?
     Log.log.debug "Latest Post date is nil, table is empty. Performing initial update"
     return true
   end
-  last_update = feed.updated.content
-  Log.log.debug "last_update: #{last_update}"
-  Log.log.debug "latest_post_date: #{latest_post_date}"
-  if last_update > latest_post_date
-    Log.log.debug "No updates found"
+  last_blog_update = feed.updated.content
+  Log.log.debug "last_blog_update: #{last_blog_update}"
+  Log.log.debug "latest_db_post: #{latest_db_post}" 
+  if last_blog_update > latest_db_post
+    Log.log.debug "Updates Detected"
     return true
   else
-    Log.log.debug "Updates Detected"
+    Log.log.debug "No updates found"
     return false
   end
 end
 
 #Given the text content of a post, collect all of the YT links into an array
 def get_links(post)
-  post_links = []
-  if post.content.content[/="http(s|):\/\/www.youtube.com.*?\"/].nil?
-    Log.log.debug "not a video post"
-  end
   post_links = post.content.content.scan(/youtube.*?\"/)
 end
 
@@ -153,10 +150,11 @@ def save_to_db(item)
 end
 
 
-def process_feed(feed,latest_post_date)
+def process_feed(feed,latest_db_post)
     feed.entries.each do |entry|
-    #check_date, if there's a latest_post_date to check against
-    if latest_post_date && entry.updated.content <= latest_post_date
+    Log.log.debug "Processing entry: " + entry.title.content 
+    #check_date, if there's a latest_db_post to check against
+    if latest_db_post && entry.updated.content <= latest_db_post
       Log.log.info "Already parsed post discovered, ending"
       exit
     end
@@ -221,14 +219,14 @@ if __FILE__ == $0
   #1. get feed
   feed = get_feed(url)
   #Get latest post date
-  latest_post_date = get_latest_post()
+  latest_db_post = get_latest_post()
   #2. Check for update
-  unless update_found(feed, latest_post_date)
+  unless update_found(feed, latest_db_post)
     Log.log.info "No updates found, exiting script"
     exit
   end
   # 2.We loop through each feed item
-  process_feed(feed,latest_post_date)
+  process_feed(feed,latest_db_post)
   #9. save each video to DB, if it succeeds, append to playlist
   #10. reorder playlist
   #11. move on 
