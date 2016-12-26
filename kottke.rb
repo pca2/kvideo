@@ -152,7 +152,7 @@ end
 
 def process_feed(feed,latest_db_post)
     feed.entries.each do |entry|
-    Log.log.debug "Processing entry: " + entry.title.content 
+    Log.log.info "Processing entry: " + entry.title.content 
     #check_date, if there's a latest_db_post to check against
     if latest_db_post && entry.updated.content <= latest_db_post
       Log.log.info "Already parsed post discovered, ending"
