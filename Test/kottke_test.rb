@@ -77,7 +77,9 @@ class KottkeTest < Minitest::Test
   end
 
   def test_build_post
-
+    entry = get_sample_entry('sample.xml')
+    post = build_post(entry)
+    assert_equal "Lovely brand design for a Nashville conference", post.headline, "Headline of sample entry should match"
   end
 
   def test_save_to_db
