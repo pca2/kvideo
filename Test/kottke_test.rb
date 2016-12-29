@@ -83,7 +83,12 @@ class KottkeTest < Minitest::Test
   end
 
   def test_save_to_db
-
+    DB[:videos].delete
+    DB[:posts].delete
+    entry = get_sample_entry('sample.xml')
+    post = build_post(entry)
+    saved_post = save_to_db(post)
+    assert_equal 1, DB[:posts].where(headline: "Lovely brand design for a Nashville conference").count
   end
 
   def test_build_video
