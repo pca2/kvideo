@@ -6,7 +6,7 @@ require 'logger'
 
 #DB setup
 DIR = File.expand_path(File.dirname(__FILE__)) #path to containing folder
-DB_PATH ="#{DIR}/kottke.db"
+DB_PATH ||= "#{DIR}/kottke.db"
 DB = Sequel.sqlite(DB_PATH)
 Sequel.default_timezone= :utc
 

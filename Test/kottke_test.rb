@@ -1,8 +1,8 @@
 #! /usr/bin/env ruby
 require 'minitest/autorun'
 require 'minitest/pride'
+require_relative 'test_helper.rb'#must be required first for DB path
 require_relative '../kottke.rb'
-require_relative 'test_helper.rb'
 
 class KottkeTest < Minitest::Test
   def setup

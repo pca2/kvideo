@@ -1,7 +1,9 @@
 #! /usr/bin/env ruby
 require 'rss'
-SAMPLE_DIR = File.expand_path(File.dirname(__FILE__)) + '/sample_xml/'
+DIR = File.expand_path(File.dirname(__FILE__)) #path to containing folder
+SAMPLE_DIR = DIR + '/sample_xml/'
 FEED_URL = 'http://feeds.kottke.org/main'
+DB_PATH = "#{DIR}/kottke_test.db"
 
 def get_sample_feed(xml)
   file = (File.open(SAMPLE_DIR + xml)).read
