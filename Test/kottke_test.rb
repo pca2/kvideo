@@ -5,19 +5,12 @@ require_relative '../kottke.rb'
 require_relative 'test_helper.rb'
 
 class KottkeTest < Minitest::Test
-#URL of feed
-@@url = 'http://feeds.kottke.org/main'
-
-  #Setup fake feed to test with
-=begin
-    file = (File.open('./test_feed.txt')).read
-    @@fake_feed = RSS::Parser.parse(file)
-=end
-  #End Setup   
+  def setup
+    truncate_tables(['videos','posts'])
+  end
 
   def test_get_feed
-    skip
-    feed = get_feed(@@url)
+    feed = get_feed(FEED_URL)
     assert_instance_of RSS::Atom::Feed, feed
   end
 
@@ -70,9 +63,7 @@ class KottkeTest < Minitest::Test
 
   def test_process_feed
     feed = get_sample_feed('sample.xml')
-    latest_post_date = Time.utc('2015')
-    truncate_tables(['videos','posts'])
-    process_feed(feed, latest_post_date)
+    process_feed(feed, nil)
     assert_equal 9, DB[:videos].count, "Processing of sample feed should result in 9 video rows"
   end
 
@@ -83,8 +74,6 @@ class KottkeTest < Minitest::Test
   end
 
   def test_save_to_db
-    DB[:videos].delete
-    DB[:posts].delete
     entry = get_sample_entry('sample.xml')
     post = build_post(entry)
     saved_post = save_to_db(post)
@@ -92,11 +81,23 @@ class KottkeTest < Minitest::Test
   end
 
   def test_build_video
+    entry = get_sample_entry('sample.xml')
+    post = build_post(entry)
+    saved_post = save_to_db(post)
+    video = build_video("iPPzXlMdi7o",saved_post.id)
+    assert_equal "iPPzXlMdi7o", video.youtube_id
+  end
+
+  def test_get_latest_post_returns_nil_on_empty_DB
+    assert_nil get_latest_post
 
   end
 
   def test_get_latest_post
-
+    feed = get_sample_feed('sample.xml')
+    process_feed(feed, nil)
+    latest_post_date = get_latest_post
+    assert_equal latest_post_date, Time.utc('2016','10','07', '14', '26', '11') 
   end
 
 
