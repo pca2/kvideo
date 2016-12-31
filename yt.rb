@@ -14,7 +14,6 @@ end
 account = Yt::Account.new refresh_token: REFRESH_TOKEN
 #3 define playlist
 playlist = Yt::Playlist.new id: PLAYLIST_ID, auth: account
-
 #4 Add a video
 new_item = playlist.add_video youtube_id
 

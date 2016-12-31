@@ -3,6 +3,8 @@ require 'rss'
 require 'open-uri'
 require 'sequel'
 require 'logger'
+require 'yt'
+require_relative 'credentials.rb'
 
 #DB setup
 DIR = File.expand_path(File.dirname(__FILE__)) #path to containing folder
@@ -150,7 +152,7 @@ def save_to_db(item)
 end
 
 
-def process_feed(feed,latest_db_post)
+def process_feed(feed,latest_db_post,playlist)
     feed.entries.each do |entry|
     Log.log.info "Processing entry: " + entry.title.content 
     #check_date, if there's a latest_db_post to check against
@@ -178,44 +180,66 @@ def process_feed(feed,latest_db_post)
     entry_ids.each do |vid_id|
       video = build_video(vid_id,saved_post.id)
       saved_video = save_to_db(video)
+      plist_item = playlist.add_video saved_video.youtube_id
+      reorder_vid(plist_item,0)
     end
   end
 end
 
-def get_db_ids()
-  #grab an array of all the known IDs in the DB. Later we'll check against this before we insert a new one. to prevent duplicates
+
+####yt code###
+
+def define_account(token)
+  account = Yt::Account.new refresh_token: token
 end
 
-def check_dupls()
-
+def define_playlist(account,playlist_id)
+  playlist = Yt::Playlist.new id: playlist_id, auth: account
 end
 
-def add_to_db()
-
+def authorize_yt(client_id,client_secret)
+  Yt.configure do |config|
+    config.client_id = client_id
+    config.client_secret = client_secret
+  end
 end
 
-def authorize()
-  # setup acct
-end
-
-def define_playlist()
-
-end
-
-def append_to_playlist(playlist, vid_id)
-  #you'll want to merge this code and the yt code
-  # and you'll be working with arrrays actually
+def append_to_playlist(playlist, youtube_id)
   # check for success/catch errors
+  new_item = playlist.add_video youtube_id
 end
 
-def reorder(playlist, vid_id)
-  # set position 0. Check notes for details
+def reorder_vid(item, new_position)
   # check for success
+  item.update position: new_position
 end
+
+# get array of all vids in playlist
+def get_playlist_vids(playlist)
+  vids = Array.new
+  playlist.playlist_items.each {|item| vids << item.video_id}
+  return vids
+end
+
+def get_db_vids
+  db_vid_array = DB[:videos].join(:posts, :id => :post_id).order(:post_date).select_map(:youtube_id)
+end
+
+def check_vid_arrays_match(array_one,array_two)
+  if array_one == array_two 
+    return true
+  else
+    return false
+  end
+end
+
 
 #RUNTIME
 
 if __FILE__ == $0
+  authorize_yt(CLIENT_ID,CLIENT_SECRET)
+  account = define_account(REFRESH_TOKEN)
+  playlist = define_playlist(account,PLAYLIST_ID)
   #1. get feed
   feed = get_feed(url)
   #Get latest post date
@@ -226,7 +250,8 @@ if __FILE__ == $0
     exit
   end
   # 2.We loop through each feed item
-  process_feed(feed,latest_db_post)
+  process_feed(feed,latest_db_post,playlist)
+
   #9. save each video to DB, if it succeeds, append to playlist
   #10. reorder playlist
   #11. move on 

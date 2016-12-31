@@ -50,11 +50,11 @@ class KottkeTest < Minitest::Test
   def test_update_found
     feed = get_sample_feed('sample.xml')
     latest_post_date = Time.utc('2016','10','07', '18', '22', '47')
-    assert_equal false, update_found(feed,latest_post_date)
+    refute update_found(feed,latest_post_date)
   end
 
   def test_db_file_exists
-    assert_equal true, File.file?(DB_PATH), "DB file should exist"
+    assert File.file?(DB_PATH), "DB file should exist"
   end
 
   def test_db_tables_defined
@@ -62,9 +62,13 @@ class KottkeTest < Minitest::Test
   end
 
   def test_process_feed
+    authorize_yt(CLIENT_ID,CLIENT_SECRET)
+    account = define_account(REFRESH_TOKEN)
+    dummy_playlist = create_dummy_playlist(account)
     feed = get_sample_feed('sample.xml')
-    process_feed(feed, nil)
+    process_feed(feed, nil,dummy_playlist)
     assert_equal 9, DB[:videos].count, "Processing of sample feed should result in 9 video rows"
+    delete_playlist(dummy_playlist)
   end
 
   def test_build_post
@@ -94,10 +98,47 @@ class KottkeTest < Minitest::Test
   end
 
   def test_get_latest_post
+    authorize_yt(CLIENT_ID,CLIENT_SECRET)
+    account = define_account(REFRESH_TOKEN)
+    dummy_playlist = create_dummy_playlist(account)
     feed = get_sample_feed('sample.xml')
-    process_feed(feed, nil)
+    process_feed(feed, nil,dummy_playlist)
     latest_post_date = get_latest_post
     assert_equal latest_post_date, Time.utc('2016','10','07', '14', '26', '11') 
+    delete_playlist(dummy_playlist)
+  end
+
+  def test_account_valid
+    authorize_yt(CLIENT_ID,CLIENT_SECRET)
+    account = define_account(REFRESH_TOKEN)
+    assert Time.now < account.expires_at
+  end
+
+  def test_playlist_valid
+    authorize_yt(CLIENT_ID,CLIENT_SECRET)
+    account = define_account(REFRESH_TOKEN)
+    playlist = define_playlist(account,PLAYLIST_ID)
+    assert_equal playlist.id, PLAYLIST_ID
+  end
+
+  def test_append_to_playlist
+    authorize_yt(CLIENT_ID,CLIENT_SECRET)
+    account = define_account(REFRESH_TOKEN)
+    dummy_playlist = create_dummy_playlist(account)
+    new_item = append_to_playlist(dummy_playlist, SAMPLE_VID_ID_ONE)
+    assert new_item.exists?
+    delete_playlist(dummy_playlist)
+  end
+
+  def test_reorder_vid
+    authorize_yt(CLIENT_ID,CLIENT_SECRET)
+    account = define_account(REFRESH_TOKEN)
+    dummy_playlist = create_dummy_playlist(account)
+    item_one = append_to_playlist(dummy_playlist, SAMPLE_VID_ID_ONE)
+    item_two = append_to_playlist(dummy_playlist, SAMPLE_VID_ID_TWO)
+    result = reorder_vid(item_two,0)
+    assert result
+    delete_playlist(dummy_playlist)
   end
 
 
