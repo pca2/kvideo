@@ -134,10 +134,12 @@ class KottkeTest < Minitest::Test
     authorize_yt(CLIENT_ID,CLIENT_SECRET)
     account = define_account(REFRESH_TOKEN)
     dummy_playlist = create_dummy_playlist(account)
-    item_one = append_to_playlist(dummy_playlist, SAMPLE_VID_ID_ONE)
-    item_two = append_to_playlist(dummy_playlist, SAMPLE_VID_ID_TWO)
-    result = reorder_vid(item_two,0)
-    assert result
+    feed = get_sample_feed('sample.xml')
+    process_feed(feed, nil,dummy_playlist)
+    playlist_array = get_playlist_vids(dummy_playlist)
+    db_array = get_db_vids
+    check_result = check_vid_arrays_match(playlist_array,db_array)
+    assert check_result, "playlist and db vid arrays should be identical"
     delete_playlist(dummy_playlist)
   end
 

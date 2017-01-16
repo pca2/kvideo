@@ -191,10 +191,14 @@ end
 
 def define_account(token)
   account = Yt::Account.new refresh_token: token
+  Log.log.debug "Account defined"
+  return account
 end
 
 def define_playlist(account,playlist_id)
   playlist = Yt::Playlist.new id: playlist_id, auth: account
+  Log.log.debug "Playlist defined"
+  return playlist
 end
 
 def authorize_yt(client_id,client_secret)
@@ -202,20 +206,25 @@ def authorize_yt(client_id,client_secret)
     config.client_id = client_id
     config.client_secret = client_secret
   end
+  Log.log.debug "YT gem configured"
 end
 
 def append_to_playlist(playlist, youtube_id)
   # check for success/catch errors
   new_item = playlist.add_video youtube_id
+  Log.log.info "New video appended to playlist"
+  return new_item
 end
 
 def reorder_vid(item, new_position)
   # check for success
   item.update position: new_position
+  Log.log.info "item reorderd to top of list"
 end
 
 # get array of all vids in playlist
 def get_playlist_vids(playlist)
+  Log.log.debug "Returning playlist vids"
   vids = Array.new
   playlist.playlist_items.each {|item| vids << item.video_id}
   return vids
@@ -226,9 +235,12 @@ def get_db_vids
 end
 
 def check_vid_arrays_match(array_one,array_two)
+  Log.log.info "Checking if db vids match playlist vids"
   if array_one == array_two 
+    Log.log.info "Arrays match"
     return true
   else
+    Log.log.error "Array mismatch"
     return false
   end
 end
