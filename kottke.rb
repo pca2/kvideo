@@ -153,7 +153,8 @@ end
 
 
 def process_feed(feed,latest_db_post,playlist)
-    feed.entries.each do |entry|
+  new_items = []
+  feed.entries.each do |entry|
     Log.log.info "Processing entry: " + entry.title.content 
     #check_date, if there's a latest_db_post to check against
     if latest_db_post && entry.updated.content <= latest_db_post
@@ -181,8 +182,12 @@ def process_feed(feed,latest_db_post,playlist)
       video = build_video(vid_id,saved_post.id)
       saved_video = save_to_db(video)
       plist_item = playlist.add_video saved_video.youtube_id
-      reorder_vid(plist_item,0)
+    # reorder_vid(plist_item,0)
+      new_items.push(plist_item)
     end
+  end
+  new_items.each_with_index do |item, index|
+    reorder_vid(item, index)  
   end
 end
 
