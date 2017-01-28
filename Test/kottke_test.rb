@@ -143,5 +143,18 @@ class KottkeTest < Minitest::Test
     delete_playlist(dummy_playlist)
   end
 
+  def test_new_vids_at_top
+    authorize_yt(CLIENT_ID,CLIENT_SECRET)
+    account = define_account(REFRESH_TOKEN)
+    dummy_playlist = create_dummy_playlist(account)
+    new_item = append_to_playlist(dummy_playlist, SAMPLE_VID_ID_ONE)
+    new_item = append_to_playlist(dummy_playlist, SAMPLE_VID_ID_TWO)
+    feed = get_sample_feed('twoembed.xml')
+    process_feed(feed, nil,dummy_playlist)
+    playlist_array = get_playlist_vids(dummy_playlist)
+    check_result = check_vid_arrays_match(playlist_array,NEW_VID_ON_TOP_LIST)
+    assert check_result, "playlist and NEW_VID_ON_TOP_LIST arrays should be identical"
+    delete_playlist(dummy_playlist)
+  end
 
 end
