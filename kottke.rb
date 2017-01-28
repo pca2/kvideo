@@ -151,15 +151,22 @@ def save_to_db(item)
   end
 end
 
+ def reorder_vids_from_array(playlist)
+   Log.log.info "Reordering newest videos to top of list"
+   playlist.each_with_index do |item, index|
+     reorder_vid(item, index)  
+   end
+ end
 
 def process_feed(feed,latest_db_post,playlist)
-  new_items = []
+  @new_items = []
   feed.entries.each do |entry|
     Log.log.info "Processing entry: " + entry.title.content 
     #check_date, if there's a latest_db_post to check against
     if latest_db_post && entry.updated.content <= latest_db_post
       Log.log.info "Already parsed post discovered, ending"
-      exit
+      #reorder existing if @new_items.count > 0
+      break
     end
     #. get links from post
     entry_links = get_links(entry)
@@ -183,11 +190,8 @@ def process_feed(feed,latest_db_post,playlist)
       saved_video = save_to_db(video)
       plist_item = playlist.add_video saved_video.youtube_id
     # reorder_vid(plist_item,0)
-      new_items.push(plist_item)
+      @new_items.push(plist_item)
     end
-  end
-  new_items.each_with_index do |item, index|
-    reorder_vid(item, index)  
   end
 end
 
@@ -224,7 +228,7 @@ end
 def reorder_vid(item, new_position)
   # check for success
   item.update position: new_position
-  Log.log.info "item reorderd to top of list"
+  Log.log.info "item reorderd to #{new_position.to_s}"
 end
 
 # get array of all vids in playlist
@@ -239,6 +243,7 @@ def get_db_vids
   db_vid_array = DB[:videos].join(:posts, :id => :post_id).order(:post_date).select_map(:youtube_id)
 end
 
+#Probably be moved to helper
 def check_vid_arrays_match(array_one,array_two)
   Log.log.info "Checking if db vids match playlist vids"
   if array_one == array_two 
@@ -268,6 +273,8 @@ if __FILE__ == $0
   end
   # 2.We loop through each feed item
   process_feed(feed,latest_db_post,playlist)
+  Log.log.info "Completed processing feed"
+  reorder_vids_from_array(@new_items) if @new_items.count > 0
 
   #9. save each video to DB, if it succeeds, append to playlist
   #10. reorder playlist
