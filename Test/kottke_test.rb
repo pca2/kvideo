@@ -67,6 +67,7 @@ class KottkeTest < Minitest::Test
     dummy_playlist = create_dummy_playlist(account)
     feed = get_sample_feed('sample.xml')
     process_feed(feed, nil,dummy_playlist)
+    reorder_any_new_vids(@new_items)
     assert_equal 9, DB[:videos].count, "Processing of sample feed should result in 9 video rows"
     delete_playlist(dummy_playlist)
   end
@@ -136,6 +137,7 @@ class KottkeTest < Minitest::Test
     dummy_playlist = create_dummy_playlist(account)
     feed = get_sample_feed('sample.xml')
     process_feed(feed, nil,dummy_playlist)
+    reorder_any_new_vids(@new_items)
     playlist_array = get_playlist_vids(dummy_playlist)
     db_array = get_db_vids
     check_result = check_vid_arrays_match(playlist_array,db_array)
@@ -151,6 +153,7 @@ class KottkeTest < Minitest::Test
     new_item = append_to_playlist(dummy_playlist, SAMPLE_VID_ID_TWO)
     feed = get_sample_feed('twoembed.xml')
     process_feed(feed, nil,dummy_playlist)
+    reorder_any_new_vids(@new_items)
     playlist_array = get_playlist_vids(dummy_playlist)
     check_result = check_vid_arrays_match(playlist_array,NEW_VID_ON_TOP_LIST)
     assert check_result, "playlist and NEW_VID_ON_TOP_LIST arrays should be identical"

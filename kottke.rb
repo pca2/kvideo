@@ -165,7 +165,6 @@ def process_feed(feed,latest_db_post,playlist)
     #check_date, if there's a latest_db_post to check against
     if latest_db_post && entry.updated.content <= latest_db_post
       Log.log.info "Already parsed post discovered, ending"
-      #reorder existing if @new_items.count > 0
       break
     end
     #. get links from post
@@ -240,20 +239,13 @@ def get_playlist_vids(playlist)
 end
 
 def get_db_vids
-  db_vid_array = DB[:videos].join(:posts, :id => :post_id).order(:post_date).select_map(:youtube_id)
+  db_vid_array = DB[:videos].join(:posts, :id => :post_id).reverse(:post_date).select_map(:youtube_id)
 end
 
-#Probably be moved to helper
-def check_vid_arrays_match(array_one,array_two)
-  Log.log.info "Checking if db vids match playlist vids"
-  if array_one == array_two 
-    Log.log.info "Arrays match"
-    return true
-  else
-    Log.log.error "Array mismatch"
-    return false
-  end
+def reorder_any_new_vids(new_items)
+  reorder_vids_from_array(new_items) if new_items.count > 0
 end
+
 
 
 #RUNTIME
@@ -274,8 +266,7 @@ if __FILE__ == $0
   # 2.We loop through each feed item
   process_feed(feed,latest_db_post,playlist)
   Log.log.info "Completed processing feed"
-  reorder_vids_from_array(@new_items) if @new_items.count > 0
-
+  reorder_any_new_vids(@new_items)
   #9. save each video to DB, if it succeeds, append to playlist
   #10. reorder playlist
   #11. move on 

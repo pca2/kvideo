@@ -32,3 +32,14 @@ end
 def delete_playlist(playlist)
   playlist.delete
 end
+
+def check_vid_arrays_match(array_one,array_two)
+  Log.log.info "Checking if db vids match playlist vids"
+  if array_one == array_two 
+    Log.log.info "Arrays match"
+    return true
+  else
+    Log.log.error "Array mismatch"
+    return false
+  end
+end
