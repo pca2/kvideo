@@ -4,7 +4,7 @@ require 'open-uri'
 require 'sequel'
 require 'logger'
 require 'yt'
-require_relative 'my_credentials.rb'
+require_relative 'credentials.rb'
 
 #DB setup
 DIR = File.expand_path(File.dirname(__FILE__)) #path to containing folder

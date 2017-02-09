@@ -1,4 +1,4 @@
 *.swp
-my_credentials.rb
+credentials.rb
 *.db
 *.log
