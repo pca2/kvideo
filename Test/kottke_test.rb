@@ -42,6 +42,10 @@ class KottkeTest < Minitest::Test
   def test_get_ids
     assert_equal ["iPPzXlMdi7o","DLiCbVyO0F4"], get_ids(["youtube.com/user/caseyneistat\"", "youtube.com/watch?v=iPPzXlMdi7o\"","youtube.com/embed/DLiCbVyO0F4?rel=0\""])
   end
+  
+  def test_get_ids_removes_duplicates
+    assert_equal ["iPPzXlMdi7o","DLiCbVyO0F4"], get_ids(["youtube.com/watch?v=iPPzXlMdi7o\"", "youtube.com/watch?v=iPPzXlMdi7o\"","youtube.com/embed/DLiCbVyO0F4?rel=0\""])
+  end
 
   def test_get_ids_null
     assert_equal [], get_ids([])
@@ -69,6 +73,17 @@ class KottkeTest < Minitest::Test
     process_feed(feed, nil,dummy_playlist)
     reorder_any_new_vids(@new_items)
     assert_equal 9, DB[:videos].count, "Processing of sample feed should result in 9 video rows"
+    delete_playlist(dummy_playlist)
+  end
+
+  def test_process_feed_with_duplicate_links
+    authorize_yt(CLIENT_ID,CLIENT_SECRET)
+    account = define_account(REFRESH_TOKEN)
+    dummy_playlist = create_dummy_playlist(account)
+    feed = get_sample_feed('same_video_twice.xml')
+    process_feed(feed, nil,dummy_playlist)
+    reorder_any_new_vids(@new_items)
+    assert_equal 2, DB[:videos].count, "Processing of sample feed should result in 2 video rows"
     delete_playlist(dummy_playlist)
   end
 

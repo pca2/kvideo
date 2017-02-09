@@ -4,7 +4,7 @@ require 'open-uri'
 require 'sequel'
 require 'logger'
 require 'yt'
-require_relative 'credentials.rb'
+require_relative 'my_credentials.rb'
 
 #DB setup
 DIR = File.expand_path(File.dirname(__FILE__)) #path to containing folder
@@ -115,7 +115,7 @@ end
 #Given an array of YT links, return an array of YT IDs
 def get_ids(array)
   ids = array.map{ |l| l.scan(/(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/ ]{11})/)}
-  return ids.flatten
+  return ids.flatten.uniq
 end
 
 def build_post(entry)
@@ -187,8 +187,8 @@ def process_feed(feed,latest_db_post,playlist)
     entry_ids.each do |vid_id|
       video = build_video(vid_id,saved_post.id)
       saved_video = save_to_db(video)
+      next unless saved_video
       plist_item = playlist.add_video saved_video.youtube_id
-    # reorder_vid(plist_item,0)
       @new_items.push(plist_item)
     end
   end
