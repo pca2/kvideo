@@ -174,5 +174,14 @@ class KottkeTest < Minitest::Test
     assert check_result, "playlist and NEW_VID_ON_TOP_LIST arrays should be identical"
     delete_playlist(dummy_playlist)
   end
+  
+  def test_catch_forbidden_error
+    authorize_yt(CLIENT_ID,CLIENT_SECRET)
+    account = define_account(REFRESH_TOKEN)
+    dummy_playlist = create_dummy_playlist(account)
+    new_item = append_to_playlist(dummy_playlist, SAMPLE_FORBIDDEN_VID)
+    assert new_item.nil?
+    delete_playlist(dummy_playlist)
+  end
 
 end

@@ -220,7 +220,12 @@ end
 
 def append_to_playlist(playlist, youtube_id)
   # check for success/catch errors
-  new_item = playlist.add_video youtube_id
+  begin
+    new_item = playlist.add_video youtube_id
+  rescue Yt::Errors::Forbidden => e
+    Log.log.error "Video ID #{youtube_id} returned Forbidden"
+    return nil
+  end
   Log.log.info "New video appended to playlist"
   return new_item
 end
