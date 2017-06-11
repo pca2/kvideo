@@ -17,7 +17,7 @@ class Log
     unless @logger
       #@logger = Logger.new('topmemeo.log', 'monthly')
       @logger = Logger.new(STDOUT)
-      @logger.level = Logger::DEBUG
+      @logger.level = Logger::INFO
       @logger.datetime_format = '%Y-%m-%d %H:%M:%S'
     end
     @logger
@@ -188,7 +188,7 @@ def process_feed(feed,latest_db_post,playlist)
       video = build_video(vid_id,saved_post.id)
       saved_video = save_to_db(video)
       next unless saved_video
-      plist_item = playlist.add_video saved_video.youtube_id
+      plist_item = append_to_playlist(playlist, saved_video.youtube_id)
       @new_items.push(plist_item)
     end
   end
@@ -213,6 +213,7 @@ def authorize_yt(client_id,client_secret)
   Yt.configure do |config|
     config.client_id = client_id
     config.client_secret = client_secret
+    config.log_level = :debug
   end
   Log.log.debug "YT gem configured"
 end
