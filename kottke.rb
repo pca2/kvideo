@@ -76,7 +76,7 @@ end
 url = 'http://feeds.kottke.org/main'
 #1. We get a feed
 def get_feed(url)
-  source = open(url)
+  source = open(url, 'User-Agent' => 'Mozilla/5.0')
   feed = RSS::Parser.parse(source)
 end
 
