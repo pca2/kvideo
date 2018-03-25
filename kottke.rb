@@ -70,9 +70,6 @@ end
 
 ########################END OF PREAMBLE##############
 
-
-
-
 url = 'http://feeds.kottke.org/main'
 #1. We get a feed
 def get_feed(url)
@@ -273,11 +270,5 @@ if __FILE__ == $0
   process_feed(feed,latest_db_post,playlist)
   Log.log.info "Completed processing feed"
   reorder_any_new_vids(@new_items)
-  #9. save each video to DB, if it succeeds, append to playlist
-  #10. reorder playlist
-  #11. move on 
-  #12. At the end, do some kind of unique check against playlist vids
 
 end
-
-
