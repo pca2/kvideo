@@ -192,7 +192,7 @@ def process_feed(feed,latest_db_post,playlist)
       saved_video = save_to_db(video)
       next unless saved_video
       plist_item = append_to_playlist(playlist, saved_video.youtube_id)
-      @new_items.push(plist_item)
+      @new_items.push(plist_item) if plist_item
     end
   end
 end
@@ -216,21 +216,24 @@ def authorize_yt(client_id,client_secret)
   Yt.configure do |config|
     config.client_id = client_id
     config.client_secret = client_secret
-    config.log_level = :debug
+    config.log_level = :info
   end
   Log.log.debug "YT gem configured"
 end
 
 def append_to_playlist(playlist, youtube_id)
-  # check for success/catch errors
   begin
     new_item = playlist.add_video youtube_id
-  rescue Yt::Errors::Forbidden => e
-    Log.log.error "Video ID #{youtube_id} returned Forbidden"
-    return nil
+    if new_item
+      Log.log.info "New video #{youtube_id} appended to playlist"
+      return new_item
+    else
+      Log.log.info "Video ID #{youtube_id} unable to be added to playlist"
+    end
+  rescue Yt::Errors::Forbidden
+    Log.log.info "Video ID #{youtube_id} returned forbidden"
   end
-  Log.log.info "New video appended to playlist"
-  return new_item
+  return nil
 end
 
 def reorder_vid(item, new_position)
