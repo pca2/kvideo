@@ -4,7 +4,11 @@ require 'open-uri'
 require 'sequel'
 require 'logger'
 require 'yt'
-require_relative 'credentials.rb'
+
+CLIENT_ID = ENV["CLIENT_ID"] 
+CLIENT_SECRET = ENV["CLIENT_SECRET"] 
+REFRESH_TOKEN = ENV["REFRESH_TOKEN"] 
+PLAYLIST_ID = ENV["PLAYLIST_ID"] 
 
 #DB setup
 DIR = File.expand_path(File.dirname(__FILE__)) #path to containing folder
@@ -73,7 +77,7 @@ end
 url = 'http://feeds.kottke.org/main'
 #1. We get a feed
 def get_feed(url)
-  source = open(url, 'User-Agent' => 'Mozilla/5.0')
+  source = URI.open(url, 'User-Agent' => 'Mozilla/5.0')
   feed = RSS::Parser.parse(source)
 end
 
