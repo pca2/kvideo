@@ -21,7 +21,7 @@ class Log
     unless @logger
       #@logger = Logger.new('topmemeo.log', 'monthly')
       @logger = Logger.new(STDOUT)
-      @logger.level = Logger::DEBUG
+      @logger.level = Logger::INFO
       @logger.datetime_format = '%Y-%m-%d %H:%M:%S'
     end
     @logger
