@@ -21,7 +21,7 @@ class Log
     unless @logger
       #@logger = Logger.new('topmemeo.log', 'monthly')
       @logger = Logger.new(STDOUT)
-      @logger.level = Logger::INFO
+      @logger.level = Logger::DEBUG
       @logger.datetime_format = '%Y-%m-%d %H:%M:%S'
     end
     @logger
@@ -155,6 +155,7 @@ end
  def reorder_vids_from_array(playlist)
    Log.log.info "Reordering newest videos to top of list"
    playlist.each_with_index do |item, index|
+     Log.log.debug "reordering #{item} to #{index}"
      reorder_vid(item, index)  
    end
  end
@@ -186,6 +187,7 @@ def process_feed(feed,latest_db_post,playlist)
     entry_ids = get_ids(entry_links)
     #8. build VIDEO object for each ID, including a post_id
     entry_ids.each do |vid_id|
+      Log.log.debug "Processing vid_id: #{vid_id}"
       video = build_video(vid_id,saved_post.id)
       saved_video = save_to_db(video)
       next unless saved_video
@@ -234,7 +236,7 @@ end
 def reorder_vid(item, new_position)
   # check for success
   item.update position: new_position
-  Log.log.info "item reorderd to #{new_position.to_s}"
+  Log.log.info "item #{item} reorderd to #{new_position.to_s}"
 end
 
 # get array of all vids in playlist
