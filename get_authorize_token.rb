@@ -28,6 +28,6 @@ puts <<~END
   Once you've updated the credentials file with the new refresh and access tokens the script should be fully authorized and ready to run.
 
 END
-puts Yt::Account.new(scopes: YOUTUBE_SCOPE, redirect_uri: REDIRECT_URI ).authentication_url
+puts Yt::Account.new(scopes: YOUTUBE_SCOPE, redirect_uri: REDIRECT_URI, force: true ).authentication_url
 puts ""
 
