@@ -1,5 +1,4 @@
 *.swp
-credentials.rb
 *.db
 *.log
 .env*
