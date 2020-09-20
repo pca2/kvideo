@@ -2,3 +2,4 @@
 credentials.rb
 *.db
 *.log
+.env*
