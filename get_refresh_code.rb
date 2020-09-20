@@ -3,8 +3,12 @@
 require 'uri'
 require 'net/http'
 require 'openssl'
-require_relative 'credentials'
 require 'cgi'
+
+AUTHORIZATION_CODE= ENV["AUTHORIZATION_CODE"]
+REDIRECT_URI = ENV["REDIRECT_URI"]
+CLIENT_ID = ENV["CLIENT_ID"] 
+CLIENT_SECRET = ENV["CLIENT_SECRET"] 
 
 url = URI("https://accounts.google.com/o/oauth2/token")
 
