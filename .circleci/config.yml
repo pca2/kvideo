@@ -16,3 +16,23 @@ jobs:
       - run:
           name: Run Tests
           command: bundle exec ruby ./Test/kottke_test.rb 
+  deploy:
+    machine:
+      enabled: true
+    steps:
+      - run:
+          name: Deploy over SSH
+          command: |
+            ssh $SSH_USER@$SSH_HOST -p $PORT  "cd ~/kvideo && git checkout master && git pull && ~/.rbenv/shims/bundle install"
+
+workflows:
+ version: 2.1
+ build-and-deploy:
+   jobs:
+     - build
+     - deploy:
+         requires:
+           - build
+         filters:
+           branches:
+             only: master
