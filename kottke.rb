@@ -240,7 +240,7 @@ end
 def reorder_vid(item, new_position)
   # check for success
   item.update position: new_position
-  Log.log.info "item #{item} reorderd to #{new_position.to_s}"
+  Log.log.info "item #{item.video_id} reorderd to #{new_position.to_s}"
 end
 
 # get array of all vids in playlist
