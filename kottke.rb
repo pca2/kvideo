@@ -189,10 +189,11 @@ def process_feed(feed,latest_db_post,playlist)
     entry_ids.each do |vid_id|
       Log.log.debug "Processing vid_id: #{vid_id}"
       video = build_video(vid_id,saved_post.id)
-      saved_video = save_to_db(video)
-      next unless saved_video
-      plist_item = append_to_playlist(playlist, saved_video.youtube_id)
-      @new_items.push(plist_item) if plist_item
+      plist_item = append_to_playlist(playlist, video.youtube_id)
+      if plist_item
+        @new_items.push(plist_item)
+        save_to_db(video)
+      end
     end
   end
 end
