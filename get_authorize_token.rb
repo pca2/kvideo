@@ -4,7 +4,11 @@
 # The next script will then use authorization code to get the refresh and access tokens
 
 require 'yt'
-require_relative 'credentials.rb'
+
+REDIRECT_URI = ENV["REDIRECT_URI"]
+API_KEY = ENV["API_KEY"]
+CLIENT_ID = ENV["CLIENT_ID"] 
+CLIENT_SECRET = ENV["CLIENT_SECRET"] 
 
 Yt.configure do |config|
   config.client_id = CLIENT_ID
@@ -13,7 +17,6 @@ Yt.configure do |config|
 end
 YOUTUBE_SCOPE = ['userinfo.profile', 'youtube']
 
-redirect_uri = "http://sostark.net"
 
 puts <<~END
   This script is part 1 of 2 of the full authorization process.
@@ -25,6 +28,6 @@ puts <<~END
   Once you've updated the credentials file with the new refresh and access tokens the script should be fully authorized and ready to run.
 
 END
-puts Yt::Account.new(scopes: YOUTUBE_SCOPE, redirect_uri: redirect_uri ).authentication_url
+puts Yt::Account.new(scopes: YOUTUBE_SCOPE, redirect_uri: REDIRECT_URI, force: true ).authentication_url
 puts ""
 

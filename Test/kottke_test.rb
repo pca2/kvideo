@@ -72,7 +72,7 @@ class KottkeTest < Minitest::Test
     feed = get_sample_feed('sample.xml')
     process_feed(feed, nil,dummy_playlist)
     reorder_any_new_vids(@new_items)
-    assert_equal 9, DB[:videos].count, "Processing of sample feed should result in 9 video rows"
+    assert_equal 8, DB[:videos].count, "Processing of sample feed should result in 9 video rows"
     delete_playlist(dummy_playlist)
   end
 

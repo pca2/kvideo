@@ -7,7 +7,7 @@ DB_PATH = "#{DIR}/kottke_test.db"
 SAMPLE_VID_ID_ONE = "VoVpDMaMeyM"
 SAMPLE_VID_ID_TWO = "7gcQQnZX9cg"
 SAMPLE_FORBIDDEN_VID = "4zCFMrxDz9Y"
-NEW_VID_ON_TOP_LIST = ["UVd8VGwq5w8","KIojBBCPcqQ","VoVpDMaMeyM","7gcQQnZX9cg"]
+NEW_VID_ON_TOP_LIST = ["KIojBBCPcqQ","VoVpDMaMeyM","7gcQQnZX9cg"]
 
 def get_sample_feed(xml)
   file = (File.open(SAMPLE_DIR + xml)).read

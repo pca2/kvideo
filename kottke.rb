@@ -4,7 +4,11 @@ require 'open-uri'
 require 'sequel'
 require 'logger'
 require 'yt'
-require_relative 'credentials.rb'
+
+CLIENT_ID = ENV["CLIENT_ID"] 
+CLIENT_SECRET = ENV["CLIENT_SECRET"] 
+REFRESH_TOKEN = ENV["REFRESH_TOKEN"] 
+PLAYLIST_ID = ENV["PLAYLIST_ID"] 
 
 #DB setup
 DIR = File.expand_path(File.dirname(__FILE__)) #path to containing folder
@@ -73,7 +77,7 @@ end
 url = 'http://feeds.kottke.org/main'
 #1. We get a feed
 def get_feed(url)
-  source = open(url, 'User-Agent' => 'Mozilla/5.0')
+  source = URI.open(url, 'User-Agent' => 'Mozilla/5.0')
   feed = RSS::Parser.parse(source)
 end
 
@@ -151,6 +155,7 @@ end
  def reorder_vids_from_array(playlist)
    Log.log.info "Reordering newest videos to top of list"
    playlist.each_with_index do |item, index|
+     Log.log.debug "reordering #{item} to #{index}"
      reorder_vid(item, index)  
    end
  end
@@ -182,11 +187,13 @@ def process_feed(feed,latest_db_post,playlist)
     entry_ids = get_ids(entry_links)
     #8. build VIDEO object for each ID, including a post_id
     entry_ids.each do |vid_id|
+      Log.log.debug "Processing vid_id: #{vid_id}"
       video = build_video(vid_id,saved_post.id)
-      saved_video = save_to_db(video)
-      next unless saved_video
-      plist_item = append_to_playlist(playlist, saved_video.youtube_id)
-      @new_items.push(plist_item)
+      plist_item = append_to_playlist(playlist, video.youtube_id)
+      if plist_item
+        @new_items.push(plist_item)
+        save_to_db(video)
+      end
     end
   end
 end
@@ -210,27 +217,30 @@ def authorize_yt(client_id,client_secret)
   Yt.configure do |config|
     config.client_id = client_id
     config.client_secret = client_secret
-    config.log_level = :debug
+    config.log_level = :info
   end
   Log.log.debug "YT gem configured"
 end
 
 def append_to_playlist(playlist, youtube_id)
-  # check for success/catch errors
   begin
     new_item = playlist.add_video youtube_id
-  rescue Yt::Errors::Forbidden => e
-    Log.log.error "Video ID #{youtube_id} returned Forbidden"
-    return nil
+    if new_item
+      Log.log.info "New video #{youtube_id} appended to playlist"
+      return new_item
+    else
+      Log.log.info "Video ID #{youtube_id} unable to be added to playlist"
+    end
+  rescue Yt::Errors::Forbidden
+    Log.log.info "Video ID #{youtube_id} returned forbidden"
   end
-  Log.log.info "New video appended to playlist"
-  return new_item
+  return nil
 end
 
 def reorder_vid(item, new_position)
   # check for success
   item.update position: new_position
-  Log.log.info "item reorderd to #{new_position.to_s}"
+  Log.log.info "item #{item.video_id} reorderd to #{new_position.to_s}"
 end
 
 # get array of all vids in playlist
