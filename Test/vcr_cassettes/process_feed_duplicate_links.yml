@@ -1,0 +1,616 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://accounts.google.com/o/oauth2/token
+    body:
+      encoding: US-ASCII
+      string: client_id=<YOUTUBE_CLIENT_ID>&client_secret=<YOUTUBE_CLIENT_SECRET>&refresh_token=<YOUTUBE_REFRESH_TOKEN>&grant_type=refresh_token
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      - Yt::Request (gzip)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Expires:
+      - Mon, 01 Jan 1990 00:00:00 GMT
+      Pragma:
+      - no-cache
+      Date:
+      - Wed, 22 Oct 2025 03:16:03 GMT
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Origin
+      - Referer
+      - X-Origin
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "access_token": "<YOUTUBE_ACCESS_TOKEN>",
+          "expires_in": 3599,
+          "scope": "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/youtube",
+          "token_type": "Bearer",
+          "id_token": "<YOUTUBE_ID_TOKEN>"
+        }
+  recorded_at: Wed, 22 Oct 2025 03:16:03 GMT
+- request:
+    method: get
+    uri: https://www.googleapis.com/youtube/v3/channels?maxResults=50&mine=true&part=snippet,status
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:16:03 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#channelListResponse",
+          "etag": "bZqgxMMqp-o6kh8yj3HCiZ_oq-k",
+          "pageInfo": {
+            "totalResults": 1,
+            "resultsPerPage": 50
+          },
+          "items": [
+            {
+              "kind": "youtube#channel",
+              "etag": "8YHrxVJrV3lC8s-dqCJbTJskV_M",
+              "id": "UCzFmywjEti1C95vS3A8MOFg",
+              "snippet": {
+                "title": "pca2",
+                "description": "",
+                "customUrl": "@pca2",
+                "publishedAt": "2009-12-09T02:38:19Z",
+                "thumbnails": {
+                  "default": {
+                    "url": "https://yt3.ggpht.com/ytc/AIdro_nDqhbIyIWAyptFqRBwVKo6rIlCzFIeDw6eepXtVwS-SYedeW9eMKnjq4SvpfWdiA7_jw=s88-c-k-c0x00ffffff-no-rj",
+                    "width": 88,
+                    "height": 88
+                  },
+                  "medium": {
+                    "url": "https://yt3.ggpht.com/ytc/AIdro_nDqhbIyIWAyptFqRBwVKo6rIlCzFIeDw6eepXtVwS-SYedeW9eMKnjq4SvpfWdiA7_jw=s240-c-k-c0x00ffffff-no-rj",
+                    "width": 240,
+                    "height": 240
+                  },
+                  "high": {
+                    "url": "https://yt3.ggpht.com/ytc/AIdro_nDqhbIyIWAyptFqRBwVKo6rIlCzFIeDw6eepXtVwS-SYedeW9eMKnjq4SvpfWdiA7_jw=s800-c-k-c0x00ffffff-no-rj",
+                    "width": 800,
+                    "height": 800
+                  }
+                },
+                "localized": {
+                  "title": "pca2",
+                  "description": ""
+                }
+              },
+              "status": {
+                "privacyStatus": "public",
+                "isLinked": true,
+                "longUploadsStatus": "allowed",
+                "isChannelMonetizationEnabled": false
+              }
+            }
+          ]
+        }
+  recorded_at: Wed, 22 Oct 2025 03:16:03 GMT
+- request:
+    method: post
+    uri: https://www.googleapis.com/youtube/v3/playlists?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"title":"test_1761102962"}}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:16:03 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#playlist",
+          "etag": "q2LK1A4XXPFLQlGK0_4PE6XnjXc",
+          "id": "PLZOdGIexY9DEBK4H6xZBBVIsYevz5OZNX",
+          "snippet": {
+            "publishedAt": "2025-10-22T03:16:03Z",
+            "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+            "title": "test_1761102962",
+            "description": "",
+            "thumbnails": {
+              "default": {
+                "url": "https://i.ytimg.com/img/no_thumbnail.jpg",
+                "width": 120,
+                "height": 90
+              },
+              "medium": {
+                "url": "https://i.ytimg.com/img/no_thumbnail.jpg",
+                "width": 320,
+                "height": 180
+              },
+              "high": {
+                "url": "https://i.ytimg.com/img/no_thumbnail.jpg",
+                "width": 480,
+                "height": 360
+              }
+            },
+            "channelTitle": "pca2",
+            "localized": {
+              "title": "test_1761102962",
+              "description": ""
+            }
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:16:03 GMT
+- request:
+    method: post
+    uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"playlistId":"PLZOdGIexY9DEBK4H6xZBBVIsYevz5OZNX","resourceId":{"kind":"youtube#video","videoId":"LAXr5Cq-0-0"}}}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:16:04 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#playlistItem",
+          "etag": "9fsJmZOJjDJqBVDpvDClfbQGKcg",
+          "id": "UExaT2RHSWV4WTlERUJLNEg2eFpCQlZJc1lldno1T1pOWC41NkI0NEY2RDEwNTU3Q0M2",
+          "snippet": {
+            "publishedAt": "2025-10-22T03:16:04Z",
+            "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+            "title": "Sen Warren Cut Off For Reading MLK Widow's Letter About Jeff Sessions",
+            "description": "Senate Majority Leader Mitch McConnell (R-Ky.) rose on Tuesday and objected to a speech Sen. Elizabeth Warren (D-Mass.) was giving in opposition to the nomination of Sen. Jeff Sessions (R-Ala.) as attorney general.\n\nMcConnell took particular issue with Warren as she quoted a letter written by Coretta Scott King, Martin Luther King Jr.’s widow, when Sessions was under consideration for a federal judgeship in 1986.\n\nMcConnell invoked the little-used Rule XIX, which says that “No Senator in debate shall, directly or indirectly, by any form of words impute to another Senator or to other Senators any conduct or motive unworthy or unbecoming a Senator.” King’s letter argues that, during Sessions’ time as a prosecutor in Alabama, “Mr. Sessions has used the awesome power of his office to chill the free exercise of the vote by black citizens.” It was that portion of the letter that McConnell read back to the presiding officer, arguing that it was over the line.\n\nThe Republican presiding in the chair, Sen. Steve Daines of Montana, agreed with McConnell, ruling her in violation of the order and forcing her to sit down.\n\n“I am surprised that the words of Coretta Scott King are not suitable for debate in the United States Senate,” Warren replied.\n\nA vote was then held on Warren’s appeal of the ruling of the chair, and Republicans prevailed. Under the rules, she would be barred from speaking during the remaining 30 hours of the Sessions debate. \n\nText excerpted from the Huffington post: http://www.huffingtonpost.com/entry/elizabeth-warren-mitch-mcconnell-jeff-sessions_us_589a7661e4b0c1284f294a27",
+            "thumbnails": {
+              "default": {
+                "url": "https://i.ytimg.com/vi/LAXr5Cq-0-0/default.jpg",
+                "width": 120,
+                "height": 90
+              },
+              "medium": {
+                "url": "https://i.ytimg.com/vi/LAXr5Cq-0-0/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+              },
+              "high": {
+                "url": "https://i.ytimg.com/vi/LAXr5Cq-0-0/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+              },
+              "standard": {
+                "url": "https://i.ytimg.com/vi/LAXr5Cq-0-0/sddefault.jpg",
+                "width": 640,
+                "height": 480
+              }
+            },
+            "channelTitle": "pca2",
+            "playlistId": "PLZOdGIexY9DEBK4H6xZBBVIsYevz5OZNX",
+            "position": 0,
+            "resourceId": {
+              "kind": "youtube#video",
+              "videoId": "LAXr5Cq-0-0"
+            },
+            "videoOwnerChannelTitle": "Michael McIntee",
+            "videoOwnerChannelId": "UCDIPsk87a6D3QqS0DeAUMPA"
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:16:04 GMT
+- request:
+    method: post
+    uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"playlistId":"PLZOdGIexY9DEBK4H6xZBBVIsYevz5OZNX","resourceId":{"kind":"youtube#video","videoId":"7gcQQnZX9cg"}}}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:16:04 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#playlistItem",
+          "etag": "aKHMZcwwZ8aP1gelANdl066pefQ",
+          "id": "UExaT2RHSWV4WTlERUJLNEg2eFpCQlZJc1lldno1T1pOWC4yODlGNEE0NkRGMEEzMEQy",
+          "snippet": {
+            "publishedAt": "2025-10-22T03:16:04Z",
+            "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+            "title": "sample_two",
+            "description": "",
+            "thumbnails": {
+              "default": {
+                "url": "https://i9.ytimg.com/vi/7gcQQnZX9cg/default.jpg?sqp=CLSY4ccG&rs=AOn4CLB1-rONR1j8Xf9KN8u82jiN7ILMDA",
+                "width": 120,
+                "height": 90
+              },
+              "medium": {
+                "url": "https://i9.ytimg.com/vi/7gcQQnZX9cg/mqdefault.jpg?sqp=CLSY4ccG&rs=AOn4CLA7Omnp5yPMZe0hM26R6Kio8_XFxA",
+                "width": 320,
+                "height": 180
+              },
+              "high": {
+                "url": "https://i9.ytimg.com/vi/7gcQQnZX9cg/hqdefault.jpg?sqp=CLSY4ccG&rs=AOn4CLDIg-RNV7FPgdp60waGzg_o2_rjKQ",
+                "width": 480,
+                "height": 360
+              },
+              "standard": {
+                "url": "https://i9.ytimg.com/vi/7gcQQnZX9cg/sddefault.jpg?sqp=CLSY4ccG&rs=AOn4CLBqzvStTkN1oohFyTj14M513bvzQg",
+                "width": 640,
+                "height": 480
+              }
+            },
+            "channelTitle": "pca2",
+            "playlistId": "PLZOdGIexY9DEBK4H6xZBBVIsYevz5OZNX",
+            "position": 1,
+            "resourceId": {
+              "kind": "youtube#video",
+              "videoId": "7gcQQnZX9cg"
+            },
+            "videoOwnerChannelTitle": "pca2",
+            "videoOwnerChannelId": "UCzFmywjEti1C95vS3A8MOFg"
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:16:04 GMT
+- request:
+    method: put
+    uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"position":0,"playlistId":"PLZOdGIexY9DEBK4H6xZBBVIsYevz5OZNX","resourceId":{"kind":"youtube#video","videoId":"LAXr5Cq-0-0"}},"id":"UExaT2RHSWV4WTlERUJLNEg2eFpCQlZJc1lldno1T1pOWC41NkI0NEY2RDEwNTU3Q0M2"}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:16:05 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#playlistItem",
+          "etag": "9fsJmZOJjDJqBVDpvDClfbQGKcg",
+          "id": "UExaT2RHSWV4WTlERUJLNEg2eFpCQlZJc1lldno1T1pOWC41NkI0NEY2RDEwNTU3Q0M2",
+          "snippet": {
+            "publishedAt": "2025-10-22T03:16:04Z",
+            "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+            "title": "Sen Warren Cut Off For Reading MLK Widow's Letter About Jeff Sessions",
+            "description": "Senate Majority Leader Mitch McConnell (R-Ky.) rose on Tuesday and objected to a speech Sen. Elizabeth Warren (D-Mass.) was giving in opposition to the nomination of Sen. Jeff Sessions (R-Ala.) as attorney general.\n\nMcConnell took particular issue with Warren as she quoted a letter written by Coretta Scott King, Martin Luther King Jr.’s widow, when Sessions was under consideration for a federal judgeship in 1986.\n\nMcConnell invoked the little-used Rule XIX, which says that “No Senator in debate shall, directly or indirectly, by any form of words impute to another Senator or to other Senators any conduct or motive unworthy or unbecoming a Senator.” King’s letter argues that, during Sessions’ time as a prosecutor in Alabama, “Mr. Sessions has used the awesome power of his office to chill the free exercise of the vote by black citizens.” It was that portion of the letter that McConnell read back to the presiding officer, arguing that it was over the line.\n\nThe Republican presiding in the chair, Sen. Steve Daines of Montana, agreed with McConnell, ruling her in violation of the order and forcing her to sit down.\n\n“I am surprised that the words of Coretta Scott King are not suitable for debate in the United States Senate,” Warren replied.\n\nA vote was then held on Warren’s appeal of the ruling of the chair, and Republicans prevailed. Under the rules, she would be barred from speaking during the remaining 30 hours of the Sessions debate. \n\nText excerpted from the Huffington post: http://www.huffingtonpost.com/entry/elizabeth-warren-mitch-mcconnell-jeff-sessions_us_589a7661e4b0c1284f294a27",
+            "thumbnails": {
+              "default": {
+                "url": "https://i.ytimg.com/vi/LAXr5Cq-0-0/default.jpg",
+                "width": 120,
+                "height": 90
+              },
+              "medium": {
+                "url": "https://i.ytimg.com/vi/LAXr5Cq-0-0/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+              },
+              "high": {
+                "url": "https://i.ytimg.com/vi/LAXr5Cq-0-0/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+              },
+              "standard": {
+                "url": "https://i.ytimg.com/vi/LAXr5Cq-0-0/sddefault.jpg",
+                "width": 640,
+                "height": 480
+              }
+            },
+            "channelTitle": "pca2",
+            "playlistId": "PLZOdGIexY9DEBK4H6xZBBVIsYevz5OZNX",
+            "position": 0,
+            "resourceId": {
+              "kind": "youtube#video",
+              "videoId": "LAXr5Cq-0-0"
+            },
+            "videoOwnerChannelTitle": "Michael McIntee",
+            "videoOwnerChannelId": "UCDIPsk87a6D3QqS0DeAUMPA"
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:16:05 GMT
+- request:
+    method: put
+    uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"position":1,"playlistId":"PLZOdGIexY9DEBK4H6xZBBVIsYevz5OZNX","resourceId":{"kind":"youtube#video","videoId":"7gcQQnZX9cg"}},"id":"UExaT2RHSWV4WTlERUJLNEg2eFpCQlZJc1lldno1T1pOWC4yODlGNEE0NkRGMEEzMEQy"}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:16:05 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#playlistItem",
+          "etag": "aKHMZcwwZ8aP1gelANdl066pefQ",
+          "id": "UExaT2RHSWV4WTlERUJLNEg2eFpCQlZJc1lldno1T1pOWC4yODlGNEE0NkRGMEEzMEQy",
+          "snippet": {
+            "publishedAt": "2025-10-22T03:16:04Z",
+            "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+            "title": "sample_two",
+            "description": "",
+            "thumbnails": {
+              "default": {
+                "url": "https://i9.ytimg.com/vi/7gcQQnZX9cg/default.jpg?sqp=CLSY4ccG&rs=AOn4CLB1-rONR1j8Xf9KN8u82jiN7ILMDA",
+                "width": 120,
+                "height": 90
+              },
+              "medium": {
+                "url": "https://i9.ytimg.com/vi/7gcQQnZX9cg/mqdefault.jpg?sqp=CLSY4ccG&rs=AOn4CLA7Omnp5yPMZe0hM26R6Kio8_XFxA",
+                "width": 320,
+                "height": 180
+              },
+              "high": {
+                "url": "https://i9.ytimg.com/vi/7gcQQnZX9cg/hqdefault.jpg?sqp=CLSY4ccG&rs=AOn4CLDIg-RNV7FPgdp60waGzg_o2_rjKQ",
+                "width": 480,
+                "height": 360
+              },
+              "standard": {
+                "url": "https://i9.ytimg.com/vi/7gcQQnZX9cg/sddefault.jpg?sqp=CLSY4ccG&rs=AOn4CLBqzvStTkN1oohFyTj14M513bvzQg",
+                "width": 640,
+                "height": 480
+              }
+            },
+            "channelTitle": "pca2",
+            "playlistId": "PLZOdGIexY9DEBK4H6xZBBVIsYevz5OZNX",
+            "position": 1,
+            "resourceId": {
+              "kind": "youtube#video",
+              "videoId": "7gcQQnZX9cg"
+            },
+            "videoOwnerChannelTitle": "pca2",
+            "videoOwnerChannelId": "UCzFmywjEti1C95vS3A8MOFg"
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:16:05 GMT
+- request:
+    method: delete
+    uri: https://www.googleapis.com/youtube/v3/playlists?id=PLZOdGIexY9DEBK4H6xZBBVIsYevz5OZNX
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:16:06 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Wed, 22 Oct 2025 03:16:06 GMT
+recorded_with: VCR 6.3.1

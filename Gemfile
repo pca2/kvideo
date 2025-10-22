@@ -7,5 +7,7 @@ group :development, :test do
   gem 'minitest'
   gem 'rss'
   gem 'pry'
+  gem 'vcr'
+  gem 'webmock'
 end
 

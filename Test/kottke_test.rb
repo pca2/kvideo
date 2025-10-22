@@ -10,8 +10,10 @@ class KottkeTest < Minitest::Test
   end
 
   def test_get_feed
-    feed = get_feed(FEED_URL)
-    assert_instance_of RSS::Atom::Feed, feed
+    VCR.use_cassette('kottke_rss_feed') do
+      feed = get_feed(FEED_URL)
+      assert_instance_of RSS::Atom::Feed, feed
+    end
   end
 
   def test_get_single_link
@@ -66,25 +68,29 @@ class KottkeTest < Minitest::Test
   end
 
   def test_process_feed
-    authorize_yt(CLIENT_ID,CLIENT_SECRET)
-    account = define_account(REFRESH_TOKEN)
-    dummy_playlist = create_dummy_playlist(account)
-    feed = get_sample_feed('sample.xml')
-    process_feed(feed, nil,dummy_playlist)
-    reorder_any_new_vids(@new_items)
-    assert_equal 8, DB[:videos].count, "Processing of sample feed should result in 9 video rows"
-    delete_playlist(dummy_playlist)
+    VCR.use_cassette('process_feed') do
+      authorize_yt(CLIENT_ID,CLIENT_SECRET)
+      account = define_account(REFRESH_TOKEN)
+      dummy_playlist = create_dummy_playlist(account)
+      feed = get_sample_feed('sample.xml')
+      process_feed(feed, nil,dummy_playlist)
+      reorder_any_new_vids(@new_items)
+      assert_equal 8, DB[:videos].count, "Processing of sample feed should result in 9 video rows"
+      delete_playlist(dummy_playlist)
+    end
   end
 
   def test_process_feed_with_duplicate_links
-    authorize_yt(CLIENT_ID,CLIENT_SECRET)
-    account = define_account(REFRESH_TOKEN)
-    dummy_playlist = create_dummy_playlist(account)
-    feed = get_sample_feed('same_video_twice.xml')
-    process_feed(feed, nil,dummy_playlist)
-    reorder_any_new_vids(@new_items)
-    assert_equal 2, DB[:videos].count, "Processing of sample feed should result in 2 video rows"
-    delete_playlist(dummy_playlist)
+    VCR.use_cassette('process_feed_duplicate_links') do
+      authorize_yt(CLIENT_ID,CLIENT_SECRET)
+      account = define_account(REFRESH_TOKEN)
+      dummy_playlist = create_dummy_playlist(account)
+      feed = get_sample_feed('same_video_twice.xml')
+      process_feed(feed, nil,dummy_playlist)
+      reorder_any_new_vids(@new_items)
+      assert_equal 2, DB[:videos].count, "Processing of sample feed should result in 2 video rows"
+      delete_playlist(dummy_playlist)
+    end
   end
 
   def test_build_post
@@ -114,74 +120,88 @@ class KottkeTest < Minitest::Test
   end
 
   def test_get_latest_post
-    authorize_yt(CLIENT_ID,CLIENT_SECRET)
-    account = define_account(REFRESH_TOKEN)
-    dummy_playlist = create_dummy_playlist(account)
-    feed = get_sample_feed('sample.xml')
-    process_feed(feed, nil,dummy_playlist)
-    latest_post_date = get_latest_post
-    assert_equal latest_post_date, Time.utc('2016','10','07', '14', '26', '11') 
-    delete_playlist(dummy_playlist)
+    VCR.use_cassette('get_latest_post') do
+      authorize_yt(CLIENT_ID,CLIENT_SECRET)
+      account = define_account(REFRESH_TOKEN)
+      dummy_playlist = create_dummy_playlist(account)
+      feed = get_sample_feed('sample.xml')
+      process_feed(feed, nil,dummy_playlist)
+      latest_post_date = get_latest_post
+      assert_equal latest_post_date, Time.utc('2016','10','07', '14', '26', '11')
+      delete_playlist(dummy_playlist)
+    end
   end
 
   def test_account_valid
-    authorize_yt(CLIENT_ID,CLIENT_SECRET)
-    account = define_account(REFRESH_TOKEN)
-    assert Time.now < account.expires_at
+    VCR.use_cassette('account_valid') do
+      authorize_yt(CLIENT_ID,CLIENT_SECRET)
+      account = define_account(REFRESH_TOKEN)
+      assert Time.now < account.expires_at
+    end
   end
 
   def test_playlist_valid
-    authorize_yt(CLIENT_ID,CLIENT_SECRET)
-    account = define_account(REFRESH_TOKEN)
-    playlist = define_playlist(account,PLAYLIST_ID)
-    assert_equal playlist.id, PLAYLIST_ID
+    VCR.use_cassette('playlist_valid') do
+      authorize_yt(CLIENT_ID,CLIENT_SECRET)
+      account = define_account(REFRESH_TOKEN)
+      playlist = define_playlist(account,PLAYLIST_ID)
+      assert_equal playlist.id, PLAYLIST_ID
+    end
   end
 
   def test_append_to_playlist
-    authorize_yt(CLIENT_ID,CLIENT_SECRET)
-    account = define_account(REFRESH_TOKEN)
-    dummy_playlist = create_dummy_playlist(account)
-    new_item = append_to_playlist(dummy_playlist, SAMPLE_VID_ID_ONE)
-    assert new_item.exists?
-    delete_playlist(dummy_playlist)
+    VCR.use_cassette('append_to_playlist') do
+      authorize_yt(CLIENT_ID,CLIENT_SECRET)
+      account = define_account(REFRESH_TOKEN)
+      dummy_playlist = create_dummy_playlist(account)
+      new_item = append_to_playlist(dummy_playlist, SAMPLE_VID_ID_ONE)
+      assert new_item.exists?
+      delete_playlist(dummy_playlist)
+    end
   end
 
   def test_reorder_vid
-    authorize_yt(CLIENT_ID,CLIENT_SECRET)
-    account = define_account(REFRESH_TOKEN)
-    dummy_playlist = create_dummy_playlist(account)
-    feed = get_sample_feed('sample.xml')
-    process_feed(feed, nil,dummy_playlist)
-    reorder_any_new_vids(@new_items)
-    playlist_array = get_playlist_vids(dummy_playlist)
-    db_array = get_db_vids
-    check_result = check_vid_arrays_match(playlist_array,db_array)
-    assert check_result, "playlist and db vid arrays should be identical"
-    delete_playlist(dummy_playlist)
+    VCR.use_cassette('reorder_vid') do
+      authorize_yt(CLIENT_ID,CLIENT_SECRET)
+      account = define_account(REFRESH_TOKEN)
+      dummy_playlist = create_dummy_playlist(account)
+      feed = get_sample_feed('sample.xml')
+      process_feed(feed, nil,dummy_playlist)
+      reorder_any_new_vids(@new_items)
+      playlist_array = get_playlist_vids(dummy_playlist)
+      db_array = get_db_vids
+      check_result = check_vid_arrays_match(playlist_array,db_array)
+      assert check_result, "playlist and db vid arrays should be identical"
+      delete_playlist(dummy_playlist)
+    end
   end
 
   def test_new_vids_at_top
-    authorize_yt(CLIENT_ID,CLIENT_SECRET)
-    account = define_account(REFRESH_TOKEN)
-    dummy_playlist = create_dummy_playlist(account)
-    new_item = append_to_playlist(dummy_playlist, SAMPLE_VID_ID_ONE)
-    new_item = append_to_playlist(dummy_playlist, SAMPLE_VID_ID_TWO)
-    feed = get_sample_feed('twoembed.xml')
-    process_feed(feed, nil,dummy_playlist)
-    reorder_any_new_vids(@new_items)
-    playlist_array = get_playlist_vids(dummy_playlist)
-    check_result = check_vid_arrays_match(playlist_array,NEW_VID_ON_TOP_LIST)
-    assert check_result, "playlist and NEW_VID_ON_TOP_LIST arrays should be identical"
-    delete_playlist(dummy_playlist)
+    VCR.use_cassette('new_vids_at_top') do
+      authorize_yt(CLIENT_ID,CLIENT_SECRET)
+      account = define_account(REFRESH_TOKEN)
+      dummy_playlist = create_dummy_playlist(account)
+      new_item = append_to_playlist(dummy_playlist, SAMPLE_VID_ID_ONE)
+      new_item = append_to_playlist(dummy_playlist, SAMPLE_VID_ID_TWO)
+      feed = get_sample_feed('twoembed.xml')
+      process_feed(feed, nil,dummy_playlist)
+      reorder_any_new_vids(@new_items)
+      playlist_array = get_playlist_vids(dummy_playlist)
+      check_result = check_vid_arrays_match(playlist_array,NEW_VID_ON_TOP_LIST)
+      assert check_result, "playlist and NEW_VID_ON_TOP_LIST arrays should be identical"
+      delete_playlist(dummy_playlist)
+    end
   end
   
   def test_catch_forbidden_error
-    authorize_yt(CLIENT_ID,CLIENT_SECRET)
-    account = define_account(REFRESH_TOKEN)
-    dummy_playlist = create_dummy_playlist(account)
-    new_item = append_to_playlist(dummy_playlist, SAMPLE_FORBIDDEN_VID)
-    assert new_item.nil?
-    delete_playlist(dummy_playlist)
+    VCR.use_cassette('catch_forbidden_error') do
+      authorize_yt(CLIENT_ID,CLIENT_SECRET)
+      account = define_account(REFRESH_TOKEN)
+      dummy_playlist = create_dummy_playlist(account)
+      new_item = append_to_playlist(dummy_playlist, SAMPLE_FORBIDDEN_VID)
+      assert new_item.nil?
+      delete_playlist(dummy_playlist)
+    end
   end
 
 end

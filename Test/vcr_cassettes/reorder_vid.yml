@@ -1,0 +1,2179 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://accounts.google.com/o/oauth2/token
+    body:
+      encoding: US-ASCII
+      string: client_id=<YOUTUBE_CLIENT_ID>&client_secret=<YOUTUBE_CLIENT_SECRET>&refresh_token=<YOUTUBE_REFRESH_TOKEN>&grant_type=refresh_token
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      - Yt::Request (gzip)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Pragma:
+      - no-cache
+      Expires:
+      - Mon, 01 Jan 1990 00:00:00 GMT
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Date:
+      - Wed, 22 Oct 2025 03:15:44 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Origin
+      - Referer
+      - X-Origin
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "access_token": "<YOUTUBE_ACCESS_TOKEN>",
+          "expires_in": 3599,
+          "scope": "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/youtube",
+          "token_type": "Bearer",
+          "id_token": "<YOUTUBE_ID_TOKEN>"
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:44 GMT
+- request:
+    method: get
+    uri: https://www.googleapis.com/youtube/v3/channels?maxResults=50&mine=true&part=snippet,status
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:15:44 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#channelListResponse",
+          "etag": "bZqgxMMqp-o6kh8yj3HCiZ_oq-k",
+          "pageInfo": {
+            "totalResults": 1,
+            "resultsPerPage": 50
+          },
+          "items": [
+            {
+              "kind": "youtube#channel",
+              "etag": "8YHrxVJrV3lC8s-dqCJbTJskV_M",
+              "id": "UCzFmywjEti1C95vS3A8MOFg",
+              "snippet": {
+                "title": "pca2",
+                "description": "",
+                "customUrl": "@pca2",
+                "publishedAt": "2009-12-09T02:38:19Z",
+                "thumbnails": {
+                  "default": {
+                    "url": "https://yt3.ggpht.com/ytc/AIdro_nDqhbIyIWAyptFqRBwVKo6rIlCzFIeDw6eepXtVwS-SYedeW9eMKnjq4SvpfWdiA7_jw=s88-c-k-c0x00ffffff-no-rj",
+                    "width": 88,
+                    "height": 88
+                  },
+                  "medium": {
+                    "url": "https://yt3.ggpht.com/ytc/AIdro_nDqhbIyIWAyptFqRBwVKo6rIlCzFIeDw6eepXtVwS-SYedeW9eMKnjq4SvpfWdiA7_jw=s240-c-k-c0x00ffffff-no-rj",
+                    "width": 240,
+                    "height": 240
+                  },
+                  "high": {
+                    "url": "https://yt3.ggpht.com/ytc/AIdro_nDqhbIyIWAyptFqRBwVKo6rIlCzFIeDw6eepXtVwS-SYedeW9eMKnjq4SvpfWdiA7_jw=s800-c-k-c0x00ffffff-no-rj",
+                    "width": 800,
+                    "height": 800
+                  }
+                },
+                "localized": {
+                  "title": "pca2",
+                  "description": ""
+                }
+              },
+              "status": {
+                "privacyStatus": "public",
+                "isLinked": true,
+                "longUploadsStatus": "allowed",
+                "isChannelMonetizationEnabled": false
+              }
+            }
+          ]
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:44 GMT
+- request:
+    method: post
+    uri: https://www.googleapis.com/youtube/v3/playlists?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"title":"test_1761102944"}}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:15:45 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#playlist",
+          "etag": "QMd2OFoyoro5IaDa68CXGiAoebo",
+          "id": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+          "snippet": {
+            "publishedAt": "2025-10-22T03:15:44Z",
+            "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+            "title": "test_1761102944",
+            "description": "",
+            "thumbnails": {
+              "default": {
+                "url": "https://i.ytimg.com/img/no_thumbnail.jpg",
+                "width": 120,
+                "height": 90
+              },
+              "medium": {
+                "url": "https://i.ytimg.com/img/no_thumbnail.jpg",
+                "width": 320,
+                "height": 180
+              },
+              "high": {
+                "url": "https://i.ytimg.com/img/no_thumbnail.jpg",
+                "width": 480,
+                "height": 360
+              }
+            },
+            "channelTitle": "pca2",
+            "localized": {
+              "title": "test_1761102944",
+              "description": ""
+            }
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:44 GMT
+- request:
+    method: post
+    uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"playlistId":"PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS","resourceId":{"kind":"youtube#video","videoId":"I-vAp9n8rQc"}}}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:15:45 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#playlistItem",
+          "etag": "tZgrDlQdwIma9t2Y9NGPOKmATu4",
+          "id": "UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy41NkI0NEY2RDEwNTU3Q0M2",
+          "snippet": {
+            "publishedAt": "2025-10-22T03:15:45Z",
+            "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+            "title": "Black Mirror - Season 3 | Official Trailer [HD] | Netflix",
+            "description": "In this world, it's easy to lose sight of what's real... Charlie Brooker’s Black Mirror is now streaming on Netflix.\n\nSUBSCRIBE: http://bit.ly/29kBByr\n\nAbout Netflix:\nNetflix is the world's leading internet entertainment service with 130 million memberships in over 190 countries enjoying TV series, documentaries and feature films across a wide variety of genres and languages. Members can watch as much as they want, anytime, anywhere, on any internet-connected screen. Members can play, pause and resume watching, all without adverts or commitments.\n\nConnect with Netflix Online:\nVisit Netflix WEBSITE: http://nflx.it/29BcWb5\nLike Netflix on FACEBOOK: http://bit.ly/29mx00a\nFollow Netflix on TWITTER: http://bit.ly/29lYvcs\nFollow Netflix on INSTAGRAM: http://bit.ly/29slD8O\nFollow Netflix on TUMBLR: http://bit.ly/29v2Z25\n\nBlack Mirror - Season 3 | Official Trailer [HD] | Netflix\nhttp://youtube.com/netflixUK",
+            "thumbnails": {
+              "default": {
+                "url": "https://i.ytimg.com/vi/I-vAp9n8rQc/default.jpg",
+                "width": 120,
+                "height": 90
+              },
+              "medium": {
+                "url": "https://i.ytimg.com/vi/I-vAp9n8rQc/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+              },
+              "high": {
+                "url": "https://i.ytimg.com/vi/I-vAp9n8rQc/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+              },
+              "standard": {
+                "url": "https://i.ytimg.com/vi/I-vAp9n8rQc/sddefault.jpg",
+                "width": 640,
+                "height": 480
+              },
+              "maxres": {
+                "url": "https://i.ytimg.com/vi/I-vAp9n8rQc/maxresdefault.jpg",
+                "width": 1280,
+                "height": 720
+              }
+            },
+            "channelTitle": "pca2",
+            "playlistId": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+            "position": 0,
+            "resourceId": {
+              "kind": "youtube#video",
+              "videoId": "I-vAp9n8rQc"
+            },
+            "videoOwnerChannelTitle": "Still Watching Netflix",
+            "videoOwnerChannelId": "UCGie8GMlUo3kBKIopdvumVQ"
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:45 GMT
+- request:
+    method: post
+    uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"playlistId":"PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS","resourceId":{"kind":"youtube#video","videoId":"mxcpOrIT5PQ"}}}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:15:45 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#playlistItem",
+          "etag": "aNWxIeFYpqpUnJE5PWePOA7lcWs",
+          "id": "UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy4yODlGNEE0NkRGMEEzMEQy",
+          "snippet": {
+            "publishedAt": "2025-10-22T03:15:45Z",
+            "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+            "title": "Pavement - Perfume V",
+            "description": "Live at London Astoria",
+            "thumbnails": {
+              "default": {
+                "url": "https://i.ytimg.com/vi/mxcpOrIT5PQ/default.jpg",
+                "width": 120,
+                "height": 90
+              },
+              "medium": {
+                "url": "https://i.ytimg.com/vi/mxcpOrIT5PQ/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+              },
+              "high": {
+                "url": "https://i.ytimg.com/vi/mxcpOrIT5PQ/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+              },
+              "standard": {
+                "url": "https://i.ytimg.com/vi/mxcpOrIT5PQ/sddefault.jpg",
+                "width": 640,
+                "height": 480
+              }
+            },
+            "channelTitle": "pca2",
+            "playlistId": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+            "position": 1,
+            "resourceId": {
+              "kind": "youtube#video",
+              "videoId": "mxcpOrIT5PQ"
+            },
+            "videoOwnerChannelTitle": "pca2",
+            "videoOwnerChannelId": "UCzFmywjEti1C95vS3A8MOFg"
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:45 GMT
+- request:
+    method: post
+    uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"playlistId":"PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS","resourceId":{"kind":"youtube#video","videoId":"KIojBBCPcqQ"}}}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:15:46 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#playlistItem",
+          "etag": "iSKDmC0SUro7p4gM9qGulliyHtY",
+          "id": "UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy4wMTcyMDhGQUE4NTIzM0Y5",
+          "snippet": {
+            "publishedAt": "2025-10-22T03:15:46Z",
+            "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+            "title": "FIFA 17 PENALTIES IN REAL LIFE | Dual Freestyle",
+            "description": "We have re-created the penalties on Fifa 17 for a bit of fun. \n\nSubscribe for more videos.\n\nFollow us on:\nInstagram: @Dualfreestyle\nTwitter: @Dualfreestyle",
+            "thumbnails": {
+              "default": {
+                "url": "https://i.ytimg.com/vi/KIojBBCPcqQ/default.jpg",
+                "width": 120,
+                "height": 90
+              },
+              "medium": {
+                "url": "https://i.ytimg.com/vi/KIojBBCPcqQ/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+              },
+              "high": {
+                "url": "https://i.ytimg.com/vi/KIojBBCPcqQ/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+              },
+              "standard": {
+                "url": "https://i.ytimg.com/vi/KIojBBCPcqQ/sddefault.jpg",
+                "width": 640,
+                "height": 480
+              },
+              "maxres": {
+                "url": "https://i.ytimg.com/vi/KIojBBCPcqQ/maxresdefault.jpg",
+                "width": 1280,
+                "height": 720
+              }
+            },
+            "channelTitle": "pca2",
+            "playlistId": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+            "position": 2,
+            "resourceId": {
+              "kind": "youtube#video",
+              "videoId": "KIojBBCPcqQ"
+            },
+            "videoOwnerChannelTitle": "DualFreestyle",
+            "videoOwnerChannelId": "UCVzuZMa91jgFjkS01ej2Hxw"
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:46 GMT
+- request:
+    method: post
+    uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"playlistId":"PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS","resourceId":{"kind":"youtube#video","videoId":"37VhTWokgNU"}}}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:15:46 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#playlistItem",
+          "etag": "cmhAPBHsjyOwd3tnXvUMkOhI0Qk",
+          "id": "UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy41MjE1MkI0OTQ2QzJGNzNG",
+          "snippet": {
+            "publishedAt": "2025-10-22T03:15:46Z",
+            "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+            "title": "Amy Landecker Does a Spot-On Julia Roberts",
+            "description": "James asks Amy Landecker to show off her Julia Roberts impression with a famous line from Pretty Woman.\n\nSubscribe To \"The Late Late Show\" Channel HERE: http://bit.ly/CordenYouTube\nWatch Full Episodes of \"The Late Late Show\" HERE: http://bit.ly/1ENyPw4\nLike \"The Late Late Show\" on Facebook HERE: http://on.fb.me/19PIHLC\nFollow \"The Late Late Show\" on Twitter HERE: http://bit.ly/1Iv0q6k\nFollow \"The Late Late Show\" on Google+ HERE: http://bit.ly/1N8a4OU\n\nWatch The Late Late Show with James Corden weeknights at 12:35 AM ET/11:35 PM CT. Only on CBS.\n\nGet the CBS app for iPhone & iPad! Click HERE: http://bit.ly/12rLxge\n\nGet new episodes of shows you love across devices the next day, stream live TV, and watch full seasons of CBS fan favorites anytime, anywhere with CBS All Access. Try it free! http://bit.ly/1OQA29B",
+            "thumbnails": {
+              "default": {
+                "url": "https://i.ytimg.com/vi/37VhTWokgNU/default.jpg",
+                "width": 120,
+                "height": 90
+              },
+              "medium": {
+                "url": "https://i.ytimg.com/vi/37VhTWokgNU/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+              },
+              "high": {
+                "url": "https://i.ytimg.com/vi/37VhTWokgNU/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+              },
+              "standard": {
+                "url": "https://i.ytimg.com/vi/37VhTWokgNU/sddefault.jpg",
+                "width": 640,
+                "height": 480
+              }
+            },
+            "channelTitle": "pca2",
+            "playlistId": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+            "position": 3,
+            "resourceId": {
+              "kind": "youtube#video",
+              "videoId": "37VhTWokgNU"
+            },
+            "videoOwnerChannelTitle": "The Late Late Show with James Corden",
+            "videoOwnerChannelId": "UCJ0uqCI0Vqr2Rrt1HseGirg"
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:46 GMT
+- request:
+    method: post
+    uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"playlistId":"PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS","resourceId":{"kind":"youtube#video","videoId":"DLiCbVyO0F4"}}}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:15:46 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#playlistItem",
+          "etag": "tO_xNoT2W49lDm5ajuKMhprMCx8",
+          "id": "UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy4wOTA3OTZBNzVEMTUzOTMy",
+          "snippet": {
+            "publishedAt": "2025-10-22T03:15:46Z",
+            "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+            "title": "Duplicity (2009 Trailer) Official",
+            "description": "\"Outwit. Outspy. Outsmart. Outplay. Then get out.\"\r\nA pair of corporate spies who share a steamy past hook up to pull off the ultimate con job on their respective bosses.\r\n\r\nDirector:Tony Gilroy\r\n\r\nWriter (WGA):Tony Gilroy (written by)\r\n\r\nCAST\r\n\r\nClive Owen ...  Ray Koval \r\nJulia Roberts ...  Claire Stenwick \r\nTom Wilkinson ...  Howard Tully \r\nPaul Giamatti ...  Richard Garsik \r\nDan Daily ...  Garsik's Aide \r\nLisa Roberts Gillan ...  Tully's Assistant (as Lisa Roberts Gillan) \r\nDavid Shumbris ...  Turtleneck \r\nRick Worthy ...  Dale Raimes \r\nOleg Shtefanko ...  Boris Fetyov (as Oleg Stefan) \r\nDenis O'Hare ...  Duke Monahan \r\nKathleen Chalfant ...  Pam Frailes \r\nKhan Baykal ...  Dinesh Patel Thomas McCarthy ...  Jeff Bauer \r\nWayne Duvall ...  Ned Guston \r\nFabrizio Brienza ...  Hotel Manager",
+            "thumbnails": {
+              "default": {
+                "url": "https://i.ytimg.com/vi/DLiCbVyO0F4/default.jpg",
+                "width": 120,
+                "height": 90
+              },
+              "medium": {
+                "url": "https://i.ytimg.com/vi/DLiCbVyO0F4/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+              },
+              "high": {
+                "url": "https://i.ytimg.com/vi/DLiCbVyO0F4/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+              }
+            },
+            "channelTitle": "pca2",
+            "playlistId": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+            "position": 4,
+            "resourceId": {
+              "kind": "youtube#video",
+              "videoId": "DLiCbVyO0F4"
+            },
+            "videoOwnerChannelTitle": "AngellMalak",
+            "videoOwnerChannelId": "UCiA7ZzyEQ4MpkW7z7WSRSmQ"
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:47 GMT
+- request:
+    method: post
+    uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"playlistId":"PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS","resourceId":{"kind":"youtube#video","videoId":"yrPbt03-8lI"}}}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:15:47 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#playlistItem",
+          "etag": "HhnbKarYqwxLrX2SuuHdl6q2iFc",
+          "id": "UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy4xMkVGQjNCMUM1N0RFNEUx",
+          "snippet": {
+            "publishedAt": "2025-10-22T03:15:47Z",
+            "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+            "title": "Jim Hanks sounds just like his brother Tom.",
+            "description": "",
+            "thumbnails": {
+              "default": {
+                "url": "https://i.ytimg.com/vi/yrPbt03-8lI/default.jpg",
+                "width": 120,
+                "height": 90
+              },
+              "medium": {
+                "url": "https://i.ytimg.com/vi/yrPbt03-8lI/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+              },
+              "high": {
+                "url": "https://i.ytimg.com/vi/yrPbt03-8lI/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+              },
+              "standard": {
+                "url": "https://i.ytimg.com/vi/yrPbt03-8lI/sddefault.jpg",
+                "width": 640,
+                "height": 480
+              },
+              "maxres": {
+                "url": "https://i.ytimg.com/vi/yrPbt03-8lI/maxresdefault.jpg",
+                "width": 1280,
+                "height": 720
+              }
+            },
+            "channelTitle": "pca2",
+            "playlistId": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+            "position": 5,
+            "resourceId": {
+              "kind": "youtube#video",
+              "videoId": "yrPbt03-8lI"
+            },
+            "videoOwnerChannelTitle": "Chad Ancalade",
+            "videoOwnerChannelId": "UCSUSZhR6z3QmoW38MHmZW6w"
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:47 GMT
+- request:
+    method: post
+    uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"playlistId":"PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS","resourceId":{"kind":"youtube#video","videoId":"Fs1DYdy0Qk8"}}}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Wed, 22 Oct 2025 03:15:47 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "error": {
+            "code": 404,
+            "message": "Video not found.",
+            "errors": [
+              {
+                "message": "Video not found.",
+                "domain": "youtube.playlistItem",
+                "reason": "videoNotFound"
+              }
+            ]
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:47 GMT
+- request:
+    method: post
+    uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"playlistId":"PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS","resourceId":{"kind":"youtube#video","videoId":"ZeCYZgwQYEU"}}}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:15:48 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#playlistItem",
+          "etag": "2xrK9Y4o9EOrpvLCe2LsVs1L9zM",
+          "id": "UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy41MzJCQjBCNDIyRkJDN0VD",
+          "snippet": {
+            "publishedAt": "2025-10-22T03:15:47Z",
+            "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+            "title": "Nolan North vs. Troy Baker: Hollywood Impressions",
+            "description": "Nolan & Troy can do a lot of voices so we got them to do their favourite impressions of Hollywood stars.\n\n------------------------------\u00ad----\nFollow IGN for more!\n------------------------------\u00ad----\n\nYOUTUBE: https://www.youtube.com/user/ignentertainment?sub_confirmation=1\nIGN OFFICIAL APP: http://www.ign.com/mobile\nFACEBOOK: https://www.facebook.com/ign\nTWITTER: https://twitter.com/ign\nINSTAGRAM: https://instagram.com/igndotcom/?hl=en\nWEBSITE: http://www.ign.com/\nGOOGLE+: https://plus.google.com/+IGN",
+            "thumbnails": {
+              "default": {
+                "url": "https://i.ytimg.com/vi/ZeCYZgwQYEU/default.jpg",
+                "width": 120,
+                "height": 90
+              },
+              "medium": {
+                "url": "https://i.ytimg.com/vi/ZeCYZgwQYEU/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+              },
+              "high": {
+                "url": "https://i.ytimg.com/vi/ZeCYZgwQYEU/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+              },
+              "standard": {
+                "url": "https://i.ytimg.com/vi/ZeCYZgwQYEU/sddefault.jpg",
+                "width": 640,
+                "height": 480
+              },
+              "maxres": {
+                "url": "https://i.ytimg.com/vi/ZeCYZgwQYEU/maxresdefault.jpg",
+                "width": 1280,
+                "height": 720
+              }
+            },
+            "channelTitle": "pca2",
+            "playlistId": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+            "position": 6,
+            "resourceId": {
+              "kind": "youtube#video",
+              "videoId": "ZeCYZgwQYEU"
+            },
+            "videoOwnerChannelTitle": "IGN",
+            "videoOwnerChannelId": "UCKy1dAqELo0zrOtPkf0eTMw"
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:48 GMT
+- request:
+    method: post
+    uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"playlistId":"PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS","resourceId":{"kind":"youtube#video","videoId":"iPPzXlMdi7o"}}}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:15:48 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#playlistItem",
+          "etag": "rDVCyuK5rxFQ1GydNGELsAz1Fk8",
+          "id": "UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy5DQUNERDQ2NkIzRUQxNTY1",
+          "snippet": {
+            "publishedAt": "2025-10-22T03:15:48Z",
+            "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+            "title": "Noah takes a photo of himself every day for 12.5 years",
+            "description": "January 11, 2000 - June 30, 2012\n4514 days\nA Work in Progress\n\nOriginal Score by Majestyy http://majestyy.com\n\nhttp://noahkalina.com\nhttp://twitter.com/noahkalina\n\nSpecial thanks to Mark Ho-Kane for the Uchronia typeface- http://tinyurl.com/cuyrkvw",
+            "thumbnails": {
+              "default": {
+                "url": "https://i.ytimg.com/vi/iPPzXlMdi7o/default.jpg",
+                "width": 120,
+                "height": 90
+              },
+              "medium": {
+                "url": "https://i.ytimg.com/vi/iPPzXlMdi7o/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+              },
+              "high": {
+                "url": "https://i.ytimg.com/vi/iPPzXlMdi7o/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+              },
+              "standard": {
+                "url": "https://i.ytimg.com/vi/iPPzXlMdi7o/sddefault.jpg",
+                "width": 640,
+                "height": 480
+              },
+              "maxres": {
+                "url": "https://i.ytimg.com/vi/iPPzXlMdi7o/maxresdefault.jpg",
+                "width": 1280,
+                "height": 720
+              }
+            },
+            "channelTitle": "pca2",
+            "playlistId": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+            "position": 7,
+            "resourceId": {
+              "kind": "youtube#video",
+              "videoId": "iPPzXlMdi7o"
+            },
+            "videoOwnerChannelTitle": "Noah Kalina",
+            "videoOwnerChannelId": "UCEbk5b9N6IkWbBmeKJb4x2w"
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:48 GMT
+- request:
+    method: put
+    uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"position":0,"playlistId":"PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS","resourceId":{"kind":"youtube#video","videoId":"I-vAp9n8rQc"}},"id":"UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy41NkI0NEY2RDEwNTU3Q0M2"}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:15:49 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#playlistItem",
+          "etag": "tZgrDlQdwIma9t2Y9NGPOKmATu4",
+          "id": "UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy41NkI0NEY2RDEwNTU3Q0M2",
+          "snippet": {
+            "publishedAt": "2025-10-22T03:15:45Z",
+            "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+            "title": "Black Mirror - Season 3 | Official Trailer [HD] | Netflix",
+            "description": "In this world, it's easy to lose sight of what's real... Charlie Brooker’s Black Mirror is now streaming on Netflix.\n\nSUBSCRIBE: http://bit.ly/29kBByr\n\nAbout Netflix:\nNetflix is the world's leading internet entertainment service with 130 million memberships in over 190 countries enjoying TV series, documentaries and feature films across a wide variety of genres and languages. Members can watch as much as they want, anytime, anywhere, on any internet-connected screen. Members can play, pause and resume watching, all without adverts or commitments.\n\nConnect with Netflix Online:\nVisit Netflix WEBSITE: http://nflx.it/29BcWb5\nLike Netflix on FACEBOOK: http://bit.ly/29mx00a\nFollow Netflix on TWITTER: http://bit.ly/29lYvcs\nFollow Netflix on INSTAGRAM: http://bit.ly/29slD8O\nFollow Netflix on TUMBLR: http://bit.ly/29v2Z25\n\nBlack Mirror - Season 3 | Official Trailer [HD] | Netflix\nhttp://youtube.com/netflixUK",
+            "thumbnails": {
+              "default": {
+                "url": "https://i.ytimg.com/vi/I-vAp9n8rQc/default.jpg",
+                "width": 120,
+                "height": 90
+              },
+              "medium": {
+                "url": "https://i.ytimg.com/vi/I-vAp9n8rQc/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+              },
+              "high": {
+                "url": "https://i.ytimg.com/vi/I-vAp9n8rQc/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+              },
+              "standard": {
+                "url": "https://i.ytimg.com/vi/I-vAp9n8rQc/sddefault.jpg",
+                "width": 640,
+                "height": 480
+              },
+              "maxres": {
+                "url": "https://i.ytimg.com/vi/I-vAp9n8rQc/maxresdefault.jpg",
+                "width": 1280,
+                "height": 720
+              }
+            },
+            "channelTitle": "pca2",
+            "playlistId": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+            "position": 0,
+            "resourceId": {
+              "kind": "youtube#video",
+              "videoId": "I-vAp9n8rQc"
+            },
+            "videoOwnerChannelTitle": "Still Watching Netflix",
+            "videoOwnerChannelId": "UCGie8GMlUo3kBKIopdvumVQ"
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:49 GMT
+- request:
+    method: put
+    uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"position":1,"playlistId":"PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS","resourceId":{"kind":"youtube#video","videoId":"mxcpOrIT5PQ"}},"id":"UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy4yODlGNEE0NkRGMEEzMEQy"}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:15:49 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#playlistItem",
+          "etag": "aNWxIeFYpqpUnJE5PWePOA7lcWs",
+          "id": "UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy4yODlGNEE0NkRGMEEzMEQy",
+          "snippet": {
+            "publishedAt": "2025-10-22T03:15:45Z",
+            "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+            "title": "Pavement - Perfume V",
+            "description": "Live at London Astoria",
+            "thumbnails": {
+              "default": {
+                "url": "https://i.ytimg.com/vi/mxcpOrIT5PQ/default.jpg",
+                "width": 120,
+                "height": 90
+              },
+              "medium": {
+                "url": "https://i.ytimg.com/vi/mxcpOrIT5PQ/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+              },
+              "high": {
+                "url": "https://i.ytimg.com/vi/mxcpOrIT5PQ/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+              },
+              "standard": {
+                "url": "https://i.ytimg.com/vi/mxcpOrIT5PQ/sddefault.jpg",
+                "width": 640,
+                "height": 480
+              }
+            },
+            "channelTitle": "pca2",
+            "playlistId": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+            "position": 1,
+            "resourceId": {
+              "kind": "youtube#video",
+              "videoId": "mxcpOrIT5PQ"
+            },
+            "videoOwnerChannelTitle": "pca2",
+            "videoOwnerChannelId": "UCzFmywjEti1C95vS3A8MOFg"
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:49 GMT
+- request:
+    method: put
+    uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"position":2,"playlistId":"PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS","resourceId":{"kind":"youtube#video","videoId":"KIojBBCPcqQ"}},"id":"UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy4wMTcyMDhGQUE4NTIzM0Y5"}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:15:49 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#playlistItem",
+          "etag": "iSKDmC0SUro7p4gM9qGulliyHtY",
+          "id": "UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy4wMTcyMDhGQUE4NTIzM0Y5",
+          "snippet": {
+            "publishedAt": "2025-10-22T03:15:46Z",
+            "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+            "title": "FIFA 17 PENALTIES IN REAL LIFE | Dual Freestyle",
+            "description": "We have re-created the penalties on Fifa 17 for a bit of fun. \n\nSubscribe for more videos.\n\nFollow us on:\nInstagram: @Dualfreestyle\nTwitter: @Dualfreestyle",
+            "thumbnails": {
+              "default": {
+                "url": "https://i.ytimg.com/vi/KIojBBCPcqQ/default.jpg",
+                "width": 120,
+                "height": 90
+              },
+              "medium": {
+                "url": "https://i.ytimg.com/vi/KIojBBCPcqQ/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+              },
+              "high": {
+                "url": "https://i.ytimg.com/vi/KIojBBCPcqQ/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+              },
+              "standard": {
+                "url": "https://i.ytimg.com/vi/KIojBBCPcqQ/sddefault.jpg",
+                "width": 640,
+                "height": 480
+              },
+              "maxres": {
+                "url": "https://i.ytimg.com/vi/KIojBBCPcqQ/maxresdefault.jpg",
+                "width": 1280,
+                "height": 720
+              }
+            },
+            "channelTitle": "pca2",
+            "playlistId": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+            "position": 2,
+            "resourceId": {
+              "kind": "youtube#video",
+              "videoId": "KIojBBCPcqQ"
+            },
+            "videoOwnerChannelTitle": "DualFreestyle",
+            "videoOwnerChannelId": "UCVzuZMa91jgFjkS01ej2Hxw"
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:49 GMT
+- request:
+    method: put
+    uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"position":3,"playlistId":"PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS","resourceId":{"kind":"youtube#video","videoId":"37VhTWokgNU"}},"id":"UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy41MjE1MkI0OTQ2QzJGNzNG"}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:15:50 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#playlistItem",
+          "etag": "cmhAPBHsjyOwd3tnXvUMkOhI0Qk",
+          "id": "UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy41MjE1MkI0OTQ2QzJGNzNG",
+          "snippet": {
+            "publishedAt": "2025-10-22T03:15:46Z",
+            "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+            "title": "Amy Landecker Does a Spot-On Julia Roberts",
+            "description": "James asks Amy Landecker to show off her Julia Roberts impression with a famous line from Pretty Woman.\n\nSubscribe To \"The Late Late Show\" Channel HERE: http://bit.ly/CordenYouTube\nWatch Full Episodes of \"The Late Late Show\" HERE: http://bit.ly/1ENyPw4\nLike \"The Late Late Show\" on Facebook HERE: http://on.fb.me/19PIHLC\nFollow \"The Late Late Show\" on Twitter HERE: http://bit.ly/1Iv0q6k\nFollow \"The Late Late Show\" on Google+ HERE: http://bit.ly/1N8a4OU\n\nWatch The Late Late Show with James Corden weeknights at 12:35 AM ET/11:35 PM CT. Only on CBS.\n\nGet the CBS app for iPhone & iPad! Click HERE: http://bit.ly/12rLxge\n\nGet new episodes of shows you love across devices the next day, stream live TV, and watch full seasons of CBS fan favorites anytime, anywhere with CBS All Access. Try it free! http://bit.ly/1OQA29B",
+            "thumbnails": {
+              "default": {
+                "url": "https://i.ytimg.com/vi/37VhTWokgNU/default.jpg",
+                "width": 120,
+                "height": 90
+              },
+              "medium": {
+                "url": "https://i.ytimg.com/vi/37VhTWokgNU/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+              },
+              "high": {
+                "url": "https://i.ytimg.com/vi/37VhTWokgNU/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+              },
+              "standard": {
+                "url": "https://i.ytimg.com/vi/37VhTWokgNU/sddefault.jpg",
+                "width": 640,
+                "height": 480
+              }
+            },
+            "channelTitle": "pca2",
+            "playlistId": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+            "position": 3,
+            "resourceId": {
+              "kind": "youtube#video",
+              "videoId": "37VhTWokgNU"
+            },
+            "videoOwnerChannelTitle": "The Late Late Show with James Corden",
+            "videoOwnerChannelId": "UCJ0uqCI0Vqr2Rrt1HseGirg"
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:50 GMT
+- request:
+    method: put
+    uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"position":4,"playlistId":"PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS","resourceId":{"kind":"youtube#video","videoId":"DLiCbVyO0F4"}},"id":"UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy4wOTA3OTZBNzVEMTUzOTMy"}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:15:50 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#playlistItem",
+          "etag": "tO_xNoT2W49lDm5ajuKMhprMCx8",
+          "id": "UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy4wOTA3OTZBNzVEMTUzOTMy",
+          "snippet": {
+            "publishedAt": "2025-10-22T03:15:46Z",
+            "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+            "title": "Duplicity (2009 Trailer) Official",
+            "description": "\"Outwit. Outspy. Outsmart. Outplay. Then get out.\"\r\nA pair of corporate spies who share a steamy past hook up to pull off the ultimate con job on their respective bosses.\r\n\r\nDirector:Tony Gilroy\r\n\r\nWriter (WGA):Tony Gilroy (written by)\r\n\r\nCAST\r\n\r\nClive Owen ...  Ray Koval \r\nJulia Roberts ...  Claire Stenwick \r\nTom Wilkinson ...  Howard Tully \r\nPaul Giamatti ...  Richard Garsik \r\nDan Daily ...  Garsik's Aide \r\nLisa Roberts Gillan ...  Tully's Assistant (as Lisa Roberts Gillan) \r\nDavid Shumbris ...  Turtleneck \r\nRick Worthy ...  Dale Raimes \r\nOleg Shtefanko ...  Boris Fetyov (as Oleg Stefan) \r\nDenis O'Hare ...  Duke Monahan \r\nKathleen Chalfant ...  Pam Frailes \r\nKhan Baykal ...  Dinesh Patel Thomas McCarthy ...  Jeff Bauer \r\nWayne Duvall ...  Ned Guston \r\nFabrizio Brienza ...  Hotel Manager",
+            "thumbnails": {
+              "default": {
+                "url": "https://i.ytimg.com/vi/DLiCbVyO0F4/default.jpg",
+                "width": 120,
+                "height": 90
+              },
+              "medium": {
+                "url": "https://i.ytimg.com/vi/DLiCbVyO0F4/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+              },
+              "high": {
+                "url": "https://i.ytimg.com/vi/DLiCbVyO0F4/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+              }
+            },
+            "channelTitle": "pca2",
+            "playlistId": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+            "position": 4,
+            "resourceId": {
+              "kind": "youtube#video",
+              "videoId": "DLiCbVyO0F4"
+            },
+            "videoOwnerChannelTitle": "AngellMalak",
+            "videoOwnerChannelId": "UCiA7ZzyEQ4MpkW7z7WSRSmQ"
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:50 GMT
+- request:
+    method: put
+    uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"position":5,"playlistId":"PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS","resourceId":{"kind":"youtube#video","videoId":"yrPbt03-8lI"}},"id":"UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy4xMkVGQjNCMUM1N0RFNEUx"}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:15:51 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#playlistItem",
+          "etag": "HhnbKarYqwxLrX2SuuHdl6q2iFc",
+          "id": "UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy4xMkVGQjNCMUM1N0RFNEUx",
+          "snippet": {
+            "publishedAt": "2025-10-22T03:15:47Z",
+            "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+            "title": "Jim Hanks sounds just like his brother Tom.",
+            "description": "",
+            "thumbnails": {
+              "default": {
+                "url": "https://i.ytimg.com/vi/yrPbt03-8lI/default.jpg",
+                "width": 120,
+                "height": 90
+              },
+              "medium": {
+                "url": "https://i.ytimg.com/vi/yrPbt03-8lI/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+              },
+              "high": {
+                "url": "https://i.ytimg.com/vi/yrPbt03-8lI/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+              },
+              "standard": {
+                "url": "https://i.ytimg.com/vi/yrPbt03-8lI/sddefault.jpg",
+                "width": 640,
+                "height": 480
+              },
+              "maxres": {
+                "url": "https://i.ytimg.com/vi/yrPbt03-8lI/maxresdefault.jpg",
+                "width": 1280,
+                "height": 720
+              }
+            },
+            "channelTitle": "pca2",
+            "playlistId": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+            "position": 5,
+            "resourceId": {
+              "kind": "youtube#video",
+              "videoId": "yrPbt03-8lI"
+            },
+            "videoOwnerChannelTitle": "Chad Ancalade",
+            "videoOwnerChannelId": "UCSUSZhR6z3QmoW38MHmZW6w"
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:50 GMT
+- request:
+    method: put
+    uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"position":6,"playlistId":"PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS","resourceId":{"kind":"youtube#video","videoId":"ZeCYZgwQYEU"}},"id":"UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy41MzJCQjBCNDIyRkJDN0VD"}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:15:51 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#playlistItem",
+          "etag": "2xrK9Y4o9EOrpvLCe2LsVs1L9zM",
+          "id": "UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy41MzJCQjBCNDIyRkJDN0VD",
+          "snippet": {
+            "publishedAt": "2025-10-22T03:15:47Z",
+            "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+            "title": "Nolan North vs. Troy Baker: Hollywood Impressions",
+            "description": "Nolan & Troy can do a lot of voices so we got them to do their favourite impressions of Hollywood stars.\n\n------------------------------\u00ad----\nFollow IGN for more!\n------------------------------\u00ad----\n\nYOUTUBE: https://www.youtube.com/user/ignentertainment?sub_confirmation=1\nIGN OFFICIAL APP: http://www.ign.com/mobile\nFACEBOOK: https://www.facebook.com/ign\nTWITTER: https://twitter.com/ign\nINSTAGRAM: https://instagram.com/igndotcom/?hl=en\nWEBSITE: http://www.ign.com/\nGOOGLE+: https://plus.google.com/+IGN",
+            "thumbnails": {
+              "default": {
+                "url": "https://i.ytimg.com/vi/ZeCYZgwQYEU/default.jpg",
+                "width": 120,
+                "height": 90
+              },
+              "medium": {
+                "url": "https://i.ytimg.com/vi/ZeCYZgwQYEU/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+              },
+              "high": {
+                "url": "https://i.ytimg.com/vi/ZeCYZgwQYEU/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+              },
+              "standard": {
+                "url": "https://i.ytimg.com/vi/ZeCYZgwQYEU/sddefault.jpg",
+                "width": 640,
+                "height": 480
+              },
+              "maxres": {
+                "url": "https://i.ytimg.com/vi/ZeCYZgwQYEU/maxresdefault.jpg",
+                "width": 1280,
+                "height": 720
+              }
+            },
+            "channelTitle": "pca2",
+            "playlistId": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+            "position": 6,
+            "resourceId": {
+              "kind": "youtube#video",
+              "videoId": "ZeCYZgwQYEU"
+            },
+            "videoOwnerChannelTitle": "IGN",
+            "videoOwnerChannelId": "UCKy1dAqELo0zrOtPkf0eTMw"
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:51 GMT
+- request:
+    method: put
+    uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"position":7,"playlistId":"PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS","resourceId":{"kind":"youtube#video","videoId":"iPPzXlMdi7o"}},"id":"UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy5DQUNERDQ2NkIzRUQxNTY1"}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:15:51 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#playlistItem",
+          "etag": "rDVCyuK5rxFQ1GydNGELsAz1Fk8",
+          "id": "UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy5DQUNERDQ2NkIzRUQxNTY1",
+          "snippet": {
+            "publishedAt": "2025-10-22T03:15:48Z",
+            "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+            "title": "Noah takes a photo of himself every day for 12.5 years",
+            "description": "January 11, 2000 - June 30, 2012\n4514 days\nA Work in Progress\n\nOriginal Score by Majestyy http://majestyy.com\n\nhttp://noahkalina.com\nhttp://twitter.com/noahkalina\n\nSpecial thanks to Mark Ho-Kane for the Uchronia typeface- http://tinyurl.com/cuyrkvw",
+            "thumbnails": {
+              "default": {
+                "url": "https://i.ytimg.com/vi/iPPzXlMdi7o/default.jpg",
+                "width": 120,
+                "height": 90
+              },
+              "medium": {
+                "url": "https://i.ytimg.com/vi/iPPzXlMdi7o/mqdefault.jpg",
+                "width": 320,
+                "height": 180
+              },
+              "high": {
+                "url": "https://i.ytimg.com/vi/iPPzXlMdi7o/hqdefault.jpg",
+                "width": 480,
+                "height": 360
+              },
+              "standard": {
+                "url": "https://i.ytimg.com/vi/iPPzXlMdi7o/sddefault.jpg",
+                "width": 640,
+                "height": 480
+              },
+              "maxres": {
+                "url": "https://i.ytimg.com/vi/iPPzXlMdi7o/maxresdefault.jpg",
+                "width": 1280,
+                "height": 720
+              }
+            },
+            "channelTitle": "pca2",
+            "playlistId": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+            "position": 7,
+            "resourceId": {
+              "kind": "youtube#video",
+              "videoId": "iPPzXlMdi7o"
+            },
+            "videoOwnerChannelTitle": "Noah Kalina",
+            "videoOwnerChannelId": "UCEbk5b9N6IkWbBmeKJb4x2w"
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:51 GMT
+- request:
+    method: get
+    uri: https://www.googleapis.com/youtube/v3/playlistItems?maxResults=50&part=snippet,status&playlistId=PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:15:51 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#playlistItemListResponse",
+          "etag": "NLsWTD7MsSK1AYm4QiMMKV72Nuk",
+          "items": [
+            {
+              "kind": "youtube#playlistItem",
+              "etag": "UI2Rg32_KxBGjSNfUt6FjJqX-3A",
+              "id": "UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy41NkI0NEY2RDEwNTU3Q0M2",
+              "snippet": {
+                "publishedAt": "2025-10-22T03:15:45Z",
+                "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+                "title": "Black Mirror - Season 3 | Official Trailer [HD] | Netflix",
+                "description": "In this world, it's easy to lose sight of what's real... Charlie Brooker’s Black Mirror is now streaming on Netflix.\n\nSUBSCRIBE: http://bit.ly/29kBByr\n\nAbout Netflix:\nNetflix is the world's leading internet entertainment service with 130 million memberships in over 190 countries enjoying TV series, documentaries and feature films across a wide variety of genres and languages. Members can watch as much as they want, anytime, anywhere, on any internet-connected screen. Members can play, pause and resume watching, all without adverts or commitments.\n\nConnect with Netflix Online:\nVisit Netflix WEBSITE: http://nflx.it/29BcWb5\nLike Netflix on FACEBOOK: http://bit.ly/29mx00a\nFollow Netflix on TWITTER: http://bit.ly/29lYvcs\nFollow Netflix on INSTAGRAM: http://bit.ly/29slD8O\nFollow Netflix on TUMBLR: http://bit.ly/29v2Z25\n\nBlack Mirror - Season 3 | Official Trailer [HD] | Netflix\nhttp://youtube.com/netflixUK",
+                "thumbnails": {
+                  "default": {
+                    "url": "https://i.ytimg.com/vi/I-vAp9n8rQc/default.jpg",
+                    "width": 120,
+                    "height": 90
+                  },
+                  "medium": {
+                    "url": "https://i.ytimg.com/vi/I-vAp9n8rQc/mqdefault.jpg",
+                    "width": 320,
+                    "height": 180
+                  },
+                  "high": {
+                    "url": "https://i.ytimg.com/vi/I-vAp9n8rQc/hqdefault.jpg",
+                    "width": 480,
+                    "height": 360
+                  },
+                  "standard": {
+                    "url": "https://i.ytimg.com/vi/I-vAp9n8rQc/sddefault.jpg",
+                    "width": 640,
+                    "height": 480
+                  },
+                  "maxres": {
+                    "url": "https://i.ytimg.com/vi/I-vAp9n8rQc/maxresdefault.jpg",
+                    "width": 1280,
+                    "height": 720
+                  }
+                },
+                "channelTitle": "pca2",
+                "playlistId": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+                "position": 0,
+                "resourceId": {
+                  "kind": "youtube#video",
+                  "videoId": "I-vAp9n8rQc"
+                },
+                "videoOwnerChannelTitle": "Still Watching Netflix",
+                "videoOwnerChannelId": "UCGie8GMlUo3kBKIopdvumVQ"
+              },
+              "status": {
+                "privacyStatus": "public"
+              }
+            },
+            {
+              "kind": "youtube#playlistItem",
+              "etag": "NRsA2XKWHh9GgGQekSk8dJSvUiE",
+              "id": "UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy4yODlGNEE0NkRGMEEzMEQy",
+              "snippet": {
+                "publishedAt": "2025-10-22T03:15:45Z",
+                "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+                "title": "Pavement - Perfume V",
+                "description": "Live at London Astoria",
+                "thumbnails": {
+                  "default": {
+                    "url": "https://i.ytimg.com/vi/mxcpOrIT5PQ/default.jpg",
+                    "width": 120,
+                    "height": 90
+                  },
+                  "medium": {
+                    "url": "https://i.ytimg.com/vi/mxcpOrIT5PQ/mqdefault.jpg",
+                    "width": 320,
+                    "height": 180
+                  },
+                  "high": {
+                    "url": "https://i.ytimg.com/vi/mxcpOrIT5PQ/hqdefault.jpg",
+                    "width": 480,
+                    "height": 360
+                  },
+                  "standard": {
+                    "url": "https://i.ytimg.com/vi/mxcpOrIT5PQ/sddefault.jpg",
+                    "width": 640,
+                    "height": 480
+                  }
+                },
+                "channelTitle": "pca2",
+                "playlistId": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+                "position": 1,
+                "resourceId": {
+                  "kind": "youtube#video",
+                  "videoId": "mxcpOrIT5PQ"
+                },
+                "videoOwnerChannelTitle": "pca2",
+                "videoOwnerChannelId": "UCzFmywjEti1C95vS3A8MOFg"
+              },
+              "status": {
+                "privacyStatus": "public"
+              }
+            },
+            {
+              "kind": "youtube#playlistItem",
+              "etag": "FaG3UlHan-38HxfxZZfY7zSEVvw",
+              "id": "UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy4wMTcyMDhGQUE4NTIzM0Y5",
+              "snippet": {
+                "publishedAt": "2025-10-22T03:15:46Z",
+                "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+                "title": "FIFA 17 PENALTIES IN REAL LIFE | Dual Freestyle",
+                "description": "We have re-created the penalties on Fifa 17 for a bit of fun. \n\nSubscribe for more videos.\n\nFollow us on:\nInstagram: @Dualfreestyle\nTwitter: @Dualfreestyle",
+                "thumbnails": {
+                  "default": {
+                    "url": "https://i.ytimg.com/vi/KIojBBCPcqQ/default.jpg",
+                    "width": 120,
+                    "height": 90
+                  },
+                  "medium": {
+                    "url": "https://i.ytimg.com/vi/KIojBBCPcqQ/mqdefault.jpg",
+                    "width": 320,
+                    "height": 180
+                  },
+                  "high": {
+                    "url": "https://i.ytimg.com/vi/KIojBBCPcqQ/hqdefault.jpg",
+                    "width": 480,
+                    "height": 360
+                  },
+                  "standard": {
+                    "url": "https://i.ytimg.com/vi/KIojBBCPcqQ/sddefault.jpg",
+                    "width": 640,
+                    "height": 480
+                  },
+                  "maxres": {
+                    "url": "https://i.ytimg.com/vi/KIojBBCPcqQ/maxresdefault.jpg",
+                    "width": 1280,
+                    "height": 720
+                  }
+                },
+                "channelTitle": "pca2",
+                "playlistId": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+                "position": 2,
+                "resourceId": {
+                  "kind": "youtube#video",
+                  "videoId": "KIojBBCPcqQ"
+                },
+                "videoOwnerChannelTitle": "DualFreestyle",
+                "videoOwnerChannelId": "UCVzuZMa91jgFjkS01ej2Hxw"
+              },
+              "status": {
+                "privacyStatus": "public"
+              }
+            },
+            {
+              "kind": "youtube#playlistItem",
+              "etag": "E-ATCZcFxyOy8UUyezOiYntMTw8",
+              "id": "UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy41MjE1MkI0OTQ2QzJGNzNG",
+              "snippet": {
+                "publishedAt": "2025-10-22T03:15:46Z",
+                "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+                "title": "Amy Landecker Does a Spot-On Julia Roberts",
+                "description": "James asks Amy Landecker to show off her Julia Roberts impression with a famous line from Pretty Woman.\n\nSubscribe To \"The Late Late Show\" Channel HERE: http://bit.ly/CordenYouTube\nWatch Full Episodes of \"The Late Late Show\" HERE: http://bit.ly/1ENyPw4\nLike \"The Late Late Show\" on Facebook HERE: http://on.fb.me/19PIHLC\nFollow \"The Late Late Show\" on Twitter HERE: http://bit.ly/1Iv0q6k\nFollow \"The Late Late Show\" on Google+ HERE: http://bit.ly/1N8a4OU\n\nWatch The Late Late Show with James Corden weeknights at 12:35 AM ET/11:35 PM CT. Only on CBS.\n\nGet the CBS app for iPhone & iPad! Click HERE: http://bit.ly/12rLxge\n\nGet new episodes of shows you love across devices the next day, stream live TV, and watch full seasons of CBS fan favorites anytime, anywhere with CBS All Access. Try it free! http://bit.ly/1OQA29B",
+                "thumbnails": {
+                  "default": {
+                    "url": "https://i.ytimg.com/vi/37VhTWokgNU/default.jpg",
+                    "width": 120,
+                    "height": 90
+                  },
+                  "medium": {
+                    "url": "https://i.ytimg.com/vi/37VhTWokgNU/mqdefault.jpg",
+                    "width": 320,
+                    "height": 180
+                  },
+                  "high": {
+                    "url": "https://i.ytimg.com/vi/37VhTWokgNU/hqdefault.jpg",
+                    "width": 480,
+                    "height": 360
+                  },
+                  "standard": {
+                    "url": "https://i.ytimg.com/vi/37VhTWokgNU/sddefault.jpg",
+                    "width": 640,
+                    "height": 480
+                  }
+                },
+                "channelTitle": "pca2",
+                "playlistId": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+                "position": 3,
+                "resourceId": {
+                  "kind": "youtube#video",
+                  "videoId": "37VhTWokgNU"
+                },
+                "videoOwnerChannelTitle": "The Late Late Show with James Corden",
+                "videoOwnerChannelId": "UCJ0uqCI0Vqr2Rrt1HseGirg"
+              },
+              "status": {
+                "privacyStatus": "public"
+              }
+            },
+            {
+              "kind": "youtube#playlistItem",
+              "etag": "hmmgeCw2wTg-Wtm47Q3J445BIDs",
+              "id": "UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy4wOTA3OTZBNzVEMTUzOTMy",
+              "snippet": {
+                "publishedAt": "2025-10-22T03:15:46Z",
+                "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+                "title": "Duplicity (2009 Trailer) Official",
+                "description": "\"Outwit. Outspy. Outsmart. Outplay. Then get out.\"\r\nA pair of corporate spies who share a steamy past hook up to pull off the ultimate con job on their respective bosses.\r\n\r\nDirector:Tony Gilroy\r\n\r\nWriter (WGA):Tony Gilroy (written by)\r\n\r\nCAST\r\n\r\nClive Owen ...  Ray Koval \r\nJulia Roberts ...  Claire Stenwick \r\nTom Wilkinson ...  Howard Tully \r\nPaul Giamatti ...  Richard Garsik \r\nDan Daily ...  Garsik's Aide \r\nLisa Roberts Gillan ...  Tully's Assistant (as Lisa Roberts Gillan) \r\nDavid Shumbris ...  Turtleneck \r\nRick Worthy ...  Dale Raimes \r\nOleg Shtefanko ...  Boris Fetyov (as Oleg Stefan) \r\nDenis O'Hare ...  Duke Monahan \r\nKathleen Chalfant ...  Pam Frailes \r\nKhan Baykal ...  Dinesh Patel Thomas McCarthy ...  Jeff Bauer \r\nWayne Duvall ...  Ned Guston \r\nFabrizio Brienza ...  Hotel Manager",
+                "thumbnails": {
+                  "default": {
+                    "url": "https://i.ytimg.com/vi/DLiCbVyO0F4/default.jpg",
+                    "width": 120,
+                    "height": 90
+                  },
+                  "medium": {
+                    "url": "https://i.ytimg.com/vi/DLiCbVyO0F4/mqdefault.jpg",
+                    "width": 320,
+                    "height": 180
+                  },
+                  "high": {
+                    "url": "https://i.ytimg.com/vi/DLiCbVyO0F4/hqdefault.jpg",
+                    "width": 480,
+                    "height": 360
+                  }
+                },
+                "channelTitle": "pca2",
+                "playlistId": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+                "position": 4,
+                "resourceId": {
+                  "kind": "youtube#video",
+                  "videoId": "DLiCbVyO0F4"
+                },
+                "videoOwnerChannelTitle": "AngellMalak",
+                "videoOwnerChannelId": "UCiA7ZzyEQ4MpkW7z7WSRSmQ"
+              },
+              "status": {
+                "privacyStatus": "public"
+              }
+            },
+            {
+              "kind": "youtube#playlistItem",
+              "etag": "UjsboYjRzddcSVh_N06_JLBrzCk",
+              "id": "UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy4xMkVGQjNCMUM1N0RFNEUx",
+              "snippet": {
+                "publishedAt": "2025-10-22T03:15:47Z",
+                "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+                "title": "Jim Hanks sounds just like his brother Tom.",
+                "description": "",
+                "thumbnails": {
+                  "default": {
+                    "url": "https://i.ytimg.com/vi/yrPbt03-8lI/default.jpg",
+                    "width": 120,
+                    "height": 90
+                  },
+                  "medium": {
+                    "url": "https://i.ytimg.com/vi/yrPbt03-8lI/mqdefault.jpg",
+                    "width": 320,
+                    "height": 180
+                  },
+                  "high": {
+                    "url": "https://i.ytimg.com/vi/yrPbt03-8lI/hqdefault.jpg",
+                    "width": 480,
+                    "height": 360
+                  },
+                  "standard": {
+                    "url": "https://i.ytimg.com/vi/yrPbt03-8lI/sddefault.jpg",
+                    "width": 640,
+                    "height": 480
+                  },
+                  "maxres": {
+                    "url": "https://i.ytimg.com/vi/yrPbt03-8lI/maxresdefault.jpg",
+                    "width": 1280,
+                    "height": 720
+                  }
+                },
+                "channelTitle": "pca2",
+                "playlistId": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+                "position": 5,
+                "resourceId": {
+                  "kind": "youtube#video",
+                  "videoId": "yrPbt03-8lI"
+                },
+                "videoOwnerChannelTitle": "Chad Ancalade",
+                "videoOwnerChannelId": "UCSUSZhR6z3QmoW38MHmZW6w"
+              },
+              "status": {
+                "privacyStatus": "public"
+              }
+            },
+            {
+              "kind": "youtube#playlistItem",
+              "etag": "2Cu6660_5G9b6i-ElvL2N5hYpiU",
+              "id": "UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy41MzJCQjBCNDIyRkJDN0VD",
+              "snippet": {
+                "publishedAt": "2025-10-22T03:15:47Z",
+                "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+                "title": "Nolan North vs. Troy Baker: Hollywood Impressions",
+                "description": "Nolan & Troy can do a lot of voices so we got them to do their favourite impressions of Hollywood stars.\n\n------------------------------\u00ad----\nFollow IGN for more!\n------------------------------\u00ad----\n\nYOUTUBE: https://www.youtube.com/user/ignentertainment?sub_confirmation=1\nIGN OFFICIAL APP: http://www.ign.com/mobile\nFACEBOOK: https://www.facebook.com/ign\nTWITTER: https://twitter.com/ign\nINSTAGRAM: https://instagram.com/igndotcom/?hl=en\nWEBSITE: http://www.ign.com/\nGOOGLE+: https://plus.google.com/+IGN",
+                "thumbnails": {
+                  "default": {
+                    "url": "https://i.ytimg.com/vi/ZeCYZgwQYEU/default.jpg",
+                    "width": 120,
+                    "height": 90
+                  },
+                  "medium": {
+                    "url": "https://i.ytimg.com/vi/ZeCYZgwQYEU/mqdefault.jpg",
+                    "width": 320,
+                    "height": 180
+                  },
+                  "high": {
+                    "url": "https://i.ytimg.com/vi/ZeCYZgwQYEU/hqdefault.jpg",
+                    "width": 480,
+                    "height": 360
+                  },
+                  "standard": {
+                    "url": "https://i.ytimg.com/vi/ZeCYZgwQYEU/sddefault.jpg",
+                    "width": 640,
+                    "height": 480
+                  },
+                  "maxres": {
+                    "url": "https://i.ytimg.com/vi/ZeCYZgwQYEU/maxresdefault.jpg",
+                    "width": 1280,
+                    "height": 720
+                  }
+                },
+                "channelTitle": "pca2",
+                "playlistId": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+                "position": 6,
+                "resourceId": {
+                  "kind": "youtube#video",
+                  "videoId": "ZeCYZgwQYEU"
+                },
+                "videoOwnerChannelTitle": "IGN",
+                "videoOwnerChannelId": "UCKy1dAqELo0zrOtPkf0eTMw"
+              },
+              "status": {
+                "privacyStatus": "public"
+              }
+            },
+            {
+              "kind": "youtube#playlistItem",
+              "etag": "enGsQ1A63mZ0IR3bw_EVBTaD2pA",
+              "id": "UExaT2RHSWV4WTlERVFoQk9nV3k0emlDcmxQdk5HQUZWUy5DQUNERDQ2NkIzRUQxNTY1",
+              "snippet": {
+                "publishedAt": "2025-10-22T03:15:48Z",
+                "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+                "title": "Noah takes a photo of himself every day for 12.5 years",
+                "description": "January 11, 2000 - June 30, 2012\n4514 days\nA Work in Progress\n\nOriginal Score by Majestyy http://majestyy.com\n\nhttp://noahkalina.com\nhttp://twitter.com/noahkalina\n\nSpecial thanks to Mark Ho-Kane for the Uchronia typeface- http://tinyurl.com/cuyrkvw",
+                "thumbnails": {
+                  "default": {
+                    "url": "https://i.ytimg.com/vi/iPPzXlMdi7o/default.jpg",
+                    "width": 120,
+                    "height": 90
+                  },
+                  "medium": {
+                    "url": "https://i.ytimg.com/vi/iPPzXlMdi7o/mqdefault.jpg",
+                    "width": 320,
+                    "height": 180
+                  },
+                  "high": {
+                    "url": "https://i.ytimg.com/vi/iPPzXlMdi7o/hqdefault.jpg",
+                    "width": 480,
+                    "height": 360
+                  },
+                  "standard": {
+                    "url": "https://i.ytimg.com/vi/iPPzXlMdi7o/sddefault.jpg",
+                    "width": 640,
+                    "height": 480
+                  },
+                  "maxres": {
+                    "url": "https://i.ytimg.com/vi/iPPzXlMdi7o/maxresdefault.jpg",
+                    "width": 1280,
+                    "height": 720
+                  }
+                },
+                "channelTitle": "pca2",
+                "playlistId": "PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS",
+                "position": 7,
+                "resourceId": {
+                  "kind": "youtube#video",
+                  "videoId": "iPPzXlMdi7o"
+                },
+                "videoOwnerChannelTitle": "Noah Kalina",
+                "videoOwnerChannelId": "UCEbk5b9N6IkWbBmeKJb4x2w"
+              },
+              "status": {
+                "privacyStatus": "public"
+              }
+            }
+          ],
+          "pageInfo": {
+            "totalResults": 8,
+            "resultsPerPage": 50
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:51 GMT
+- request:
+    method: delete
+    uri: https://www.googleapis.com/youtube/v3/playlists?id=PLZOdGIexY9DEQhBOgWy4ziCrlPvNGAFVS
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:15:52 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Wed, 22 Oct 2025 03:15:52 GMT
+recorded_with: VCR 6.3.1

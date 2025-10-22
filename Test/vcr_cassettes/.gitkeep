@@ -1,0 +1,9 @@
+# VCR Cassettes
+
+This directory contains VCR cassettes that record HTTP interactions with the YouTube API during testing.
+
+## Important Notes
+
+- Cassettes should be committed to the repository so tests can run without YouTube API credentials
+- Sensitive data (CLIENT_ID, CLIENT_SECRET, REFRESH_TOKEN) is automatically filtered by VCR configuration
+- To re-record cassettes: delete the cassette files and run tests with valid YouTube API credentials

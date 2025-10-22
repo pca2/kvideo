@@ -1,0 +1,329 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://accounts.google.com/o/oauth2/token
+    body:
+      encoding: US-ASCII
+      string: client_id=<YOUTUBE_CLIENT_ID>&client_secret=<YOUTUBE_CLIENT_SECRET>&refresh_token=<YOUTUBE_REFRESH_TOKEN>&grant_type=refresh_token
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+      - Yt::Request (gzip)
+      Content-Type:
+      - application/x-www-form-urlencoded
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Cache-Control:
+      - no-cache, no-store, max-age=0, must-revalidate
+      Date:
+      - Wed, 22 Oct 2025 03:15:58 GMT
+      Pragma:
+      - no-cache
+      Expires:
+      - Mon, 01 Jan 1990 00:00:00 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Vary:
+      - Origin
+      - Referer
+      - X-Origin
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: |-
+        {
+          "access_token": "<YOUTUBE_ACCESS_TOKEN>",
+          "expires_in": 3599,
+          "scope": "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/youtube",
+          "token_type": "Bearer",
+          "id_token": "<YOUTUBE_ID_TOKEN>"
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:58 GMT
+- request:
+    method: get
+    uri: https://www.googleapis.com/youtube/v3/channels?maxResults=50&mine=true&part=snippet,status
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:15:58 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#channelListResponse",
+          "etag": "bZqgxMMqp-o6kh8yj3HCiZ_oq-k",
+          "pageInfo": {
+            "totalResults": 1,
+            "resultsPerPage": 50
+          },
+          "items": [
+            {
+              "kind": "youtube#channel",
+              "etag": "8YHrxVJrV3lC8s-dqCJbTJskV_M",
+              "id": "UCzFmywjEti1C95vS3A8MOFg",
+              "snippet": {
+                "title": "pca2",
+                "description": "",
+                "customUrl": "@pca2",
+                "publishedAt": "2009-12-09T02:38:19Z",
+                "thumbnails": {
+                  "default": {
+                    "url": "https://yt3.ggpht.com/ytc/AIdro_nDqhbIyIWAyptFqRBwVKo6rIlCzFIeDw6eepXtVwS-SYedeW9eMKnjq4SvpfWdiA7_jw=s88-c-k-c0x00ffffff-no-rj",
+                    "width": 88,
+                    "height": 88
+                  },
+                  "medium": {
+                    "url": "https://yt3.ggpht.com/ytc/AIdro_nDqhbIyIWAyptFqRBwVKo6rIlCzFIeDw6eepXtVwS-SYedeW9eMKnjq4SvpfWdiA7_jw=s240-c-k-c0x00ffffff-no-rj",
+                    "width": 240,
+                    "height": 240
+                  },
+                  "high": {
+                    "url": "https://yt3.ggpht.com/ytc/AIdro_nDqhbIyIWAyptFqRBwVKo6rIlCzFIeDw6eepXtVwS-SYedeW9eMKnjq4SvpfWdiA7_jw=s800-c-k-c0x00ffffff-no-rj",
+                    "width": 800,
+                    "height": 800
+                  }
+                },
+                "localized": {
+                  "title": "pca2",
+                  "description": ""
+                }
+              },
+              "status": {
+                "privacyStatus": "public",
+                "isLinked": true,
+                "longUploadsStatus": "allowed",
+                "isChannelMonetizationEnabled": false
+              }
+            }
+          ]
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:58 GMT
+- request:
+    method: post
+    uri: https://www.googleapis.com/youtube/v3/playlists?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"title":"test_1761102958"}}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:15:59 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "kind": "youtube#playlist",
+          "etag": "EJOxEbjN9pTrnFXMNdUMv5KiYO4",
+          "id": "PLZOdGIexY9DE075sSsBXX-frer3fJLEwQ",
+          "snippet": {
+            "publishedAt": "2025-10-22T03:15:58Z",
+            "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+            "title": "test_1761102958",
+            "description": "",
+            "thumbnails": {
+              "default": {
+                "url": "https://i.ytimg.com/img/no_thumbnail.jpg",
+                "width": 120,
+                "height": 90
+              },
+              "medium": {
+                "url": "https://i.ytimg.com/img/no_thumbnail.jpg",
+                "width": 320,
+                "height": 180
+              },
+              "high": {
+                "url": "https://i.ytimg.com/img/no_thumbnail.jpg",
+                "width": 480,
+                "height": 360
+              }
+            },
+            "channelTitle": "pca2",
+            "localized": {
+              "title": "test_1761102958",
+              "description": ""
+            }
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:59 GMT
+- request:
+    method: post
+    uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
+    body:
+      encoding: UTF-8
+      string: '{"snippet":{"playlistId":"PLZOdGIexY9DE075sSsBXX-frer3fJLEwQ","resourceId":{"kind":"youtube#video","videoId":"4zCFMrxDz9Y"}}}'
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 404
+      message: Not Found
+    headers:
+      Vary:
+      - Origin,Accept-Encoding
+      - Referer
+      - X-Origin
+      Content-Type:
+      - application/json; charset=UTF-8
+      Date:
+      - Wed, 22 Oct 2025 03:15:59 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Accept-Ranges:
+      - none
+      Transfer-Encoding:
+      - chunked
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "error": {
+            "code": 404,
+            "message": "Video not found.",
+            "errors": [
+              {
+                "message": "Video not found.",
+                "domain": "youtube.playlistItem",
+                "reason": "videoNotFound"
+              }
+            ]
+          }
+        }
+  recorded_at: Wed, 22 Oct 2025 03:15:59 GMT
+- request:
+    method: delete
+    uri: https://www.googleapis.com/youtube/v3/playlists?id=PLZOdGIexY9DE075sSsBXX-frer3fJLEwQ
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Content-Length:
+      - '0'
+      User-Agent:
+      - Yt::Request (gzip)
+      Authorization:
+      - Bearer <YOUTUBE_ACCESS_TOKEN>
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Content-Type:
+      - application/json; charset=UTF-8
+      Vary:
+      - Origin
+      - Referer
+      - X-Origin
+      Date:
+      - Wed, 22 Oct 2025 03:16:00 GMT
+      Server:
+      - scaffolding on HTTPServer2
+      Content-Length:
+      - '0'
+      X-Xss-Protection:
+      - '0'
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Content-Type-Options:
+      - nosniff
+      Alt-Svc:
+      - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Wed, 22 Oct 2025 03:16:00 GMT
+recorded_with: VCR 6.3.1
