@@ -31,17 +31,20 @@ GEM
       concurrent-ruby (~> 1.0)
     logger (1.6.1)
     method_source (1.1.0)
+    mini_portile2 (2.8.9)
     minitest (5.25.2)
     pry (0.15.0)
       coderay (~> 1.1)
       method_source (~> 1.0)
     public_suffix (6.0.2)
-    rexml (3.3.9)
+    rexml (3.4.2)
     rss (0.3.1)
       rexml
     securerandom (0.3.2)
     sequel (5.87.0)
       bigdecimal
+    sqlite3 (2.3.1)
+      mini_portile2 (~> 2.8.0)
     sqlite3 (2.3.1-x86_64-darwin)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
@@ -57,6 +60,7 @@ GEM
 
 PLATFORMS
   x86_64-darwin-21
+  x86_64-linux
 
 DEPENDENCIES
   minitest
