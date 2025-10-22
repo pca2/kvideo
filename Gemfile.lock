@@ -1,30 +1,57 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    activesupport (7.0.4.1)
-      concurrent-ruby (~> 1.0, >= 1.0.2)
+    activesupport (8.0.0)
+      base64
+      benchmark (>= 0.3)
+      bigdecimal
+      concurrent-ruby (~> 1.0, >= 1.3.1)
+      connection_pool (>= 2.2.5)
+      drb
       i18n (>= 1.6, < 2)
+      logger (>= 1.4.2)
       minitest (>= 5.1)
-      tzinfo (~> 2.0)
-    concurrent-ruby (1.1.10)
-    i18n (1.12.0)
+      securerandom (>= 0.3)
+      tzinfo (~> 2.0, >= 2.0.5)
+      uri (>= 0.13.1)
+    base64 (0.2.0)
+    benchmark (0.4.0)
+    bigdecimal (3.1.8)
+    coderay (1.1.3)
+    concurrent-ruby (1.3.4)
+    connection_pool (2.4.1)
+    drb (2.2.1)
+    i18n (1.14.6)
       concurrent-ruby (~> 1.0)
-    minitest (5.10.1)
-    sequel (4.42.1)
-    sqlite3 (1.4.2)
-    tzinfo (2.0.5)
+    logger (1.6.1)
+    method_source (1.1.0)
+    minitest (5.25.2)
+    pry (0.15.0)
+      coderay (~> 1.1)
+      method_source (~> 1.0)
+    rexml (3.3.9)
+    rss (0.3.1)
+      rexml
+    securerandom (0.3.2)
+    sequel (5.87.0)
+      bigdecimal
+    sqlite3 (2.3.1-x86_64-darwin)
+    tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
-    yt (0.32.6)
+    uri (1.0.2)
+    yt (0.33.4)
       activesupport
 
 PLATFORMS
-  ruby
+  x86_64-darwin-21
 
 DEPENDENCIES
   minitest
+  pry
+  rss
   sequel
   sqlite3
-  yt (~> 0.32.0)
+  yt (~> 0.33.4)
 
 BUNDLED WITH
-   1.17.2
+   2.4.13

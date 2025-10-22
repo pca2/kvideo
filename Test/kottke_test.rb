@@ -26,7 +26,7 @@ class KottkeTest < Minitest::Test
  
   def test_two_embed
     post = get_sample_entry('twoembed.xml')
-    assert_equal ["youtube.com/embed/UVd8VGwq5w8?rel=0\"", "youtube.com/embed/KIojBBCPcqQ?rel=0\""], get_links(post)
+    assert_equal ["youtube.com/embed/mxcpOrIT5PQ?rel=0\"", "youtube.com/embed/KIojBBCPcqQ?rel=0\""], get_links(post)
   end
   
   def test_multiembed_multilink
