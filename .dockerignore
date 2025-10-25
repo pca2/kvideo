@@ -1,0 +1,38 @@
+# Git files
+.git
+.gitignore
+
+# Environment files (should be passed at runtime)
+env.sh
+env_SAMPLE.sh
+
+# Local database files (will be mounted as volume)
+*.db
+*.db-journal
+
+# Test artifacts
+Test/kottke_test.db
+Test/kottke_test.db-journal
+
+# Documentation
+README.md
+
+# Ruby/Bundler
+.bundle/
+vendor/bundle/
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Docker files
+Dockerfile
+.dockerignore
+docker-compose.yml

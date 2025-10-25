@@ -12,7 +12,7 @@ PLAYLIST_ID = ENV["PLAYLIST_ID"]
 
 #DB setup
 DIR = File.expand_path(File.dirname(__FILE__)) #path to containing folder
-DB_PATH ||= "#{DIR}/kottke.db"
+DB_PATH ||= "#{DIR}/data/kottke.db"
 DB = Sequel.sqlite(DB_PATH)
 Sequel.default_timezone= :utc
 
@@ -29,24 +29,26 @@ class Log
 end
 
 
-#Define table if new db 
-unless File.exist?(DB_PATH)
-  DB.create_table :posts do 
+#Define tables if they don't exist
+unless DB.table_exists?(:posts)
+  DB.create_table :posts do
     primary_key :id
     String :headline
     String :post_url, :null => false
     DateTime :post_date, :null => false
     DateTime :created_at, :null => false
   end
+  Log.log.debug "Created posts table"
+end
+
+unless DB.table_exists?(:videos)
   DB.create_table :videos do
     primary_key :id
     foreign_key :post_id, :posts
     String :youtube_id, :null => false
     DateTime :created_at, :null => false
   end
-  Log.log.debug "DB file not found. New DB file created"
-else
-  Log.log.debug "DB file detected"
+  Log.log.debug "Created videos table"
 end
 
 class Post < Sequel::Model

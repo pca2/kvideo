@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  kvideo:
+    build: .
+    image: kvideo:latest
+    container_name: kvideo
+    volumes:
+      # Mount local data directory for persistent database storage
+      - ./data:/app/data
+    env_file:
+      # Load environment variables from env.sh
+      - env.sh
+    # Override command to run tests instead
+    # command: bundle exec ruby ./Test/kottke_test.rb
+
+  # Service specifically for running tests
+  kvideo-test:
+    build: .
+    image: kvideo:latest
+    container_name: kvideo-test
+    volumes:
+      # Tests use ephemeral database inside container
+      - ./Test:/app/Test
+    env_file:
+      - env.sh
+    command: bundle exec ruby ./Test/kottke_test.rb
+    profiles:
+      # Only run when explicitly specified
+      - test

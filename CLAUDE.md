@@ -49,6 +49,33 @@ ruby get_authorize_token.rb
 ruby get_refresh_code.rb
 ```
 
+### Docker Usage
+```bash
+# Build the Docker image
+docker build -t kvideo .
+
+# Run the script with docker-compose (recommended)
+docker-compose up
+
+# Run the script with docker run
+docker run --env-file env.sh -v $(pwd)/data:/app/data kvideo
+
+# Run tests with docker-compose
+docker-compose --profile test up kvideo-test
+
+# Run tests with docker run
+docker run --env-file env.sh kvideo bundle exec ruby ./Test/kottke_test.rb
+
+# Interactive shell for debugging
+docker run --env-file env.sh -v $(pwd)/data:/app/data -it kvideo sh
+```
+
+**Docker Notes:**
+- The production database (`kottke.db`) is stored in the mounted `./data` directory for persistence
+- Test database (`Test/kottke_test.db`) is ephemeral and lives inside the container
+- VCR cassettes are included in the image for test playback
+- Uses Ruby 3.4 Alpine for minimal image size (~150MB)
+
 ## Architecture
 
 ### Core Workflow (kottke.rb)
