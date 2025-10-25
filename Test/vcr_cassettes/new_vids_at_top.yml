@@ -23,10 +23,10 @@ http_interactions:
     headers:
       Pragma:
       - no-cache
+      Date:
+      - Sat, 25 Oct 2025 12:11:12 GMT
       Expires:
       - Mon, 01 Jan 1990 00:00:00 GMT
-      Date:
-      - Wed, 22 Oct 2025 03:15:19 GMT
       Cache-Control:
       - no-cache, no-store, max-age=0, must-revalidate
       Content-Type:
@@ -53,11 +53,11 @@ http_interactions:
         {
           "access_token": "<YOUTUBE_ACCESS_TOKEN>",
           "expires_in": 3599,
-          "scope": "https://www.googleapis.com/auth/userinfo.profile https://www.googleapis.com/auth/youtube",
+          "scope": "https://www.googleapis.com/auth/youtube https://www.googleapis.com/auth/userinfo.profile",
           "token_type": "Bearer",
           "id_token": "<YOUTUBE_ID_TOKEN>"
         }
-  recorded_at: Wed, 22 Oct 2025 03:15:19 GMT
+  recorded_at: Sat, 25 Oct 2025 12:11:12 GMT
 - request:
     method: get
     uri: https://www.googleapis.com/youtube/v3/channels?maxResults=50&mine=true&part=snippet,status
@@ -83,7 +83,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Wed, 22 Oct 2025 03:15:20 GMT
+      - Sat, 25 Oct 2025 12:11:12 GMT
       Server:
       - scaffolding on HTTPServer2
       X-Xss-Protection:
@@ -149,13 +149,13 @@ http_interactions:
             }
           ]
         }
-  recorded_at: Wed, 22 Oct 2025 03:15:20 GMT
+  recorded_at: Sat, 25 Oct 2025 12:11:12 GMT
 - request:
     method: post
     uri: https://www.googleapis.com/youtube/v3/playlists?part=snippet
     body:
       encoding: UTF-8
-      string: '{"snippet":{"title":"test_1761102919"}}'
+      string: '{"snippet":{"title":"test_1761394272"}}'
     headers:
       Content-Type:
       - application/json
@@ -175,7 +175,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Wed, 22 Oct 2025 03:15:20 GMT
+      - Sat, 25 Oct 2025 12:11:13 GMT
       Server:
       - scaffolding on HTTPServer2
       X-Xss-Protection:
@@ -195,12 +195,12 @@ http_interactions:
       string: |
         {
           "kind": "youtube#playlist",
-          "etag": "83T4V6QGvXAL2nj2smkcPcwnMAE",
-          "id": "PLZOdGIexY9DHhRH0M8vhluI8I5ikok06E",
+          "etag": "0Jfk-zdlVTlc-6FU6mZmh5LJ2Vc",
+          "id": "PLZOdGIexY9DElEsBWwoJJ9RgQoxIxYSzM",
           "snippet": {
-            "publishedAt": "2025-10-22T03:15:20Z",
+            "publishedAt": "2025-10-25T12:11:12Z",
             "channelId": "UCzFmywjEti1C95vS3A8MOFg",
-            "title": "test_1761102919",
+            "title": "test_1761394272",
             "description": "",
             "thumbnails": {
               "default": {
@@ -221,18 +221,18 @@ http_interactions:
             },
             "channelTitle": "pca2",
             "localized": {
-              "title": "test_1761102919",
+              "title": "test_1761394272",
               "description": ""
             }
           }
         }
-  recorded_at: Wed, 22 Oct 2025 03:15:20 GMT
+  recorded_at: Sat, 25 Oct 2025 12:11:13 GMT
 - request:
     method: post
     uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
     body:
       encoding: UTF-8
-      string: '{"snippet":{"playlistId":"PLZOdGIexY9DHhRH0M8vhluI8I5ikok06E","resourceId":{"kind":"youtube#video","videoId":"VoVpDMaMeyM"}}}'
+      string: '{"snippet":{"playlistId":"PLZOdGIexY9DElEsBWwoJJ9RgQoxIxYSzM","resourceId":{"kind":"youtube#video","videoId":"VoVpDMaMeyM"}}}'
     headers:
       Content-Type:
       - application/json
@@ -252,7 +252,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Wed, 22 Oct 2025 03:15:21 GMT
+      - Sat, 25 Oct 2025 12:11:13 GMT
       Server:
       - scaffolding on HTTPServer2
       X-Xss-Protection:
@@ -272,37 +272,37 @@ http_interactions:
       string: |
         {
           "kind": "youtube#playlistItem",
-          "etag": "j_1iQufMo17cH0aJQqS4YuZVsGc",
-          "id": "UExaT2RHSWV4WTlESGhSSDBNOHZobHVJOEk1aWtvazA2RS41NkI0NEY2RDEwNTU3Q0M2",
+          "etag": "6A2Gc7CD1TMer4ie6B4qk5-JeTI",
+          "id": "UExaT2RHSWV4WTlERWxFc0JXd29KSjlSZ1FveEl4WVN6TS41NkI0NEY2RDEwNTU3Q0M2",
           "snippet": {
-            "publishedAt": "2025-10-22T03:15:20Z",
+            "publishedAt": "2025-10-25T12:11:13Z",
             "channelId": "UCzFmywjEti1C95vS3A8MOFg",
             "title": "sample",
             "description": "",
             "thumbnails": {
               "default": {
-                "url": "https://i9.ytimg.com/vi/VoVpDMaMeyM/default.jpg?sqp=CLSY4ccG&rs=AOn4CLB2WTJPf_y9GwYIenaQTkmbHQ0IYw",
+                "url": "https://i9.ytimg.com/vi/VoVpDMaMeyM/default.jpg?sqp=CJj88scG&rs=AOn4CLDn4fa6nk18vumxb9JPCbgnqfJH8w",
                 "width": 120,
                 "height": 90
               },
               "medium": {
-                "url": "https://i9.ytimg.com/vi/VoVpDMaMeyM/mqdefault.jpg?sqp=CLSY4ccG&rs=AOn4CLBieG1MVABVuxWVJ5TfYwue_759Tw",
+                "url": "https://i9.ytimg.com/vi/VoVpDMaMeyM/mqdefault.jpg?sqp=CJj88scG&rs=AOn4CLBfCZ4UUzbn69NUfJCWpw5mOkFReA",
                 "width": 320,
                 "height": 180
               },
               "high": {
-                "url": "https://i9.ytimg.com/vi/VoVpDMaMeyM/hqdefault.jpg?sqp=CLSY4ccG&rs=AOn4CLBhEdBbBX_JuyHXOrHaIr6qmMN4Cw",
+                "url": "https://i9.ytimg.com/vi/VoVpDMaMeyM/hqdefault.jpg?sqp=CJj88scG&rs=AOn4CLBxrH9GbSKr7ZgHPSXAXGctzxS4Tg",
                 "width": 480,
                 "height": 360
               },
               "standard": {
-                "url": "https://i9.ytimg.com/vi/VoVpDMaMeyM/sddefault.jpg?sqp=CLSY4ccG&rs=AOn4CLBfaMqi4-MMipNJzJM4erB-FO0x2A",
+                "url": "https://i9.ytimg.com/vi/VoVpDMaMeyM/sddefault.jpg?sqp=CJj88scG&rs=AOn4CLDXaz3Z10RCt4HtUou0mCdmXly9Qg",
                 "width": 640,
                 "height": 480
               }
             },
             "channelTitle": "pca2",
-            "playlistId": "PLZOdGIexY9DHhRH0M8vhluI8I5ikok06E",
+            "playlistId": "PLZOdGIexY9DElEsBWwoJJ9RgQoxIxYSzM",
             "position": 0,
             "resourceId": {
               "kind": "youtube#video",
@@ -312,13 +312,13 @@ http_interactions:
             "videoOwnerChannelId": "UCzFmywjEti1C95vS3A8MOFg"
           }
         }
-  recorded_at: Wed, 22 Oct 2025 03:15:21 GMT
+  recorded_at: Sat, 25 Oct 2025 12:11:13 GMT
 - request:
     method: post
     uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
     body:
       encoding: UTF-8
-      string: '{"snippet":{"playlistId":"PLZOdGIexY9DHhRH0M8vhluI8I5ikok06E","resourceId":{"kind":"youtube#video","videoId":"7gcQQnZX9cg"}}}'
+      string: '{"snippet":{"playlistId":"PLZOdGIexY9DElEsBWwoJJ9RgQoxIxYSzM","resourceId":{"kind":"youtube#video","videoId":"7gcQQnZX9cg"}}}'
     headers:
       Content-Type:
       - application/json
@@ -338,7 +338,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Wed, 22 Oct 2025 03:15:21 GMT
+      - Sat, 25 Oct 2025 12:11:14 GMT
       Server:
       - scaffolding on HTTPServer2
       X-Xss-Protection:
@@ -358,37 +358,37 @@ http_interactions:
       string: |
         {
           "kind": "youtube#playlistItem",
-          "etag": "IumG2zqMLk7HKgRreMOmZiwpq-g",
-          "id": "UExaT2RHSWV4WTlESGhSSDBNOHZobHVJOEk1aWtvazA2RS4yODlGNEE0NkRGMEEzMEQy",
+          "etag": "Pc1HTTvg-bpfApsu2wu4ea7cMPk",
+          "id": "UExaT2RHSWV4WTlERWxFc0JXd29KSjlSZ1FveEl4WVN6TS4yODlGNEE0NkRGMEEzMEQy",
           "snippet": {
-            "publishedAt": "2025-10-22T03:15:21Z",
+            "publishedAt": "2025-10-25T12:11:13Z",
             "channelId": "UCzFmywjEti1C95vS3A8MOFg",
             "title": "sample_two",
             "description": "",
             "thumbnails": {
               "default": {
-                "url": "https://i9.ytimg.com/vi/7gcQQnZX9cg/default.jpg?sqp=CLSY4ccG&rs=AOn4CLB1-rONR1j8Xf9KN8u82jiN7ILMDA",
+                "url": "https://i9.ytimg.com/vi/7gcQQnZX9cg/default.jpg?sqp=CJj88scG&rs=AOn4CLDgloL-kIuLx8W5NYoraoeiBvdKjA",
                 "width": 120,
                 "height": 90
               },
               "medium": {
-                "url": "https://i9.ytimg.com/vi/7gcQQnZX9cg/mqdefault.jpg?sqp=CLSY4ccG&rs=AOn4CLA7Omnp5yPMZe0hM26R6Kio8_XFxA",
+                "url": "https://i9.ytimg.com/vi/7gcQQnZX9cg/mqdefault.jpg?sqp=CJj88scG&rs=AOn4CLBnnuVVkPGusS56FZ53VVEuC66ybw",
                 "width": 320,
                 "height": 180
               },
               "high": {
-                "url": "https://i9.ytimg.com/vi/7gcQQnZX9cg/hqdefault.jpg?sqp=CLSY4ccG&rs=AOn4CLDIg-RNV7FPgdp60waGzg_o2_rjKQ",
+                "url": "https://i9.ytimg.com/vi/7gcQQnZX9cg/hqdefault.jpg?sqp=CJj88scG&rs=AOn4CLD6tnKi1HGZ6KYPCjEwU7cDFQ5rmQ",
                 "width": 480,
                 "height": 360
               },
               "standard": {
-                "url": "https://i9.ytimg.com/vi/7gcQQnZX9cg/sddefault.jpg?sqp=CLSY4ccG&rs=AOn4CLBqzvStTkN1oohFyTj14M513bvzQg",
+                "url": "https://i9.ytimg.com/vi/7gcQQnZX9cg/sddefault.jpg?sqp=CJj88scG&rs=AOn4CLCGgMscaW-8ocAnriZQ7AYk9VQ_Vw",
                 "width": 640,
                 "height": 480
               }
             },
             "channelTitle": "pca2",
-            "playlistId": "PLZOdGIexY9DHhRH0M8vhluI8I5ikok06E",
+            "playlistId": "PLZOdGIexY9DElEsBWwoJJ9RgQoxIxYSzM",
             "position": 1,
             "resourceId": {
               "kind": "youtube#video",
@@ -398,13 +398,13 @@ http_interactions:
             "videoOwnerChannelId": "UCzFmywjEti1C95vS3A8MOFg"
           }
         }
-  recorded_at: Wed, 22 Oct 2025 03:15:21 GMT
+  recorded_at: Sat, 25 Oct 2025 12:11:14 GMT
 - request:
     method: post
     uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
     body:
       encoding: UTF-8
-      string: '{"snippet":{"playlistId":"PLZOdGIexY9DHhRH0M8vhluI8I5ikok06E","resourceId":{"kind":"youtube#video","videoId":"mxcpOrIT5PQ"}}}'
+      string: '{"snippet":{"playlistId":"PLZOdGIexY9DElEsBWwoJJ9RgQoxIxYSzM","resourceId":{"kind":"youtube#video","videoId":"mxcpOrIT5PQ"}}}'
     headers:
       Content-Type:
       - application/json
@@ -424,7 +424,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Wed, 22 Oct 2025 03:15:22 GMT
+      - Sat, 25 Oct 2025 12:11:14 GMT
       Server:
       - scaffolding on HTTPServer2
       X-Xss-Protection:
@@ -444,10 +444,10 @@ http_interactions:
       string: |
         {
           "kind": "youtube#playlistItem",
-          "etag": "RiX4WNXH0bGdnnRxP9yFTkFmcxw",
-          "id": "UExaT2RHSWV4WTlESGhSSDBNOHZobHVJOEk1aWtvazA2RS4wMTcyMDhGQUE4NTIzM0Y5",
+          "etag": "JwhGZpX4EksmCjL5wvVU7xpdg6o",
+          "id": "UExaT2RHSWV4WTlERWxFc0JXd29KSjlSZ1FveEl4WVN6TS4wMTcyMDhGQUE4NTIzM0Y5",
           "snippet": {
-            "publishedAt": "2025-10-22T03:15:22Z",
+            "publishedAt": "2025-10-25T12:11:14Z",
             "channelId": "UCzFmywjEti1C95vS3A8MOFg",
             "title": "Pavement - Perfume V",
             "description": "Live at London Astoria",
@@ -474,7 +474,7 @@ http_interactions:
               }
             },
             "channelTitle": "pca2",
-            "playlistId": "PLZOdGIexY9DHhRH0M8vhluI8I5ikok06E",
+            "playlistId": "PLZOdGIexY9DElEsBWwoJJ9RgQoxIxYSzM",
             "position": 2,
             "resourceId": {
               "kind": "youtube#video",
@@ -484,13 +484,13 @@ http_interactions:
             "videoOwnerChannelId": "UCzFmywjEti1C95vS3A8MOFg"
           }
         }
-  recorded_at: Wed, 22 Oct 2025 03:15:22 GMT
+  recorded_at: Sat, 25 Oct 2025 12:11:14 GMT
 - request:
     method: post
     uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
     body:
       encoding: UTF-8
-      string: '{"snippet":{"playlistId":"PLZOdGIexY9DHhRH0M8vhluI8I5ikok06E","resourceId":{"kind":"youtube#video","videoId":"KIojBBCPcqQ"}}}'
+      string: '{"snippet":{"playlistId":"PLZOdGIexY9DElEsBWwoJJ9RgQoxIxYSzM","resourceId":{"kind":"youtube#video","videoId":"KIojBBCPcqQ"}}}'
     headers:
       Content-Type:
       - application/json
@@ -510,7 +510,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Wed, 22 Oct 2025 03:15:22 GMT
+      - Sat, 25 Oct 2025 12:11:15 GMT
       Server:
       - scaffolding on HTTPServer2
       X-Xss-Protection:
@@ -530,10 +530,10 @@ http_interactions:
       string: |
         {
           "kind": "youtube#playlistItem",
-          "etag": "aoHEWPDTYw9IP1BWsehYeFOW6Lk",
-          "id": "UExaT2RHSWV4WTlESGhSSDBNOHZobHVJOEk1aWtvazA2RS41MjE1MkI0OTQ2QzJGNzNG",
+          "etag": "tZihUQFNVpMGPJoUjKgrBOR5Vn4",
+          "id": "UExaT2RHSWV4WTlERWxFc0JXd29KSjlSZ1FveEl4WVN6TS41MjE1MkI0OTQ2QzJGNzNG",
           "snippet": {
-            "publishedAt": "2025-10-22T03:15:22Z",
+            "publishedAt": "2025-10-25T12:11:14Z",
             "channelId": "UCzFmywjEti1C95vS3A8MOFg",
             "title": "FIFA 17 PENALTIES IN REAL LIFE | Dual Freestyle",
             "description": "We have re-created the penalties on Fifa 17 for a bit of fun. \n\nSubscribe for more videos.\n\nFollow us on:\nInstagram: @Dualfreestyle\nTwitter: @Dualfreestyle",
@@ -565,7 +565,7 @@ http_interactions:
               }
             },
             "channelTitle": "pca2",
-            "playlistId": "PLZOdGIexY9DHhRH0M8vhluI8I5ikok06E",
+            "playlistId": "PLZOdGIexY9DElEsBWwoJJ9RgQoxIxYSzM",
             "position": 3,
             "resourceId": {
               "kind": "youtube#video",
@@ -575,13 +575,13 @@ http_interactions:
             "videoOwnerChannelId": "UCVzuZMa91jgFjkS01ej2Hxw"
           }
         }
-  recorded_at: Wed, 22 Oct 2025 03:15:22 GMT
+  recorded_at: Sat, 25 Oct 2025 12:11:15 GMT
 - request:
     method: put
     uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
     body:
       encoding: UTF-8
-      string: '{"snippet":{"position":0,"playlistId":"PLZOdGIexY9DHhRH0M8vhluI8I5ikok06E","resourceId":{"kind":"youtube#video","videoId":"mxcpOrIT5PQ"}},"id":"UExaT2RHSWV4WTlESGhSSDBNOHZobHVJOEk1aWtvazA2RS4wMTcyMDhGQUE4NTIzM0Y5"}'
+      string: '{"snippet":{"position":0,"playlistId":"PLZOdGIexY9DElEsBWwoJJ9RgQoxIxYSzM","resourceId":{"kind":"youtube#video","videoId":"mxcpOrIT5PQ"}},"id":"UExaT2RHSWV4WTlERWxFc0JXd29KSjlSZ1FveEl4WVN6TS4wMTcyMDhGQUE4NTIzM0Y5"}'
     headers:
       Content-Type:
       - application/json
@@ -601,7 +601,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Wed, 22 Oct 2025 03:15:23 GMT
+      - Sat, 25 Oct 2025 12:11:16 GMT
       Server:
       - scaffolding on HTTPServer2
       X-Xss-Protection:
@@ -621,10 +621,10 @@ http_interactions:
       string: |
         {
           "kind": "youtube#playlistItem",
-          "etag": "lRKYWkEkG3ndTaUENQjFxaqw4Xg",
-          "id": "UExaT2RHSWV4WTlESGhSSDBNOHZobHVJOEk1aWtvazA2RS4wMTcyMDhGQUE4NTIzM0Y5",
+          "etag": "bPqVjQ6ZEFjdJeShB65vGcsL1FY",
+          "id": "UExaT2RHSWV4WTlERWxFc0JXd29KSjlSZ1FveEl4WVN6TS4wMTcyMDhGQUE4NTIzM0Y5",
           "snippet": {
-            "publishedAt": "2025-10-22T03:15:22Z",
+            "publishedAt": "2025-10-25T12:11:14Z",
             "channelId": "UCzFmywjEti1C95vS3A8MOFg",
             "title": "Pavement - Perfume V",
             "description": "Live at London Astoria",
@@ -651,7 +651,7 @@ http_interactions:
               }
             },
             "channelTitle": "pca2",
-            "playlistId": "PLZOdGIexY9DHhRH0M8vhluI8I5ikok06E",
+            "playlistId": "PLZOdGIexY9DElEsBWwoJJ9RgQoxIxYSzM",
             "position": 0,
             "resourceId": {
               "kind": "youtube#video",
@@ -661,13 +661,13 @@ http_interactions:
             "videoOwnerChannelId": "UCzFmywjEti1C95vS3A8MOFg"
           }
         }
-  recorded_at: Wed, 22 Oct 2025 03:15:23 GMT
+  recorded_at: Sat, 25 Oct 2025 12:11:16 GMT
 - request:
     method: put
     uri: https://www.googleapis.com/youtube/v3/playlistItems?part=snippet
     body:
       encoding: UTF-8
-      string: '{"snippet":{"position":1,"playlistId":"PLZOdGIexY9DHhRH0M8vhluI8I5ikok06E","resourceId":{"kind":"youtube#video","videoId":"KIojBBCPcqQ"}},"id":"UExaT2RHSWV4WTlESGhSSDBNOHZobHVJOEk1aWtvazA2RS41MjE1MkI0OTQ2QzJGNzNG"}'
+      string: '{"snippet":{"position":1,"playlistId":"PLZOdGIexY9DElEsBWwoJJ9RgQoxIxYSzM","resourceId":{"kind":"youtube#video","videoId":"KIojBBCPcqQ"}},"id":"UExaT2RHSWV4WTlERWxFc0JXd29KSjlSZ1FveEl4WVN6TS41MjE1MkI0OTQ2QzJGNzNG"}'
     headers:
       Content-Type:
       - application/json
@@ -687,7 +687,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Wed, 22 Oct 2025 03:15:24 GMT
+      - Sat, 25 Oct 2025 12:11:16 GMT
       Server:
       - scaffolding on HTTPServer2
       X-Xss-Protection:
@@ -707,10 +707,10 @@ http_interactions:
       string: |
         {
           "kind": "youtube#playlistItem",
-          "etag": "eNA46XwA_2sT8VBSxtGaSyEOA2o",
-          "id": "UExaT2RHSWV4WTlESGhSSDBNOHZobHVJOEk1aWtvazA2RS41MjE1MkI0OTQ2QzJGNzNG",
+          "etag": "VlpdHWkxx77zp11vkmMOZFxyvVY",
+          "id": "UExaT2RHSWV4WTlERWxFc0JXd29KSjlSZ1FveEl4WVN6TS41MjE1MkI0OTQ2QzJGNzNG",
           "snippet": {
-            "publishedAt": "2025-10-22T03:15:22Z",
+            "publishedAt": "2025-10-25T12:11:14Z",
             "channelId": "UCzFmywjEti1C95vS3A8MOFg",
             "title": "FIFA 17 PENALTIES IN REAL LIFE | Dual Freestyle",
             "description": "We have re-created the penalties on Fifa 17 for a bit of fun. \n\nSubscribe for more videos.\n\nFollow us on:\nInstagram: @Dualfreestyle\nTwitter: @Dualfreestyle",
@@ -742,7 +742,7 @@ http_interactions:
               }
             },
             "channelTitle": "pca2",
-            "playlistId": "PLZOdGIexY9DHhRH0M8vhluI8I5ikok06E",
+            "playlistId": "PLZOdGIexY9DElEsBWwoJJ9RgQoxIxYSzM",
             "position": 1,
             "resourceId": {
               "kind": "youtube#video",
@@ -752,10 +752,10 @@ http_interactions:
             "videoOwnerChannelId": "UCVzuZMa91jgFjkS01ej2Hxw"
           }
         }
-  recorded_at: Wed, 22 Oct 2025 03:15:24 GMT
+  recorded_at: Sat, 25 Oct 2025 12:11:16 GMT
 - request:
     method: get
-    uri: https://www.googleapis.com/youtube/v3/playlistItems?maxResults=50&part=snippet,status&playlistId=PLZOdGIexY9DHhRH0M8vhluI8I5ikok06E
+    uri: https://www.googleapis.com/youtube/v3/playlistItems?maxResults=50&part=snippet,status&playlistId=PLZOdGIexY9DElEsBWwoJJ9RgQoxIxYSzM
     body:
       encoding: US-ASCII
       string: ''
@@ -778,7 +778,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Wed, 22 Oct 2025 03:15:24 GMT
+      - Sat, 25 Oct 2025 12:11:16 GMT
       Server:
       - scaffolding on HTTPServer2
       X-Xss-Protection:
@@ -798,14 +798,14 @@ http_interactions:
       string: |
         {
           "kind": "youtube#playlistItemListResponse",
-          "etag": "LZzVYDhNgAKbIurVH1GNroeGhRY",
+          "etag": "eQTdSTt4jG8tkn-ylZ96nVOoLk4",
           "items": [
             {
               "kind": "youtube#playlistItem",
-              "etag": "2ko6g48jqfxvIpfVHiwMIcEJ1uA",
-              "id": "UExaT2RHSWV4WTlESGhSSDBNOHZobHVJOEk1aWtvazA2RS4wMTcyMDhGQUE4NTIzM0Y5",
+              "etag": "oNpRseSqNe_QVd5j273pC8MZygM",
+              "id": "UExaT2RHSWV4WTlERWxFc0JXd29KSjlSZ1FveEl4WVN6TS4wMTcyMDhGQUE4NTIzM0Y5",
               "snippet": {
-                "publishedAt": "2025-10-22T03:15:22Z",
+                "publishedAt": "2025-10-25T12:11:14Z",
                 "channelId": "UCzFmywjEti1C95vS3A8MOFg",
                 "title": "Pavement - Perfume V",
                 "description": "Live at London Astoria",
@@ -832,7 +832,7 @@ http_interactions:
                   }
                 },
                 "channelTitle": "pca2",
-                "playlistId": "PLZOdGIexY9DHhRH0M8vhluI8I5ikok06E",
+                "playlistId": "PLZOdGIexY9DElEsBWwoJJ9RgQoxIxYSzM",
                 "position": 0,
                 "resourceId": {
                   "kind": "youtube#video",
@@ -847,10 +847,100 @@ http_interactions:
             },
             {
               "kind": "youtube#playlistItem",
-              "etag": "UKB_6aNkHIJcUGfWyy1IropbQDI",
-              "id": "UExaT2RHSWV4WTlESGhSSDBNOHZobHVJOEk1aWtvazA2RS41MjE1MkI0OTQ2QzJGNzNG",
+              "etag": "tn5rz3Djwf6Ps--EJcmK9K4D5fY",
+              "id": "UExaT2RHSWV4WTlERWxFc0JXd29KSjlSZ1FveEl4WVN6TS41NkI0NEY2RDEwNTU3Q0M2",
               "snippet": {
-                "publishedAt": "2025-10-22T03:15:22Z",
+                "publishedAt": "2025-10-25T12:11:13Z",
+                "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+                "title": "sample",
+                "description": "",
+                "thumbnails": {
+                  "default": {
+                    "url": "https://i9.ytimg.com/vi/VoVpDMaMeyM/default.jpg?sqp=CJj88scG&rs=AOn4CLDn4fa6nk18vumxb9JPCbgnqfJH8w",
+                    "width": 120,
+                    "height": 90
+                  },
+                  "medium": {
+                    "url": "https://i9.ytimg.com/vi/VoVpDMaMeyM/mqdefault.jpg?sqp=CJj88scG&rs=AOn4CLBfCZ4UUzbn69NUfJCWpw5mOkFReA",
+                    "width": 320,
+                    "height": 180
+                  },
+                  "high": {
+                    "url": "https://i9.ytimg.com/vi/VoVpDMaMeyM/hqdefault.jpg?sqp=CJj88scG&rs=AOn4CLBxrH9GbSKr7ZgHPSXAXGctzxS4Tg",
+                    "width": 480,
+                    "height": 360
+                  },
+                  "standard": {
+                    "url": "https://i9.ytimg.com/vi/VoVpDMaMeyM/sddefault.jpg?sqp=CJj88scG&rs=AOn4CLDXaz3Z10RCt4HtUou0mCdmXly9Qg",
+                    "width": 640,
+                    "height": 480
+                  }
+                },
+                "channelTitle": "pca2",
+                "playlistId": "PLZOdGIexY9DElEsBWwoJJ9RgQoxIxYSzM",
+                "position": 1,
+                "resourceId": {
+                  "kind": "youtube#video",
+                  "videoId": "VoVpDMaMeyM"
+                },
+                "videoOwnerChannelTitle": "pca2",
+                "videoOwnerChannelId": "UCzFmywjEti1C95vS3A8MOFg"
+              },
+              "status": {
+                "privacyStatus": "private"
+              }
+            },
+            {
+              "kind": "youtube#playlistItem",
+              "etag": "FVEPhvr6aKPH5mR-sOF6zee9Jnk",
+              "id": "UExaT2RHSWV4WTlERWxFc0JXd29KSjlSZ1FveEl4WVN6TS4yODlGNEE0NkRGMEEzMEQy",
+              "snippet": {
+                "publishedAt": "2025-10-25T12:11:13Z",
+                "channelId": "UCzFmywjEti1C95vS3A8MOFg",
+                "title": "sample_two",
+                "description": "",
+                "thumbnails": {
+                  "default": {
+                    "url": "https://i9.ytimg.com/vi/7gcQQnZX9cg/default.jpg?sqp=CJj88scG&rs=AOn4CLDgloL-kIuLx8W5NYoraoeiBvdKjA",
+                    "width": 120,
+                    "height": 90
+                  },
+                  "medium": {
+                    "url": "https://i9.ytimg.com/vi/7gcQQnZX9cg/mqdefault.jpg?sqp=CJj88scG&rs=AOn4CLBnnuVVkPGusS56FZ53VVEuC66ybw",
+                    "width": 320,
+                    "height": 180
+                  },
+                  "high": {
+                    "url": "https://i9.ytimg.com/vi/7gcQQnZX9cg/hqdefault.jpg?sqp=CJj88scG&rs=AOn4CLD6tnKi1HGZ6KYPCjEwU7cDFQ5rmQ",
+                    "width": 480,
+                    "height": 360
+                  },
+                  "standard": {
+                    "url": "https://i9.ytimg.com/vi/7gcQQnZX9cg/sddefault.jpg?sqp=CJj88scG&rs=AOn4CLCGgMscaW-8ocAnriZQ7AYk9VQ_Vw",
+                    "width": 640,
+                    "height": 480
+                  }
+                },
+                "channelTitle": "pca2",
+                "playlistId": "PLZOdGIexY9DElEsBWwoJJ9RgQoxIxYSzM",
+                "position": 2,
+                "resourceId": {
+                  "kind": "youtube#video",
+                  "videoId": "7gcQQnZX9cg"
+                },
+                "videoOwnerChannelTitle": "pca2",
+                "videoOwnerChannelId": "UCzFmywjEti1C95vS3A8MOFg"
+              },
+              "status": {
+                "privacyStatus": "private"
+              }
+            },
+            {
+              "kind": "youtube#playlistItem",
+              "etag": "X3E4KVTVwleU7SVsABCZe8xngzo",
+              "id": "UExaT2RHSWV4WTlERWxFc0JXd29KSjlSZ1FveEl4WVN6TS41MjE1MkI0OTQ2QzJGNzNG",
+              "snippet": {
+                "publishedAt": "2025-10-25T12:11:14Z",
                 "channelId": "UCzFmywjEti1C95vS3A8MOFg",
                 "title": "FIFA 17 PENALTIES IN REAL LIFE | Dual Freestyle",
                 "description": "We have re-created the penalties on Fifa 17 for a bit of fun. \n\nSubscribe for more videos.\n\nFollow us on:\nInstagram: @Dualfreestyle\nTwitter: @Dualfreestyle",
@@ -882,8 +972,8 @@ http_interactions:
                   }
                 },
                 "channelTitle": "pca2",
-                "playlistId": "PLZOdGIexY9DHhRH0M8vhluI8I5ikok06E",
-                "position": 1,
+                "playlistId": "PLZOdGIexY9DElEsBWwoJJ9RgQoxIxYSzM",
+                "position": 3,
                 "resourceId": {
                   "kind": "youtube#video",
                   "videoId": "KIojBBCPcqQ"
@@ -894,96 +984,6 @@ http_interactions:
               "status": {
                 "privacyStatus": "public"
               }
-            },
-            {
-              "kind": "youtube#playlistItem",
-              "etag": "53HPVP2HqhF8qLgW-fg22x8iwkc",
-              "id": "UExaT2RHSWV4WTlESGhSSDBNOHZobHVJOEk1aWtvazA2RS41NkI0NEY2RDEwNTU3Q0M2",
-              "snippet": {
-                "publishedAt": "2025-10-22T03:15:20Z",
-                "channelId": "UCzFmywjEti1C95vS3A8MOFg",
-                "title": "sample",
-                "description": "",
-                "thumbnails": {
-                  "default": {
-                    "url": "https://i9.ytimg.com/vi/VoVpDMaMeyM/default.jpg?sqp=CLSY4ccG&rs=AOn4CLB2WTJPf_y9GwYIenaQTkmbHQ0IYw",
-                    "width": 120,
-                    "height": 90
-                  },
-                  "medium": {
-                    "url": "https://i9.ytimg.com/vi/VoVpDMaMeyM/mqdefault.jpg?sqp=CLSY4ccG&rs=AOn4CLBieG1MVABVuxWVJ5TfYwue_759Tw",
-                    "width": 320,
-                    "height": 180
-                  },
-                  "high": {
-                    "url": "https://i9.ytimg.com/vi/VoVpDMaMeyM/hqdefault.jpg?sqp=CLSY4ccG&rs=AOn4CLBhEdBbBX_JuyHXOrHaIr6qmMN4Cw",
-                    "width": 480,
-                    "height": 360
-                  },
-                  "standard": {
-                    "url": "https://i9.ytimg.com/vi/VoVpDMaMeyM/sddefault.jpg?sqp=CLSY4ccG&rs=AOn4CLBfaMqi4-MMipNJzJM4erB-FO0x2A",
-                    "width": 640,
-                    "height": 480
-                  }
-                },
-                "channelTitle": "pca2",
-                "playlistId": "PLZOdGIexY9DHhRH0M8vhluI8I5ikok06E",
-                "position": 2,
-                "resourceId": {
-                  "kind": "youtube#video",
-                  "videoId": "VoVpDMaMeyM"
-                },
-                "videoOwnerChannelTitle": "pca2",
-                "videoOwnerChannelId": "UCzFmywjEti1C95vS3A8MOFg"
-              },
-              "status": {
-                "privacyStatus": "private"
-              }
-            },
-            {
-              "kind": "youtube#playlistItem",
-              "etag": "rxhuELHVX-uqipLorP-0Bh3BGCs",
-              "id": "UExaT2RHSWV4WTlESGhSSDBNOHZobHVJOEk1aWtvazA2RS4yODlGNEE0NkRGMEEzMEQy",
-              "snippet": {
-                "publishedAt": "2025-10-22T03:15:21Z",
-                "channelId": "UCzFmywjEti1C95vS3A8MOFg",
-                "title": "sample_two",
-                "description": "",
-                "thumbnails": {
-                  "default": {
-                    "url": "https://i9.ytimg.com/vi/7gcQQnZX9cg/default.jpg?sqp=CLSY4ccG&rs=AOn4CLB1-rONR1j8Xf9KN8u82jiN7ILMDA",
-                    "width": 120,
-                    "height": 90
-                  },
-                  "medium": {
-                    "url": "https://i9.ytimg.com/vi/7gcQQnZX9cg/mqdefault.jpg?sqp=CLSY4ccG&rs=AOn4CLA7Omnp5yPMZe0hM26R6Kio8_XFxA",
-                    "width": 320,
-                    "height": 180
-                  },
-                  "high": {
-                    "url": "https://i9.ytimg.com/vi/7gcQQnZX9cg/hqdefault.jpg?sqp=CLSY4ccG&rs=AOn4CLDIg-RNV7FPgdp60waGzg_o2_rjKQ",
-                    "width": 480,
-                    "height": 360
-                  },
-                  "standard": {
-                    "url": "https://i9.ytimg.com/vi/7gcQQnZX9cg/sddefault.jpg?sqp=CLSY4ccG&rs=AOn4CLBqzvStTkN1oohFyTj14M513bvzQg",
-                    "width": 640,
-                    "height": 480
-                  }
-                },
-                "channelTitle": "pca2",
-                "playlistId": "PLZOdGIexY9DHhRH0M8vhluI8I5ikok06E",
-                "position": 3,
-                "resourceId": {
-                  "kind": "youtube#video",
-                  "videoId": "7gcQQnZX9cg"
-                },
-                "videoOwnerChannelTitle": "pca2",
-                "videoOwnerChannelId": "UCzFmywjEti1C95vS3A8MOFg"
-              },
-              "status": {
-                "privacyStatus": "private"
-              }
             }
           ],
           "pageInfo": {
@@ -991,10 +991,10 @@ http_interactions:
             "resultsPerPage": 50
           }
         }
-  recorded_at: Wed, 22 Oct 2025 03:15:24 GMT
+  recorded_at: Sat, 25 Oct 2025 12:11:16 GMT
 - request:
     method: delete
-    uri: https://www.googleapis.com/youtube/v3/playlists?id=PLZOdGIexY9DHhRH0M8vhluI8I5ikok06E
+    uri: https://www.googleapis.com/youtube/v3/playlists?id=PLZOdGIexY9DElEsBWwoJJ9RgQoxIxYSzM
     body:
       encoding: US-ASCII
       string: ''
@@ -1017,7 +1017,7 @@ http_interactions:
       - Referer
       - X-Origin
       Date:
-      - Wed, 22 Oct 2025 03:15:24 GMT
+      - Sat, 25 Oct 2025 12:11:17 GMT
       Server:
       - scaffolding on HTTPServer2
       Content-Length:
@@ -1033,5 +1033,5 @@ http_interactions:
     body:
       encoding: UTF-8
       string: ''
-  recorded_at: Wed, 22 Oct 2025 03:15:24 GMT
+  recorded_at: Sat, 25 Oct 2025 12:11:17 GMT
 recorded_with: VCR 6.3.1
