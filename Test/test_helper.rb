@@ -4,6 +4,13 @@ require 'vcr'
 require 'webmock/minitest'
 require 'cgi'
 
+# Set dummy environment variables for testing
+# VCR will intercept all HTTP requests, so these fake values won't be used
+ENV['CLIENT_ID'] ||= 'fake_client_id_for_testing'
+ENV['CLIENT_SECRET'] ||= 'fake_client_secret_for_testing'
+ENV['REFRESH_TOKEN'] ||= 'fake_refresh_token_for_testing'
+ENV['PLAYLIST_ID'] ||= 'fake_playlist_id_for_testing'
+
 DIR = File.expand_path(File.dirname(__FILE__)) #path to containing folder
 SAMPLE_DIR = DIR + '/sample_xml/'
 FEED_URL = 'http://feeds.kottke.org/main'
