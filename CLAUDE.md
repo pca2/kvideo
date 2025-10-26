@@ -14,7 +14,7 @@ This is a Ruby script that scrapes kottke.org's RSS feed for YouTube links and a
 bundle install
 
 # Set up environment variables (copy and modify env_SAMPLE.sh)
-source env.sh  # Your local version with actual credentials
+source .env  # Your local version with actual credentials
 ```
 
 ### Running the Script

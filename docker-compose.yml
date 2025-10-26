@@ -10,7 +10,7 @@ services:
       - ./data:/app/data
     env_file:
       # Load environment variables from env.sh
-      - env.sh
+      - .env
     # Override command to run tests instead
     # command: bundle exec ruby ./Test/kottke_test.rb
 
@@ -22,8 +22,6 @@ services:
     volumes:
       # Tests use ephemeral database inside container
       - ./Test:/app/Test
-    env_file:
-      - env.sh
     command: bundle exec ruby ./Test/kottke_test.rb
     profiles:
       # Only run when explicitly specified
