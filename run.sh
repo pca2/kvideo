@@ -2,9 +2,9 @@
   set -e
 
   DIR_PATH=""
-  cd $DIR_PATH
 
   echo "$(date): Starting kvideo run" 
+  cd $DIR_PATH
 
   if docker-compose up  2>&1; then
     echo "$(date): Completed successfully" 
